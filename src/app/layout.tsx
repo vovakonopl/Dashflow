@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter, Archivo } from 'next/font/google';
 import { ReactNode } from 'react';
 import StoreProvider from '@/components/providers/StoreProvider';
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const geistSans = Inter({
+  subsets: ['cyrillic', 'latin'],
+  variable: '--font-inter',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const geistMono = Archivo({
   subsets: ['latin'],
+  variable: '--font-archivo',
 });
 
 export const metadata: Metadata = {
@@ -26,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <div className="size-96"></div>
         <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
