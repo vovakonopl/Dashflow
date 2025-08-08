@@ -29,9 +29,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Providers>
-          <SideNavbar />
-          <main>{children}</main>
-          <ThemeSwitcherDevTool />
+          <div className="md:flex">
+            <SideNavbar />
+            <main>{children}</main>
+            <ThemeSwitcherDevTool />
+          </div>
         </Providers>
       </body>
     </html>
