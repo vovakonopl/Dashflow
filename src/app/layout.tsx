@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Archivo } from 'next/font/google';
 import { ReactNode } from 'react';
 import ThemeSwitcherDevTool from '@/components/dev/ThemeSwitcherDevTool';
+import SideNavbar from '@/components/layout/sidebar';
 import Providers from '@/components/providers/Providers';
 import './globals.css';
 
@@ -26,11 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} transition-colors`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Providers>
-          {children}
+          <SideNavbar />
+          <main>{children}</main>
           <ThemeSwitcherDevTool />
         </Providers>
       </body>
