@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Archivo } from 'next/font/google';
 import { ReactNode } from 'react';
-import StoreProvider from '@/components/providers/StoreProvider';
+import ThemeSwitcherDevTool from '@/components/dev/ThemeSwitcherDevTool';
+import Providers from '@/components/providers/Providers';
 import './globals.css';
 
 const geistSans = Inter({
@@ -24,10 +25,14 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <div className="size-96"></div>
-        <StoreProvider>{children}</StoreProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} transition-colors`}
+      >
+        <Providers>
+          {children}
+          <ThemeSwitcherDevTool />
+        </Providers>
       </body>
     </html>
   );
