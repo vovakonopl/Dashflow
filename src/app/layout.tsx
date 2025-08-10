@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Archivo } from 'next/font/google';
 import { ReactNode } from 'react';
 import ThemeSwitcherDevTool from '@/components/dev/ThemeSwitcherDevTool';
+import Footer from '@/components/layout/Footer';
 import SideNavbar from '@/components/layout/sidebar';
 import Providers from '@/components/providers/Providers';
 import './globals.css';
@@ -29,12 +30,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${archivo.variable}`}>
         <Providers>
-          <div className="md:flex">
+          <div className="flex min-h-dvh min-w-dvw max-md:flex-col">
             <SideNavbar />
-            <div className="size-full">
-              <main>{children}</main>
+
+            <div className="flex flex-1 flex-col">
+              <main className="flex-1">{children}</main>
+              <Footer />
             </div>
-            <ThemeSwitcherDevTool />
+
+            {/*<ThemeSwitcherDevTool />*/}
           </div>
         </Providers>
       </body>

@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import ActiveSidebarMenuButton from '@/components/layout/sidebar/SidebarMenuButton';
+import { Separator } from '@/components/ui/separator';
 import {
   Sidebar,
   SidebarContent,
@@ -25,7 +26,10 @@ const SideNavbar = async () => {
     <aside>
       <nav>
         <SidebarProvider className="max-md:bg-sidebar text-sidebar-foreground max-md:min-h-8 md:w-[var(--sidebar-width)]">
-          <SidebarTrigger className="ml-2 box-content py-1 md:hidden" />
+          <div className="w-full md:hidden">
+            <SidebarTrigger className="ml-2 box-content py-1" />
+            <Separator />
+          </div>
 
           <Sidebar collapsible="icon">
             <SidebarTrigger className="mt-1 ml-2 box-content md:hidden" />
