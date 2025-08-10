@@ -22,7 +22,7 @@ import {
 
 const SideNavbar = async () => {
   return (
-    <SidebarProvider className="max-md:min-h-8 md:w-[var(--sidebar-width)]">
+    <SidebarProvider className="max-md:bg-sidebar text-sidebar-foreground max-md:min-h-8 md:w-[var(--sidebar-width)]">
       <SidebarTrigger className="ml-2 box-content py-1 md:hidden" />
 
       <Sidebar collapsible="icon">
