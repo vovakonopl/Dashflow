@@ -66,21 +66,21 @@ const SideNavbar = async () => {
           <SidebarGroup>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
+                <ActiveSidebarMenuButton asChild href="/settings">
                   <Link href="/settings">
                     <Settings />
                     <span>Settings</span>
                   </Link>
-                </SidebarMenuButton>
+                </ActiveSidebarMenuButton>
               </SidebarMenuItem>
 
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
+                <ActiveSidebarMenuButton asChild href="/profile">
                   <Link href="/profile">
                     <Users />
                     <span>Profile</span>
                   </Link>
-                </SidebarMenuButton>
+                </ActiveSidebarMenuButton>
               </SidebarMenuItem>
 
               <SidebarMenuItem>

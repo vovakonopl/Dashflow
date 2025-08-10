@@ -6,12 +6,12 @@ import SideNavbar from '@/components/layout/sidebar';
 import Providers from '@/components/providers/Providers';
 import './globals.css';
 
-const geistSans = Inter({
+const inter = Inter({
   subsets: ['cyrillic', 'latin'],
   variable: '--font-inter',
 });
 
-const geistMono = Archivo({
+const archivo = Archivo({
   subsets: ['latin'],
   variable: '--font-archivo',
 });
@@ -27,11 +27,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${inter.variable} ${archivo.variable}`}>
         <Providers>
           <div className="md:flex">
             <SideNavbar />
-            <main>{children}</main>
+            <div className="size-full">
+              <main>{children}</main>
+            </div>
             <ThemeSwitcherDevTool />
           </div>
         </Providers>
