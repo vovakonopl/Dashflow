@@ -2,15 +2,17 @@ import type { Metadata } from 'next';
 import { Inter, Archivo } from 'next/font/google';
 import { ReactNode } from 'react';
 import ThemeSwitcherDevTool from '@/components/dev/ThemeSwitcherDevTool';
+import Footer from '@/components/layout/Footer';
+import SideNavbar from '@/components/layout/sidebar';
 import Providers from '@/components/providers/Providers';
 import './globals.css';
 
-const geistSans = Inter({
+const inter = Inter({
   subsets: ['cyrillic', 'latin'],
   variable: '--font-inter',
 });
 
-const geistMono = Archivo({
+const archivo = Archivo({
   subsets: ['latin'],
   variable: '--font-archivo',
 });
@@ -26,12 +28,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} transition-colors`}
-      >
+      <body className={`${inter.variable} ${archivo.variable}`}>
         <Providers>
-          {children}
-          <ThemeSwitcherDevTool />
+          <div className="flex min-h-dvh min-w-dvw max-md:flex-col">
+            <SideNavbar />
+
+            <div className="flex flex-1 flex-col">
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+
+            {/*<ThemeSwitcherDevTool />*/}
+          </div>
         </Providers>
       </body>
     </html>
