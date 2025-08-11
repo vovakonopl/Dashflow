@@ -28,9 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${archivo.variable}`}>
+      <body
+        className={`${inter.variable} ${archivo.variable} font-inter min-h-dvh`}
+      >
         <Providers>
-          <div className="flex min-h-dvh min-w-dvw max-md:flex-col">
+          <div className="flex max-md:flex-col">
             <SideNavbar />
 
             <div className="flex flex-1 flex-col">
@@ -38,7 +40,7 @@ export default function RootLayout({
               <Footer />
             </div>
 
-            {/*<ThemeSwitcherDevTool />*/}
+            <ThemeSwitcherDevTool />
           </div>
         </Providers>
       </body>

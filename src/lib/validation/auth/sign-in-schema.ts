@@ -6,3 +6,5 @@ export const signInSchema = z.object({
   email: emailSchema,
   password: passwordSchema,
 });
+
+export type TSignInData = z.infer<typeof signInSchema>;
