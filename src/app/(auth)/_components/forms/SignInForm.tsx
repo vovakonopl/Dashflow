@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import PasswordInput from '@/components/shared/PasswordInput';
 import {
   Form,
   FormControl,
@@ -56,7 +57,7 @@ const SignInForm = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="••••••••" type="password" />
+                <PasswordInput {...field} />
               </FormControl>
             </FormItem>
           )}
