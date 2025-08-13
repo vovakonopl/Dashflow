@@ -57,9 +57,6 @@ import {
 
 const userPayload = Object.freeze({
   userId: 'user123',
-  email: 'JohnDoe@gmail.com',
-  firstName: 'John',
-  lastName: 'Doe',
 });
 
 describe('Session tests', () => {
