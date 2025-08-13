@@ -70,3 +70,23 @@ export async function deleteSession(): Promise<void> {
 
   redirect('/');
 }
+
+// Return the session if it exists, otherwise return null
+export async function getSession(): Promise<Omit<
+  TSessionPayload,
+  'expires'
+> | null> {
+  const cookiesList = await cookies();
+  const sessionCookie = cookiesList.get(SESSION_COOKIE_CONFIG.name)?.value;
+  if (!sessionCookie) {
+    return null;
+  }
+
+  const session = await decrypt(sessionCookie);
+  if (!session?.userId) {
+    return null;
+  }
+
+  const { expires, ...userPayload } = session;
+  return userPayload;
+}

@@ -53,6 +53,7 @@ import {
   createSession,
   verifySession,
   deleteSession,
+  getSession,
 } from '@/lib/server/session';
 
 const userPayload = Object.freeze({
@@ -90,5 +91,18 @@ describe('Session tests', () => {
 
     await expect(deleteSession).rejects.toThrow('Mock Redirect');
     expect(cookiesStorage).toEqual({});
+  });
+
+  test('should create and then get session', async () => {
+    await createSession(userPayload);
+    expect(cookiesStorage[SESSION_COOKIE_CONFIG.name]).toBeDefined();
+
+    const verifiedSession = await getSession();
+    expect(verifiedSession).toEqual(userPayload);
+  });
+
+  test('should get null because session cookie is missing', async () => {
+    const verifiedSession = await getSession();
+    expect(verifiedSession).toBeNull();
   });
 });
