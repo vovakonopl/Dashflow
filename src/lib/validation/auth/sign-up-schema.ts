@@ -1,16 +1,7 @@
 import { z } from 'zod';
-import { MAX_NAME_LENGTH } from '@/lib/constants/names-max-length';
 import { passwordSchema } from '@/lib/validation/auth/passwordSchema';
 import { emailSchema } from '@/lib/validation/email-schema';
-
-const nameSchema = z
-  .string()
-  .min(1, {
-    message: 'Field is required.',
-  })
-  .max(MAX_NAME_LENGTH, {
-    message: `Name must be at most ${MAX_NAME_LENGTH} characters long.`,
-  });
+import { nameSchema } from '@/lib/validation/name-schema';
 
 export const signUpSchema = z
   .object({
