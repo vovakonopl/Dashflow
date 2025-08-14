@@ -2,19 +2,14 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { startTransition, useActionState, useEffect } from 'react';
+import React, { startTransition, useActionState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import SubmitButton from '@/app/(auth)/_components/SubmitButton';
+import ErrorMessage from '@/components/shared/ErrorMessage';
+import FormInput from '@/components/shared/FormInput';
 import PasswordInput from '@/components/shared/PasswordInput';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { Form, FormField } from '@/components/ui/form';
 import { signUp } from '@/lib/actions/auth/signUp';
 import { setUserAndStatus } from '@/lib/store/slices/user-slice';
 import {
@@ -71,36 +66,40 @@ const SignUpForm = () => {
     startTransition(() => action(formData));
   };
 
+  const rootErrorMsg: string | undefined = form.formState.errors.root?.message;
+
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-6"
       >
-        <div className="flex gap-5">
+        <div className="flex items-start gap-5">
           <FormField
             control={form.control}
             name="firstName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>First name</FormLabel>
-                <FormControl>
-                  <Input {...field} placeholder="John" type="text" />
-                </FormControl>
-              </FormItem>
+            render={({ field, fieldState: { error } }) => (
+              <FormInput
+                {...field}
+                error={error?.message}
+                label="First name"
+                placeholder="John"
+                type="text"
+              />
             )}
           />
 
           <FormField
             control={form.control}
             name="lastName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Last name</FormLabel>
-                <FormControl>
-                  <Input {...field} placeholder="Doe" type="text" />
-                </FormControl>
-              </FormItem>
+            render={({ field, fieldState: { error } }) => (
+              <FormInput
+                {...field}
+                error={error?.message}
+                label="Last name"
+                placeholder="Doe"
+                type="text"
+              />
             )}
           />
         </div>
@@ -108,45 +107,44 @@ const SignUpForm = () => {
         <FormField
           control={form.control}
           name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  placeholder="JohnDoe@gmail.com"
-                  type="email"
-                />
-              </FormControl>
-            </FormItem>
+          render={({ field, fieldState: { error } }) => (
+            <FormInput
+              {...field}
+              error={error?.message}
+              label="Email"
+              placeholder="JohnDoe@gmail.com"
+              type="email"
+            />
           )}
         />
 
         <FormField
           control={form.control}
           name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <PasswordInput {...field} />
-              </FormControl>
-            </FormItem>
+          render={({ field, fieldState: { error } }) => (
+            <FormInput
+              {...field}
+              error={error?.message}
+              label="Password"
+              renderInput={() => <PasswordInput {...field} />}
+            />
           )}
         />
 
         <FormField
           control={form.control}
           name="confirmPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Confirm password</FormLabel>
-              <FormControl>
-                <PasswordInput {...field} />
-              </FormControl>
-            </FormItem>
+          render={({ field, fieldState: { error } }) => (
+            <FormInput
+              {...field}
+              error={error?.message}
+              label="Confirm password"
+              renderInput={() => <PasswordInput {...field} />}
+            />
           )}
         />
+
+        {rootErrorMsg && <ErrorMessage>{rootErrorMsg}</ErrorMessage>}
 
         <SubmitButton type="submit" disabled={isPending}>
           Sign Up
