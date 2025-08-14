@@ -3,17 +3,12 @@ import { cache } from 'react';
 import { users } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { getSession, verifySession } from '@/lib/server/session';
-import { TUser } from '@/lib/types/user';
+import { DB_USER_INCLUDED_COLUMNS, TUser } from '@/lib/types/user';
 
 async function fetchUserFromDb(userId: string): Promise<TUser> {
   const user: TUser | undefined = await db.query.users.findFirst({
     where: eq(users.id, userId),
-    columns: {
-      id: true,
-      email: true,
-      firstName: true,
-      lastName: true,
-    },
+    columns: DB_USER_INCLUDED_COLUMNS,
   });
 
   if (!user) {
