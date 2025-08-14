@@ -1,7 +1,11 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { startTransition, useActionState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import SubmitButton from '@/app/(auth)/_components/SubmitButton';
 import PasswordInput from '@/components/shared/PasswordInput';
 import {
   Form,
@@ -11,21 +15,61 @@ import {
   FormLabel,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { signUp } from '@/lib/actions/auth/signUp';
+import { setUserAndStatus } from '@/lib/store/slices/user-slice';
 import {
   signUpSchema,
   TSignUpData,
 } from '@/lib/validation/auth/sign-up-schema';
 
 const SignUpForm = () => {
+  const [state, action, isPending] = useActionState(signUp, undefined);
+  const dispatch = useDispatch();
+  const router = useRouter();
   const form = useForm<TSignUpData>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
+      confirmPassword: '',
     },
   });
 
-  const onSubmit = (data: TSignUpData) => {};
+  // Set errors for specified fields if error occurred
+  useEffect(() => {
+    if (!state || state.isSuccess) return;
+
+    const { errors } = state;
+    for (const field in errors) {
+      const error = errors[field as keyof typeof errors]?.errors[0];
+      form.setError(field as keyof TSignUpData, {
+        message: error,
+      });
+    }
+  }, [form, state]);
+
+  // Set user data to store and redirect to dashboard on success
+  useEffect(() => {
+    if (!state || !state.isSuccess) return;
+
+    const { data } = state;
+    dispatch(setUserAndStatus({ data, isLoading: false }));
+
+    // Redirect user to dashboard
+    router.replace('/dashboard');
+  }, [dispatch, router, state]);
+
+  const onSubmit = (data: TSignUpData) => {
+    // Transform the data into FormData object first
+    const formData = new FormData();
+    for (const key in data) {
+      formData.set(key, data[key as keyof TSignUpData]);
+    }
+
+    startTransition(() => action(formData));
+  };
 
   return (
     <Form {...form}>
@@ -103,6 +147,10 @@ const SignUpForm = () => {
             </FormItem>
           )}
         />
+
+        <SubmitButton type="submit" disabled={isPending}>
+          Sign Up
+        </SubmitButton>
       </form>
     </Form>
   );
