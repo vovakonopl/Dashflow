@@ -12,7 +12,7 @@ export async function encrypt(payload: TSessionPayload): Promise<string> {
   return new SignJWT(payload)
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
-    .setExpirationTime(SESSION_COOKIE_CONFIG.duration / 1000) // Convert milliseconds to seconds
+    .setExpirationTime(payload.expires)
     .sign(key);
 }
 
