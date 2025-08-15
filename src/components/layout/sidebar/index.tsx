@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import ActiveSidebarMenuButton from '@/components/layout/sidebar/SidebarMenuButton';
+import SignOutButton from '@/components/layout/sidebar/SignOutButton';
 import SkeletonBlock from '@/components/layout/sidebar/SkeletonBlock';
 import { Separator } from '@/components/ui/separator';
 import {
@@ -113,10 +114,7 @@ const SideNavbar = async () => {
                     </SidebarMenuItem>
 
                     <SidebarMenuItem>
-                      <SidebarMenuButton className="cursor-pointer">
-                        <LogOut />
-                        <span>Sign Out</span>
-                      </SidebarMenuButton>
+                      <SignOutButton />
                     </SidebarMenuItem>
                   </SignedIn>
 
