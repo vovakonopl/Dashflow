@@ -10,7 +10,7 @@ import ErrorMessage from '@/components/shared/ErrorMessage';
 import FormInput from '@/components/shared/FormInput';
 import PasswordInput from '@/components/shared/PasswordInput';
 import { Form, FormField } from '@/components/ui/form';
-import { signIn } from '@/lib/actions/auth/signIn';
+import { signIn } from '@/lib/actions/auth/sign-in';
 import { setUserAndStatus } from '@/lib/store/slices/user-slice';
 import {
   signInSchema,
