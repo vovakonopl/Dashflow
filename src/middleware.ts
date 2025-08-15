@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from '@/lib/server/session';
 
-const publicRoutes = ['/', '/sign-in', '/sign-up', '/404'];
+const publicRoutes = ['/', '/sign-in', '/sign-up'];
 
 // Routes that are allowed only for unauthorized users
 const authRoutes = ['/sign-in', '/sign-up'];
