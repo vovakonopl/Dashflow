@@ -16,7 +16,7 @@ const Footer = () => {
       >
         <p>© 2025 Dashflow. All content and design by Vova Konoplianyk.</p>
         <Link
-          className="fill-foreground size-6"
+          className="fill-foreground size-6 min-w-6"
           href="https://github.com/vovakonopl/Dashflow"
           target="_blank"
         >

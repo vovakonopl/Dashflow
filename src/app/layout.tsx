@@ -28,15 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${archivo.variable} font-inter min-h-dvh`}
-      >
+      <body className={`${inter.variable} ${archivo.variable} font-inter`}>
         <Providers>
-          <div className="flex max-md:flex-col">
+          <div className="flex min-h-dvh max-md:flex-col">
             <SideNavbar />
 
             <div className="flex flex-1 flex-col">
-              <main className="flex-1">{children}</main>
+              <main className="grid flex-1">{children}</main>
               <Footer />
             </div>
 
