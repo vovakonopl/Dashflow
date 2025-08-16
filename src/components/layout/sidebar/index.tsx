@@ -58,7 +58,7 @@ const SideNavbar = async () => {
                   </SidebarMenuItem>
 
                   {/* display only for authorised users*/}
-                  <SignedIn>
+                  <SignedIn waitUntilLoaded>
                     <SidebarMenuItem>
                       <ActiveSidebarMenuButton asChild href="/dashboard">
                         <Link href="/dashboard">
@@ -99,7 +99,7 @@ const SideNavbar = async () => {
               <SidebarGroup>
                 <SidebarMenu>
                   {/* content for authorised users*/}
-                  <SignedIn>
+                  <SignedIn waitUntilLoaded>
                     <SidebarMenuItem>
                       <ActiveSidebarMenuButton asChild href="/settings">
                         <Link href="/settings">
@@ -124,7 +124,7 @@ const SideNavbar = async () => {
                   </SignedIn>
 
                   {/* content for unauthorised users */}
-                  <SignedOut>
+                  <SignedOut waitUntilLoaded>
                     <SidebarMenuItem>
                       <SidebarMenuButton asChild className="cursor-pointer">
                         <Link href="/sign-in">

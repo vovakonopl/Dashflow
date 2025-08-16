@@ -6,13 +6,20 @@ import { RootState } from '@/lib/store';
 
 type TSignedOutProps = {
   children: ReactNode;
+
+  // If true - content will be displayed only when isLoading property will be false.
+  // False by default.
+  waitUntilLoaded?: boolean;
 };
 
 // Renders children only when the user is signed out and isLoading is false
-const SignedOut = ({ children }: TSignedOutProps) => {
+const SignedOut = ({ children, waitUntilLoaded = false }: TSignedOutProps) => {
   const user = useSelector((state: RootState) => state.user);
 
-  if (!user.isSignedIn && !user.isLoading) return children;
+  if (!user.isSignedIn && (!waitUntilLoaded || !user.isLoading)) {
+    return children;
+  }
+
   return null;
 };
 
