@@ -4,11 +4,11 @@ import {
   House,
   LayoutDashboard,
   LogIn,
-  LogOut,
   Settings,
   Users,
 } from 'lucide-react';
 import Link from 'next/link';
+import Logo from '@/components/layout/Logo';
 import ActiveSidebarMenuButton from '@/components/layout/sidebar/SidebarMenuButton';
 import SignOutButton from '@/components/layout/sidebar/SignOutButton';
 import SkeletonBlock from '@/components/layout/sidebar/SkeletonBlock';
@@ -39,7 +39,12 @@ const SideNavbar = async () => {
           </div>
 
           <Sidebar collapsible="icon">
-            <SidebarTrigger className="mt-1 ml-2 box-content md:hidden" />
+            <div className="flex items-center justify-between gap-2 px-3 pt-4 pb-1">
+              <Link href="/">
+                <Logo />
+              </Link>
+              <SidebarTrigger className="box-content md:hidden" />
+            </div>
             <SidebarContent>
               <SidebarGroup>
                 <SidebarMenu>
