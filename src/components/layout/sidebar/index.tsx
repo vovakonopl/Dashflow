@@ -1,13 +1,17 @@
 import {
   ClipboardList,
   FolderOpen,
+  House,
   LayoutDashboard,
+  LogIn,
   LogOut,
   Settings,
   Users,
 } from 'lucide-react';
 import Link from 'next/link';
 import ActiveSidebarMenuButton from '@/components/layout/sidebar/SidebarMenuButton';
+import SignOutButton from '@/components/layout/sidebar/SignOutButton';
+import SkeletonBlock from '@/components/layout/sidebar/SkeletonBlock';
 import { Separator } from '@/components/ui/separator';
 import {
   Sidebar,
@@ -20,6 +24,9 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
+import SignedIn from '@/components/utils/user-state/SignedIn';
+import SignedOut from '@/components/utils/user-state/SignedOut';
+import UserLoading from '@/components/utils/user-state/UserLoading';
 
 const SideNavbar = async () => {
   return (
@@ -38,63 +45,95 @@ const SideNavbar = async () => {
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <ActiveSidebarMenuButton asChild href="/">
-                      {/* Dashboard */}
                       <Link href="/">
-                        <LayoutDashboard />
-                        <span>Dashboard</span>
+                        <House />
+                        <span>Home</span>
                       </Link>
                     </ActiveSidebarMenuButton>
                   </SidebarMenuItem>
 
-                  <SidebarMenuItem>
-                    <ActiveSidebarMenuButton asChild href="/projects">
-                      <Link href="/projects">
-                        <FolderOpen />
-                        <span>Projects</span>
-                      </Link>
-                    </ActiveSidebarMenuButton>
-                  </SidebarMenuItem>
+                  {/* display only for authorised users*/}
+                  <SignedIn>
+                    <SidebarMenuItem>
+                      <ActiveSidebarMenuButton asChild href="/dashboard">
+                        <Link href="/dashboard">
+                          <LayoutDashboard />
+                          <span>Dashboard</span>
+                        </Link>
+                      </ActiveSidebarMenuButton>
+                    </SidebarMenuItem>
 
-                  <SidebarMenuItem>
-                    <ActiveSidebarMenuButton asChild href="/tasks">
-                      <Link href="/tasks">
-                        <ClipboardList />
-                        <span>Tasks</span>
-                      </Link>
-                    </ActiveSidebarMenuButton>
-                  </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <ActiveSidebarMenuButton asChild href="/projects">
+                        <Link href="/projects">
+                          <FolderOpen />
+                          <span>Projects</span>
+                        </Link>
+                      </ActiveSidebarMenuButton>
+                    </SidebarMenuItem>
+
+                    <SidebarMenuItem>
+                      <ActiveSidebarMenuButton asChild href="/tasks">
+                        <Link href="/tasks">
+                          <ClipboardList />
+                          <span>Tasks</span>
+                        </Link>
+                      </ActiveSidebarMenuButton>
+                    </SidebarMenuItem>
+                  </SignedIn>
+
+                  {/* display skeleton while loading user data */}
+                  <UserLoading>
+                    <SkeletonBlock />
+                  </UserLoading>
                 </SidebarMenu>
               </SidebarGroup>
             </SidebarContent>
 
-            {/* TODO: display 'Log In' button instead of whole group while user is signed out */}
             <SidebarFooter>
               <SidebarGroup>
                 <SidebarMenu>
-                  <SidebarMenuItem>
-                    <ActiveSidebarMenuButton asChild href="/settings">
-                      <Link href="/settings">
-                        <Settings />
-                        <span>Settings</span>
-                      </Link>
-                    </ActiveSidebarMenuButton>
-                  </SidebarMenuItem>
+                  {/* content for authorised users*/}
+                  <SignedIn>
+                    <SidebarMenuItem>
+                      <ActiveSidebarMenuButton asChild href="/settings">
+                        <Link href="/settings">
+                          <Settings />
+                          <span>Settings</span>
+                        </Link>
+                      </ActiveSidebarMenuButton>
+                    </SidebarMenuItem>
 
-                  <SidebarMenuItem>
-                    <ActiveSidebarMenuButton asChild href="/profile">
-                      <Link href="/profile">
-                        <Users />
-                        <span>Profile</span>
-                      </Link>
-                    </ActiveSidebarMenuButton>
-                  </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <ActiveSidebarMenuButton asChild href="/profile">
+                        <Link href="/profile">
+                          <Users />
+                          <span>Profile</span>
+                        </Link>
+                      </ActiveSidebarMenuButton>
+                    </SidebarMenuItem>
 
-                  <SidebarMenuItem>
-                    <SidebarMenuButton className="cursor-pointer">
-                      <LogOut />
-                      <span>Log Out</span>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SignOutButton />
+                    </SidebarMenuItem>
+                  </SignedIn>
+
+                  {/* content for unauthorised users */}
+                  <SignedOut>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild className="cursor-pointer">
+                        <Link href="/sign-in">
+                          <LogIn />
+                          <span>Sign In</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  </SignedOut>
+
+                  {/* display skeleton while loading user data */}
+                  <UserLoading>
+                    <SkeletonBlock />
+                  </UserLoading>
                 </SidebarMenu>
               </SidebarGroup>
             </SidebarFooter>
