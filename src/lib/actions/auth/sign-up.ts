@@ -21,7 +21,7 @@ const errorSchema = z.object({
   }),
 });
 
-type TSignUpReturn = TFormActionReturn<TUser, TSignUpData>;
+type TSignUpReturn = TFormActionReturn<TSignUpData, TUser>;
 
 export async function signUp(
   _: unknown,

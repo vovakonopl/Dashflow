@@ -14,7 +14,7 @@ import {
   TSignInData,
 } from '@/lib/validation/auth/sign-in-schema';
 
-type TSignInReturn = TFormActionReturn<TUser, TSignInData>;
+type TSignInReturn = TFormActionReturn<TSignInData, TUser>;
 
 function createError(errors: TZodObjectErrors<TSignInData>): TSignInReturn {
   return {
