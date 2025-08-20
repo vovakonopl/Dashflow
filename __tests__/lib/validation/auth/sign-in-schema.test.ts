@@ -1,6 +1,6 @@
 import { signInSchema } from '@/lib/validation/auth/sign-in-schema';
 
-describe('signInSchema', () => {
+describe('sign in schema', () => {
   test('should validate correct sign-in data', () => {
     const data = {
       email: 'myEmail@gmail.com',

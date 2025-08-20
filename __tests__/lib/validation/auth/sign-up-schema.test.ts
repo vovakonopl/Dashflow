@@ -1,7 +1,7 @@
 import { signInSchema } from '@/lib/validation/auth/sign-in-schema';
 import { signUpSchema } from '@/lib/validation/auth/sign-up-schema';
 
-describe('signUpSchema', () => {
+describe('sign up schema', () => {
   test('should validate correct sign-up data', () => {
     const data = {
       firstName: 'John',

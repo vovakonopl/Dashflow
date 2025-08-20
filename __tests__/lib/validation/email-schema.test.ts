@@ -1,6 +1,6 @@
 import { emailSchema } from '@/lib/validation/email-schema';
 
-describe('signUpSchema', () => {
+describe('email schema', () => {
   test('should validate correct email', () => {
     const email = 'myEmail@gmail.com';
     const result: boolean = emailSchema.safeParse(email).success;
