@@ -7,6 +7,7 @@ import { SALT_ROUNDS } from '@/lib/constants/auth/SALT_ROUNDS';
 import { PostgresErrorCodes } from '@/lib/constants/drizzle-error-codes';
 import { db } from '@/lib/db';
 import { createSession } from '@/lib/server/session';
+import { TFormActionReturn } from '@/lib/types/form-action-return';
 import { TUser } from '@/lib/types/user';
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 import {
@@ -20,9 +21,7 @@ const errorSchema = z.object({
   }),
 });
 
-type TSignUpReturn =
-  | { isSuccess: true; data: TUser; errors: null }
-  | { isSuccess: false; data: null; errors: TZodObjectErrors<TSignUpData> };
+type TSignUpReturn = TFormActionReturn<TUser, TSignUpData>;
 
 export async function signUp(
   _: unknown,

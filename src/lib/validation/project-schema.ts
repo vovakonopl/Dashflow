@@ -18,4 +18,4 @@ export const projectSchema = z.object({
     .optional(),
 });
 
-export type TProjectSchema = z.infer<typeof projectSchema>;
+export type TProjectData = z.infer<typeof projectSchema>;
