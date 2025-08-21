@@ -42,28 +42,21 @@ export async function newProject(
 
   try {
     // create project and member (user that created the project) in db
-    const [project] = await db
-      .insert(projects)
-      .values({ name, description, ownerId: userId })
-      .returning({ id: projects.id });
-
-    projectId = project.id;
-
     await db.transaction(async (tx) => {
-      const [newProject] = await tx
+      const [project] = await tx
         .insert(projects)
         .values({ name, description, ownerId: userId })
         .returning({ id: projects.id });
 
       await tx.insert(projectMembers).values({
-        projectId: newProject.id,
+        projectId: project.id,
         userId: userId,
         role: 'leader',
       });
+
+      projectId = project.id;
     });
   } catch {
-    projectId = undefined;
-
     return createError({
       root: {
         errors: ['An error occurred on the server. Please, contact support.'],
