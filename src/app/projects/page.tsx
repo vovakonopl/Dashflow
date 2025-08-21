@@ -33,6 +33,7 @@ export default async function Projects() {
   // Get user id to fetch the required projects
   const { userId } = await verifySession();
   const projects: TProjectWithTasksProgress[] = await getUserProjects(userId);
+  console.log(userId, projects);
 
   return (
     <Dialog>

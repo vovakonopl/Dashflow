@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
-import { projects } from '@/drizzle/schema';
+import { projectMembers, projects } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
 import { TFormActionReturn } from '@/lib/types/form-action-return';
@@ -39,23 +39,40 @@ export async function newProject(
 
   const { name, description } = validationResult.data;
   let projectId: string | undefined = undefined;
+
   try {
-    const project = await db
+    // create project and member (user that created the project) in db
+    const [project] = await db
       .insert(projects)
       .values({ name, description, ownerId: userId })
       .returning({ id: projects.id });
 
-    projectId = project[0].id;
+    projectId = project.id;
+
+    await db.transaction(async (tx) => {
+      const [newProject] = await tx
+        .insert(projects)
+        .values({ name, description, ownerId: userId })
+        .returning({ id: projects.id });
+
+      await tx.insert(projectMembers).values({
+        projectId: newProject.id,
+        userId: userId,
+        role: 'leader',
+      });
+    });
   } catch {
+    projectId = undefined;
+
     return createError({
       root: {
         errors: ['An error occurred on the server. Please, contact support.'],
       },
     });
-  }
-
-  // redirect on success
-  if (projectId) {
-    redirect(`/projects/${projectId}`);
+  } finally {
+    // redirect on success
+    if (projectId) {
+      redirect(`/projects/${projectId}`);
+    }
   }
 }
