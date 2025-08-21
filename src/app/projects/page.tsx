@@ -3,6 +3,7 @@ import NewProjectButton from '@/app/projects/_components/new-project/NewProjectB
 import NewProjectModal from '@/app/projects/_components/new-project/NewProjectModal';
 import ProjectCard from '@/app/projects/_components/ProjectCard';
 import ProjectOverview from '@/app/projects/_components/ProjectOverview';
+import TitleH1 from '@/components/shared/TitleH1';
 import { Dialog } from '@/components/ui/dialog';
 import { projectMembers, projects, tasks } from '@/drizzle/schema';
 import { db } from '@/lib/db';
@@ -29,19 +30,18 @@ async function getUserProjects(
   return result as TProjectWithTasksProgress[];
 }
 
-export default async function Projects() {
+export default async function ProjectsPage() {
   // Get user id to fetch the required projects
   const { userId } = await verifySession();
   const projects: TProjectWithTasksProgress[] = await getUserProjects(userId);
-  console.log(userId, projects);
 
   return (
     <Dialog>
       <div className="flex flex-col gap-6 p-8 max-md:gap-4">
         <div className="flex justify-between gap-4 max-md:flex-col">
-          <h1 className="font-archivo text-3xl font-bold max-md:text-center">
+          <TitleH1 className="font-archivo text-3xl font-bold max-md:text-center">
             My Projects
-          </h1>
+          </TitleH1>
           <NewProjectButton />
         </div>
 

@@ -46,7 +46,7 @@ export default function Home() {
         )}
       >
         <div className="flex max-w-96 flex-col gap-6 max-lg:max-w-lg max-lg:gap-4">
-          <TitleH1 className="max-xl:text-5xl max-sm:text-4xl">
+          <TitleH1 className="text-6xl font-extrabold max-xl:text-5xl max-sm:text-4xl">
             Unlock Your Check&apos;s Full Potential
           </TitleH1>
 

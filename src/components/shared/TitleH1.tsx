@@ -6,7 +6,7 @@ const TitleH1 = (props: ComponentProps<'h1'>) => {
     <h1
       {...props}
       className={cn(
-        'font-archivo text-6xl font-extrabold max-md:text-5xl',
+        'font-archivo text-3xl font-bold max-md:text-5xl',
         props.className,
       )}
     />
