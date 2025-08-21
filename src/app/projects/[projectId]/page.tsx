@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm';
 import { Pencil, Users } from 'lucide-react';
 import { notFound, redirect } from 'next/navigation';
 import LeadersOnly from '@/app/projects/[projectId]/_components/LeadersOnly';
+import MembersList from '@/app/projects/[projectId]/_components/MembersList';
 import OwnerOnly from '@/app/projects/[projectId]/_components/OwnerOnly';
 import SectionCard from '@/app/projects/[projectId]/_components/SectionCard';
 import SectionTitle from '@/app/projects/[projectId]/_components/SectionTitle';
@@ -97,12 +98,16 @@ export default async function ProjectPage({ params }: TProjectPage) {
 
         {/* member list */}
         {/* display the list on larger screens*/}
-        <SectionCard className="w-1/3 max-w-96 min-w-80 max-lg:hidden">
-          <CardHeader>
+        <SectionCard
+          cardClassName="w-full"
+          className="w-fit max-w-96 min-w-72 max-lg:hidden"
+        >
+          <CardHeader className="gap-0">
             <SectionTitle>Assigned Members</SectionTitle>
           </CardHeader>
-          <CardContent>
-            {/* TODO: Scroll-area component with list of users */}
+
+          <CardContent className="">
+            <MembersList project={project} userId={userId} />
           </CardContent>
         </SectionCard>
 
