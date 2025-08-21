@@ -6,7 +6,6 @@ export type TUser = {
 };
 
 type TIncludedColumns = { [Key in keyof TUser]: true };
-
 export const DB_USER_INCLUDED_COLUMNS: Readonly<TIncludedColumns> =
   Object.freeze({
     id: true,
