@@ -1,7 +1,9 @@
 import { count, eq, getTableColumns, sql } from 'drizzle-orm';
+import NewProjectButton from '@/app/projects/_components/new-project/NewProjectButton';
+import NewProjectModal from '@/app/projects/_components/new-project/NewProjectModal';
 import ProjectCard from '@/app/projects/_components/ProjectCard';
 import ProjectOverview from '@/app/projects/_components/ProjectOverview';
-import { Button } from '@/components/ui/button';
+import { Dialog } from '@/components/ui/dialog';
 import { projectMembers, projects, tasks } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
@@ -33,23 +35,27 @@ export default async function Projects() {
   const projects: TProjectWithTasksProgress[] = await getUserProjects(userId);
 
   return (
-    <div className="flex flex-col gap-6 p-8 max-md:gap-4">
-      <div className="flex justify-between gap-4 max-md:flex-col">
-        <h1 className="font-archivo text-3xl font-bold max-md:text-center">
-          My Projects
-        </h1>
-        <Button>Create New Project</Button>
+    <Dialog>
+      <div className="flex flex-col gap-6 p-8 max-md:gap-4">
+        <div className="flex justify-between gap-4 max-md:flex-col">
+          <h1 className="font-archivo text-3xl font-bold max-md:text-center">
+            My Projects
+          </h1>
+          <NewProjectButton />
+        </div>
+
+        <ProjectOverview projectsCount={8} />
+
+        <ul className="gap grid grid-cols-[repeat(auto-fit,minmax(16.75rem,1fr))] gap-6">
+          {projects.map((project) => (
+            <li key={project.id}>
+              <ProjectCard project={project} />
+            </li>
+          ))}
+        </ul>
+
+        <NewProjectModal />
       </div>
-
-      <ProjectOverview projectsCount={8} />
-
-      <ul className="gap grid grid-cols-[repeat(auto-fit,minmax(16.75rem,1fr))] gap-6">
-        {projects.map((project) => (
-          <li key={project.id}>
-            <ProjectCard project={project} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    </Dialog>
   );
 }
