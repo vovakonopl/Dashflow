@@ -6,6 +6,7 @@ import MembersList from '@/app/projects/[projectId]/_components/MembersList';
 import OwnerOnly from '@/app/projects/[projectId]/_components/OwnerOnly';
 import SectionCard from '@/app/projects/[projectId]/_components/SectionCard';
 import SectionTitle from '@/app/projects/[projectId]/_components/SectionTitle';
+import TaskRow from '@/app/projects/[projectId]/_components/table/TaskRow';
 import TitleH1 from '@/components/shared/TitleH1';
 import { Button } from '@/components/ui/button';
 import { CardContent, CardHeader } from '@/components/ui/card';
@@ -17,6 +18,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { projects } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
@@ -114,19 +123,52 @@ export default async function ProjectPage({ params }: TProjectPage) {
         </div>
 
         {/* main content */}
-        <div className="flex-1">
+        <div className="flex flex-1 flex-col gap-6">
           {project.description && (
             <SectionCard>
               <CardHeader>
                 <SectionTitle>Project Description</SectionTitle>
               </CardHeader>
+
               <CardContent>
                 <p className="text-muted-foreground">{project.description}</p>
               </CardContent>
             </SectionCard>
           )}
 
-          {/* TODO: list of N tasks and pagination under it (if required) */}
+          {/* list of tasks */}
+          <SectionCard>
+            <CardHeader>
+              <SectionTitle>Project Tasks</SectionTitle>
+            </CardHeader>
+
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Task Name</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Due date</TableHead>
+                    <TableHead className="text-right">Priority</TableHead>
+                  </TableRow>
+                </TableHeader>
+
+                <TableBody className="text-muted-foreground">
+                  {project.tasks.map((task) => (
+                    <TaskRow task={task} key={task.id} />
+                  ))}
+                </TableBody>
+
+                {project.tasks.length === 0 && (
+                  <TableCaption className="text-base italic">
+                    No tasks yet
+                  </TableCaption>
+                )}
+              </Table>
+            </CardContent>
+          </SectionCard>
+
+          {/* TODO: pagination under table (if required) */}
         </div>
 
         {/* member list */}
