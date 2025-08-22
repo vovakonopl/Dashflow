@@ -9,6 +9,14 @@ import SectionTitle from '@/app/projects/[projectId]/_components/SectionTitle';
 import TitleH1 from '@/components/shared/TitleH1';
 import { Button } from '@/components/ui/button';
 import { CardContent, CardHeader } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { projects } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
@@ -59,7 +67,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
       <div className="flex justify-between gap-4 break-all max-md:flex-col">
         <TitleH1>{project.name}</TitleH1>
 
-        <div className="flex gap-3 max-lg:flex-col max-md:flex-row">
+        <div className="flex gap-3 max-lg:flex-col max-md:flex-row max-sm:flex-col">
           <OwnerOnly ownerId={project.ownerId} userId={userId}>
             <Button className="cursor-pointer" size="lg" variant="outline">
               <Pencil className="mr-1" />
@@ -79,7 +87,32 @@ export default async function ProjectPage({ params }: TProjectPage) {
       {/* articles */}
       <div className="">{/* TODO: add articles */}</div>
 
-      <div className="flex gap-6">
+      <div className="flex gap-6 max-lg:flex-col">
+        {/* display modal sheet with list of members on smaller screens */}
+        <div className="lg:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button className="w-full">View Members</Button>
+            </SheetTrigger>
+
+            <SheetContent>
+              <SheetHeader className="gap-0">
+                <SheetTitle>Assigned Members</SheetTitle>
+              </SheetHeader>
+
+              <Separator className="mx-2 -mt-4" />
+
+              <div className="overflow-y-auto px-4 pb-4">
+                <MembersList
+                  project={project}
+                  userId={userId}
+                  className="h-full w-full"
+                />
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+
         {/* main content */}
         <div className="flex-1">
           {project.description && (
@@ -110,9 +143,6 @@ export default async function ProjectPage({ params }: TProjectPage) {
             <MembersList project={project} userId={userId} />
           </CardContent>
         </SectionCard>
-
-        {/* display a modal list on smaller screens */}
-        {/* TODO: Sheet component */}
       </div>
     </div>
   );

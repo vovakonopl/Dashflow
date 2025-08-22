@@ -2,13 +2,15 @@ import Member from '@/app/projects/[projectId]/_components/Member';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { TProjectWithTasksAndUsers } from '@/lib/types/project';
 import { TUser } from '@/lib/types/user';
+import { cn } from '@/lib/utils/cn';
 
 type TMembersListProps = {
+  className?: string;
   project: TProjectWithTasksAndUsers;
   userId: string;
 };
 
-const MembersList = ({ project, userId }: TMembersListProps) => {
+const MembersList = ({ className, project, userId }: TMembersListProps) => {
   const sortedMembersList: TUser[] = project.members
     .map((member) => member.user)
     .sort((a, b) => {
@@ -23,7 +25,9 @@ const MembersList = ({ project, userId }: TMembersListProps) => {
     });
 
   return (
-    <ScrollArea className="-mr-2 h-96 max-h-fit min-h-64 w-fit pr-6">
+    <ScrollArea
+      className={cn('-mr-2 h-96 max-h-fit min-h-64 w-fit pr-6', className)}
+    >
       <ul className="flex flex-col gap-4">
         {sortedMembersList.map((member) => (
           <li key={member.id}>
