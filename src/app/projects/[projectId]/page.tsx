@@ -6,10 +6,12 @@ import MembersList from '@/app/projects/[projectId]/_components/MembersList';
 import OwnerOnly from '@/app/projects/[projectId]/_components/OwnerOnly';
 import SectionCard from '@/app/projects/[projectId]/_components/SectionCard';
 import SectionTitle from '@/app/projects/[projectId]/_components/SectionTitle';
-import TaskRow from '@/app/projects/[projectId]/_components/table/TaskRow';
+import { PaginationProvider } from '@/app/projects/[projectId]/_components/table/pagination/pagination-context';
+import TasksPagination from '@/app/projects/[projectId]/_components/table/pagination/TasksPagination';
+import TasksTable from '@/app/projects/[projectId]/_components/table/TasksTable';
 import TitleH1 from '@/components/shared/TitleH1';
 import { Button } from '@/components/ui/button';
-import { CardContent, CardHeader } from '@/components/ui/card';
+import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import {
   Sheet,
@@ -18,14 +20,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import { projects } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
@@ -72,9 +66,9 @@ export default async function ProjectPage({ params }: TProjectPage) {
   }
 
   return (
-    <div className="flex flex-col gap-8 p-8">
-      <div className="flex justify-between gap-4 break-all max-md:flex-col">
-        <TitleH1>{project.name}</TitleH1>
+    <div className="flex flex-col gap-6 p-8 max-md:p-4">
+      <div className="flex justify-between gap-4 break-all max-md:flex-col md:items-center">
+        <TitleH1 className="max-sm:text-center">{project.name}</TitleH1>
 
         <div className="flex gap-3 max-lg:flex-col max-md:flex-row max-sm:flex-col">
           <OwnerOnly ownerId={project.ownerId} userId={userId}>
@@ -142,33 +136,16 @@ export default async function ProjectPage({ params }: TProjectPage) {
               <SectionTitle>Project Tasks</SectionTitle>
             </CardHeader>
 
-            <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Task Name</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Due date</TableHead>
-                    <TableHead className="text-right">Priority</TableHead>
-                  </TableRow>
-                </TableHeader>
+            <PaginationProvider>
+              <CardContent className="flex">
+                <TasksTable tasks={project.tasks} />
+              </CardContent>
 
-                <TableBody className="text-muted-foreground">
-                  {project.tasks.map((task) => (
-                    <TaskRow task={task} key={task.id} />
-                  ))}
-                </TableBody>
-
-                {project.tasks.length === 0 && (
-                  <TableCaption className="text-base italic">
-                    No tasks yet
-                  </TableCaption>
-                )}
-              </Table>
-            </CardContent>
+              <CardFooter className="empty:hidden">
+                <TasksPagination tasksCount={project.tasks.length} />
+              </CardFooter>
+            </PaginationProvider>
           </SectionCard>
-
-          {/* TODO: pagination under table (if required) */}
         </div>
 
         {/* member list */}
