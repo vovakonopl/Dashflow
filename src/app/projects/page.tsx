@@ -37,11 +37,9 @@ export default async function ProjectsPage() {
 
   return (
     <Dialog>
-      <div className="flex flex-col gap-6 p-8 max-md:gap-4">
+      <div className="flex flex-col gap-6 p-8 max-md:gap-4 max-md:p-4">
         <div className="flex justify-between gap-4 max-md:flex-col">
-          <TitleH1 className="font-archivo text-3xl font-bold max-md:text-center">
-            My Projects
-          </TitleH1>
+          <TitleH1 className="max-md:text-center">My Projects</TitleH1>
           <NewProjectButton />
         </div>
 
