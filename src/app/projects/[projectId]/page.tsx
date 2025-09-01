@@ -1,6 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { Pencil, Users } from 'lucide-react';
 import { notFound, redirect } from 'next/navigation';
+import AddMemberDialog from '@/app/projects/[projectId]/_components/add-member/AddMemberDialog';
 import LeadersOnly from '@/app/projects/[projectId]/_components/LeadersOnly';
 import MembersList from '@/app/projects/[projectId]/_components/MembersList';
 import OwnerOnly from '@/app/projects/[projectId]/_components/OwnerOnly';
@@ -12,6 +13,7 @@ import TasksTable from '@/app/projects/[projectId]/_components/table/TasksTable'
 import TitleH1 from '@/components/shared/TitleH1';
 import { Button } from '@/components/ui/button';
 import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 import {
   Sheet,
@@ -79,10 +81,16 @@ export default async function ProjectPage({ params }: TProjectPage) {
           </OwnerOnly>
 
           <LeadersOnly project={project} userId={userId}>
-            <Button className="cursor-pointer" size="lg">
-              <Users className="mr-1" />
-              Add Member
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button className="cursor-pointer" size="lg">
+                  <Users className="mr-1" />
+                  Add Member
+                </Button>
+              </DialogTrigger>
+
+              <AddMemberDialog />
+            </Dialog>
           </LeadersOnly>
         </div>
       </div>
