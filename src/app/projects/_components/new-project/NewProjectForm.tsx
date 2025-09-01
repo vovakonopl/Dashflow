@@ -74,7 +74,7 @@ const NewProjectForm = () => {
               {...field}
               className="min-h-24"
               error={error?.message}
-              label="Project name"
+              label="Project description"
               placeholder="Optional description"
               maxLength={PROJECT_LENGTHS.description.max}
             />
