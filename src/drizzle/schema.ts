@@ -46,15 +46,26 @@ export const projects = pgTable('projects', {
     .references(() => users.id, { onDelete: 'cascade' }),
 });
 
-export const projectMembers = pgTable('project_members', {
-  projectId: uuid('project_id')
-    .notNull()
-    .references(() => projects.id, { onDelete: 'cascade' }),
-  userId: uuid('user_id')
-    .notNull()
-    .references(() => users.id, { onDelete: 'cascade' }),
-  role: projectRoleEnum('role').notNull(),
-});
+export const projectMembers = pgTable(
+  'project_members',
+  {
+    projectId: uuid('project_id')
+      .notNull()
+      .references(() => projects.id, { onDelete: 'cascade' }),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    role: projectRoleEnum('role').notNull(),
+  },
+  (table) => {
+    return {
+      projectUserIndex: uniqueIndex('project_user_idx').on(
+        table.projectId,
+        table.userId,
+      ),
+    };
+  },
+);
 
 // Tasks
 export const tasks = pgTable('tasks', {
@@ -71,14 +82,25 @@ export const tasks = pgTable('tasks', {
     .references(() => projects.id, { onDelete: 'cascade' }),
 });
 
-export const taskAssignments = pgTable('task_assignments', {
-  taskId: uuid('task_id')
-    .notNull()
-    .references(() => tasks.id, { onDelete: 'cascade' }),
-  userId: uuid('user_id')
-    .notNull()
-    .references(() => users.id, { onDelete: 'cascade' }),
-});
+export const taskAssignments = pgTable(
+  'task_assignments',
+  {
+    taskId: uuid('task_id')
+      .notNull()
+      .references(() => tasks.id, { onDelete: 'cascade' }),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+  },
+  (table) => {
+    return {
+      taskUserIndex: uniqueIndex('task_user_idx').on(
+        table.taskId,
+        table.userId,
+      ),
+    };
+  },
+);
 
 // Relations
 export const projectsRelations = relations(projects, ({ one, many }) => ({
