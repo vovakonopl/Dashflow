@@ -1,4 +1,4 @@
-import Member from '@/app/projects/[projectId]/_components/Member';
+import User from '@/components/shared/User';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { TProjectWithTasksAndUsers } from '@/lib/types/project';
 import { TUser } from '@/lib/types/user';
@@ -31,7 +31,11 @@ const MembersList = ({ className, project, userId }: TMembersListProps) => {
       <ul className="flex flex-col gap-4">
         {sortedMembersList.map((member) => (
           <li key={member.id}>
-            <Member member={member} userId={userId} />
+            <User
+              isCurrentUser={member.id === userId}
+              user={member}
+              size="sm"
+            />
           </li>
         ))}
       </ul>
