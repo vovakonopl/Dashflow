@@ -7,19 +7,10 @@ import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
 import { TFormActionReturn } from '@/lib/types/form-action-return';
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
+import { actionError } from '@/lib/utils/action-error';
 import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
 
 type TNewProjectReturn = TFormActionReturn<TProjectData>;
-
-function createError(
-  errors: TZodObjectErrors<TProjectData>,
-): TNewProjectReturn {
-  return {
-    isSuccess: false,
-    data: null,
-    errors,
-  };
-}
 
 export async function newProject(
   _: unknown,
@@ -32,8 +23,9 @@ export async function newProject(
   );
 
   if (!validationResult.success) {
-    return createError(
-      z.treeifyError(validationResult.error) as TZodObjectErrors<TProjectData>,
+    return actionError(
+      z.treeifyError(validationResult.error)
+        .properties as TZodObjectErrors<TProjectData>,
     );
   }
 
@@ -57,7 +49,7 @@ export async function newProject(
       projectId = project.id;
     });
   } catch {
-    return createError({
+    return actionError({
       root: {
         errors: ['An error occurred on the server. Please, contact support.'],
       },

@@ -9,20 +9,13 @@ import { createSession } from '@/lib/server/session';
 import { TFormActionReturn } from '@/lib/types/form-action-return';
 import { DB_USER_INCLUDED_COLUMNS, TUser } from '@/lib/types/user';
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
+import { actionError } from '@/lib/utils/action-error';
 import {
   signInSchema,
   TSignInData,
 } from '@/lib/validation/auth/sign-in-schema';
 
 type TSignInReturn = TFormActionReturn<TSignInData, TUser>;
-
-function createError(errors: TZodObjectErrors<TSignInData>): TSignInReturn {
-  return {
-    isSuccess: false,
-    data: null,
-    errors,
-  };
-}
 
 export async function signIn(
   _: unknown,
@@ -33,8 +26,9 @@ export async function signIn(
   );
 
   if (!validationResult.success) {
-    return createError(
-      z.treeifyError(validationResult.error) as TZodObjectErrors<TSignInData>,
+    return actionError(
+      z.treeifyError(validationResult.error)
+        .properties as TZodObjectErrors<TSignInData>,
     );
   }
 
@@ -48,7 +42,7 @@ export async function signIn(
 
     // User was not found
     if (!userWithPassword) {
-      return createError({ root: { errors: ['Invalid email or password.'] } });
+      return actionError({ root: { errors: ['Invalid email or password.'] } });
     }
 
     // Compare received and stored passwords
@@ -57,7 +51,7 @@ export async function signIn(
 
     // Invalid password
     if (!isMatching) {
-      return createError({ root: { errors: ['Invalid email or password.'] } });
+      return actionError({ root: { errors: ['Invalid email or password.'] } });
     }
 
     // Create a session
@@ -65,11 +59,10 @@ export async function signIn(
     return {
       isSuccess: true,
       data: user,
-      errors: null,
     };
   } catch {
     // Return an error if it occurred while searching user data.
-    return createError({
+    return actionError({
       root: {
         errors: ['An error occurred on the server. Please, contact support.'],
       },

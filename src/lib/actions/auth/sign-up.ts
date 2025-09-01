@@ -10,6 +10,7 @@ import { createSession } from '@/lib/server/session';
 import { TFormActionReturn } from '@/lib/types/form-action-return';
 import { TUser } from '@/lib/types/user';
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
+import { actionError } from '@/lib/utils/action-error';
 import {
   signUpSchema,
   TSignUpData,
@@ -32,12 +33,10 @@ export async function signUp(
   );
 
   if (!validationResult.success) {
-    return {
-      isSuccess: false,
-      data: null,
-      errors: z.treeifyError(validationResult.error)
+    return actionError(
+      z.treeifyError(validationResult.error)
         .properties as TZodObjectErrors<TSignUpData>,
-    };
+    );
   }
 
   // Create user
@@ -68,7 +67,6 @@ export async function signUp(
     return {
       isSuccess: true,
       data: user[0],
-      errors: null,
     };
   } catch (error: unknown) {
     // Return an error if it occurred during inserting user data.
@@ -83,7 +81,6 @@ export async function signUp(
 
     return {
       isSuccess: false,
-      data: null,
       errors: {
         root: {
           errors: [errorMessage],
