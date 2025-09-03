@@ -7,7 +7,7 @@ import {
   CardHeader,
 } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { TProjectWithTasksProgress } from '@/lib/types/project';
+import { TProjectWithTasksProgress } from '@/lib/types/tables/project';
 import { cn } from '@/lib/utils/cn';
 import styles from './project-card.module.css';
 

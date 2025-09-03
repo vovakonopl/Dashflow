@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { TTask } from '@/lib/types/task';
+import { TTask } from '@/lib/types/tables/task';
 import { PaginationProvider } from './pagination/pagination-context';
 
 type TTasksTableProps = {

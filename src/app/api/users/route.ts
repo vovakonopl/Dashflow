@@ -9,7 +9,7 @@ import {
   USERS_SEARCH_PARAMS_KEYS,
 } from '@/lib/constants/users-search-params';
 import { db } from '@/lib/db';
-import { DB_USER_SELECTED_COLUMNS } from '@/lib/types/user';
+import { DB_USER_SELECTED_COLUMNS } from '@/lib/types/tables/user';
 
 const searchParamsSchema = z.object({
   [USERS_SEARCH_PARAMS_KEYS.input]: z.string(),

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { TProjectWithTasksAndUsers } from '@/lib/types/project';
+import { TProjectWithTasksAndUsers } from '@/lib/types/tables/project';
 
 type TLeadersOnlyProps = {
   children: ReactNode;

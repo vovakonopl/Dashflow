@@ -15,7 +15,7 @@ import { Label } from '@/components/ui/label';
 import { addMemberToProject } from '@/lib/actions/project/add-member-to-project';
 import { useDebounce } from '@/lib/hooks/useDebounce';
 import { useGetUsersByEmailQuery } from '@/lib/store/api';
-import { TUser } from '@/lib/types/user';
+import { TUser } from '@/lib/types/tables/user';
 import { userSchema } from '@/lib/validation/user-schema';
 import { useDialog } from '../dialog-context';
 import SelectUserList from './SelectUserList';

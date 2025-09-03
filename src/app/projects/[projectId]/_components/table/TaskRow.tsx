@@ -2,7 +2,7 @@ import DeadlineCell from '@/app/projects/[projectId]/_components/table/DeadlineC
 import PriorityCell from '@/app/projects/[projectId]/_components/table/PriorityCell';
 import StatusCell from '@/app/projects/[projectId]/_components/table/StatusCell';
 import { TableCell, TableRow } from '@/components/ui/table';
-import { TTask } from '@/lib/types/task';
+import { TTask } from '@/lib/types/tables/task';
 
 type TTaskRowProps = {
   task: TTask;

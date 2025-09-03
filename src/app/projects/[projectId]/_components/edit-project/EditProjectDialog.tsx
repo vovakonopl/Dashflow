@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { TProject } from '@/lib/types/project';
+import { TProject } from '@/lib/types/tables/project';
 
 type TEditProjectDialogProps = {
   project: TProject;

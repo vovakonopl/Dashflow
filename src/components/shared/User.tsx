@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { TUser } from '@/lib/types/user';
+import { TUser } from '@/lib/types/tables/user';
 import { cn } from '@/lib/utils/cn';
 
 type TUserProps = {

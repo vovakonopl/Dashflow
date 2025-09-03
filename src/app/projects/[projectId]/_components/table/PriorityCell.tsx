@@ -1,5 +1,5 @@
 import { TableCell } from '@/components/ui/table';
-import { TTaskPriority } from '@/lib/types/task';
+import { TTaskPriority } from '@/lib/types/tables/task';
 import { cn } from '@/lib/utils/cn';
 
 type TPriorityCellProps = {

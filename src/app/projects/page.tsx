@@ -8,7 +8,7 @@ import { Dialog } from '@/components/ui/dialog';
 import { projectMembers, projects, tasks } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
-import { TProjectWithTasksProgress } from '@/lib/types/project';
+import { TProjectWithTasksProgress } from '@/lib/types/tables/project';
 
 // Fetches all projects in which user is a member
 // with information about the number of all tasks and completed ones.

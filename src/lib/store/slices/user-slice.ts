@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TUser } from '@/lib/types/user';
+import { TUser } from '@/lib/types/tables/user';
 
 type TSignedInUser = { isSignedIn: true; data: TUser };
 type TSignedOutUser = { isSignedIn: false; data: null };

@@ -3,7 +3,7 @@ import {
   USERS_COUNT,
   USERS_SEARCH_PARAMS_KEYS,
 } from '@/lib/constants/users-search-params';
-import { TUser } from '@/lib/types/user';
+import { TUser } from '@/lib/types/tables/user';
 
 export const api = createApi({
   reducerPath: 'api',

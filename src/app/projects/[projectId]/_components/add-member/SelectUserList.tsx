@@ -1,6 +1,6 @@
 import User from '@/components/shared/User';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { TUser } from '@/lib/types/user';
+import { TUser } from '@/lib/types/tables/user';
 
 type TSelectUserListProps = {
   disabled: boolean;

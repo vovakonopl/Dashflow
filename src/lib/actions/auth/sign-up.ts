@@ -7,7 +7,7 @@ import { SALT_ROUNDS } from '@/lib/constants/auth/SALT_ROUNDS';
 import { db } from '@/lib/db';
 import { createSession } from '@/lib/server/session';
 import { TFormActionReturn } from '@/lib/types/form-action-return';
-import { TUser } from '@/lib/types/user';
+import { TUser } from '@/lib/types/tables/user';
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 import { actionError } from '@/lib/utils/action-error';
 import { isUniqueConstraintViolation } from '@/lib/utils/is-unique-constraint-violation';
