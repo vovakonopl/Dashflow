@@ -1,6 +1,7 @@
 'use server';
 
 import { and, eq } from 'drizzle-orm';
+import { revalidatePath } from 'next/cache';
 import { projectMembers } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
@@ -32,6 +33,7 @@ export async function addMemberToProject(
       role: 'member',
     });
 
+    revalidatePath(`/projects/${projectId}`);
     return { isSuccess: true as const };
   } catch (error: unknown) {
     const errorMsg = isUniqueConstraintViolation(error)
