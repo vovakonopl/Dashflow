@@ -1,10 +1,10 @@
-import AddMemberInput from '@/app/projects/[projectId]/_components/add-member/AddMemberInput';
 import {
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import AddMemberInput from './AddMemberInput';
 
 const AddMemberDialog = () => {
   return (

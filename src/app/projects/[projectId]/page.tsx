@@ -1,19 +1,10 @@
 import { eq } from 'drizzle-orm';
 import { Pencil, Users } from 'lucide-react';
 import { notFound, redirect } from 'next/navigation';
-import AddMemberDialog from '@/app/projects/[projectId]/_components/add-member/AddMemberDialog';
-import LeadersOnly from '@/app/projects/[projectId]/_components/LeadersOnly';
-import MembersList from '@/app/projects/[projectId]/_components/MembersList';
-import OwnerOnly from '@/app/projects/[projectId]/_components/OwnerOnly';
-import SectionCard from '@/app/projects/[projectId]/_components/SectionCard';
-import SectionTitle from '@/app/projects/[projectId]/_components/SectionTitle';
-import { PaginationProvider } from '@/app/projects/[projectId]/_components/table/pagination/pagination-context';
-import TasksPagination from '@/app/projects/[projectId]/_components/table/pagination/TasksPagination';
-import TasksTable from '@/app/projects/[projectId]/_components/table/TasksTable';
 import TitleH1 from '@/components/shared/TitleH1';
 import { Button } from '@/components/ui/button';
 import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { Dialog, DialogTrigger } from '@/components/ui/dialog';
+import { DialogTrigger } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 import {
   Sheet,
@@ -27,6 +18,16 @@ import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
 import { TProjectWithTasksAndUsers } from '@/lib/types/project';
 import { DB_USER_INCLUDED_COLUMNS } from '@/lib/types/user';
+import AddMemberDialog from './_components/add-member/AddMemberDialog';
+import { AddMemberDialogProvider } from './_components/add-member/dialog-context';
+import LeadersOnly from './_components/LeadersOnly';
+import MembersList from './_components/MembersList';
+import OwnerOnly from './_components/OwnerOnly';
+import SectionCard from './_components/SectionCard';
+import SectionTitle from './_components/SectionTitle';
+import { PaginationProvider } from './_components/table/pagination/pagination-context';
+import TasksPagination from './_components/table/pagination/TasksPagination';
+import TasksTable from './_components/table/TasksTable';
 
 type TProjectPage = {
   params: Promise<{ projectId: string }>;
@@ -81,7 +82,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
           </OwnerOnly>
 
           <LeadersOnly project={project} userId={userId}>
-            <Dialog>
+            <AddMemberDialogProvider>
               <DialogTrigger asChild>
                 <Button className="cursor-pointer" size="lg">
                   <Users className="mr-1" />
@@ -90,7 +91,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
               </DialogTrigger>
 
               <AddMemberDialog />
-            </Dialog>
+            </AddMemberDialogProvider>
           </LeadersOnly>
         </div>
       </div>
