@@ -2,4 +2,6 @@ import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 
 export type TFormActionReturn<FormData, Result = undefined> =
   | { isSuccess: false; errors: TZodObjectErrors<FormData> }
-  | (Result extends undefined ? undefined : { isSuccess: true; data: Result });
+  | (Result extends undefined
+      ? { isSuccess: true }
+      : { isSuccess: true; data: Result });

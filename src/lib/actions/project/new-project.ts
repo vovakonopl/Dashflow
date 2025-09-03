@@ -48,6 +48,8 @@ export async function newProject(
 
       projectId = project.id;
     });
+
+    return { isSuccess: true };
   } catch {
     return actionError({
       root: {
