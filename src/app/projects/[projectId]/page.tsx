@@ -17,12 +17,12 @@ import {
 import { projects } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
-import { TProjectWithTasksAndUsers } from '@/lib/types/project';
-import { DB_USER_INCLUDED_COLUMNS } from '@/lib/types/user';
+import { TProjectWithTasksAndUsers } from '@/lib/types/tables/project';
+import { DB_USER_INCLUDED_COLUMNS } from '@/lib/types/tables/user';
 import AddMemberDialog from './_components/add-member/AddMemberDialog';
 import { DialogProvider } from './_components/dialog-context';
 import LeadersOnly from './_components/LeadersOnly';
-import MembersList from './_components/MembersList';
+import MembersList from './_components/members/MembersList';
 import OwnerOnly from './_components/OwnerOnly';
 import SectionCard from './_components/SectionCard';
 import SectionTitle from './_components/SectionTitle';
@@ -121,7 +121,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
 
               <Separator className="mx-2 -mt-4" />
 
-              <div className="overflow-y-auto px-4 pb-4">
+              <div className="overflow-y-auto pb-4">
                 <MembersList
                   project={project}
                   userId={userId}
@@ -131,7 +131,6 @@ export default async function ProjectPage({ params }: TProjectPage) {
             </SheetContent>
           </Sheet>
         </div>
-
         {/* main content */}
         <div className="flex flex-1 flex-col gap-6">
           {project.description && (
@@ -174,7 +173,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
             <SectionTitle>Assigned Members</SectionTitle>
           </CardHeader>
 
-          <CardContent className="">
+          <CardContent className="px-2">
             <MembersList project={project} userId={userId} />
           </CardContent>
         </SectionCard>

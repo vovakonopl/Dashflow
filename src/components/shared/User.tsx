@@ -1,14 +1,16 @@
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { TMemberRole } from '@/lib/types/tables/member-roles';
 import { TUser } from '@/lib/types/tables/user';
 import { cn } from '@/lib/utils/cn';
 
 type TUserProps = {
   isCurrentUser?: boolean;
-  user: TUser;
   size?: 'sm' | 'md';
+  role?: TMemberRole;
+  user: TUser;
 };
 
-const User = ({ isCurrentUser, user, size = 'md' }: TUserProps) => {
+const User = ({ isCurrentUser, role, user, size = 'md' }: TUserProps) => {
   const avatarFallback: string = (
     user.firstName.charAt(0) + user.lastName.charAt(0)
   ).toUpperCase();
@@ -32,6 +34,11 @@ const User = ({ isCurrentUser, user, size = 'md' }: TUserProps) => {
       >
         <span className={cn('capitalize', isCurrentUser && 'font-semibold')}>
           {user.firstName} {user.lastName} {isCurrentUser && '(Me)'}
+          {role === 'leader' && (
+            <span className="text-muted-foreground ml-1 text-xs font-normal">
+              (leader)
+            </span>
+          )}
         </span>
 
         <span className="text-muted-foreground text-xs">{user.email}</span>
