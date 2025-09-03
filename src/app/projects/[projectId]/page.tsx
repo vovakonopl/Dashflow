@@ -1,6 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { Pencil, Users } from 'lucide-react';
 import { notFound, redirect } from 'next/navigation';
+import EditProjectDialog from '@/app/projects/[projectId]/_components/edit-project/EditProjectDialog';
 import TitleH1 from '@/components/shared/TitleH1';
 import { Button } from '@/components/ui/button';
 import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
@@ -19,7 +20,7 @@ import { verifySession } from '@/lib/server/session';
 import { TProjectWithTasksAndUsers } from '@/lib/types/project';
 import { DB_USER_INCLUDED_COLUMNS } from '@/lib/types/user';
 import AddMemberDialog from './_components/add-member/AddMemberDialog';
-import { AddMemberDialogProvider } from './_components/add-member/dialog-context';
+import { DialogProvider } from './_components/dialog-context';
 import LeadersOnly from './_components/LeadersOnly';
 import MembersList from './_components/MembersList';
 import OwnerOnly from './_components/OwnerOnly';
@@ -75,14 +76,20 @@ export default async function ProjectPage({ params }: TProjectPage) {
 
         <div className="flex gap-3 max-lg:flex-col max-md:flex-row max-sm:flex-col">
           <OwnerOnly ownerId={project.ownerId} userId={userId}>
-            <Button className="cursor-pointer" size="lg" variant="outline">
-              <Pencil className="mr-1" />
-              Edit Project
-            </Button>
+            <DialogProvider>
+              <DialogTrigger asChild>
+                <Button className="cursor-pointer" size="lg" variant="outline">
+                  <Pencil className="mr-1" />
+                  Edit Project
+                </Button>
+              </DialogTrigger>
+
+              <EditProjectDialog />
+            </DialogProvider>
           </OwnerOnly>
 
           <LeadersOnly project={project} userId={userId}>
-            <AddMemberDialogProvider>
+            <DialogProvider>
               <DialogTrigger asChild>
                 <Button className="cursor-pointer" size="lg">
                   <Users className="mr-1" />
@@ -91,7 +98,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
               </DialogTrigger>
 
               <AddMemberDialog />
-            </AddMemberDialogProvider>
+            </DialogProvider>
           </LeadersOnly>
         </div>
       </div>

@@ -1,10 +1,11 @@
-import NewProjectForm from '@/app/projects/_components/new-project/NewProjectForm';
+import ProjectForm from '@/components/shared/forms/ProjectForm';
 import {
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import { newProject } from '@/lib/actions/project/new-project';
 
 const NewProjectModal = () => {
   return (
@@ -15,8 +16,10 @@ const NewProjectModal = () => {
 
       <Separator />
 
-      {/* Contains DialogFooter component*/}
-      <NewProjectForm />
+      <ProjectForm
+        serverAction={newProject}
+        submitButtonText="Create Project"
+      />
     </DialogContent>
   );
 };

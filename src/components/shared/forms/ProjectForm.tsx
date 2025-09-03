@@ -9,17 +9,31 @@ import { Button } from '@/components/ui/button';
 import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Form, FormField } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
-import { newProject } from '@/lib/actions/project/new-project';
 import { PROJECT_LENGTHS } from '@/lib/constants/project-lengths';
+import { TFormActionReturn } from '@/lib/types/form-action-return';
 import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
 
-const NewProjectForm = () => {
-  const [state, action, isPending] = useActionState(newProject, undefined);
+type TProjectFormProps = {
+  defaultValues?: Partial<TProjectData>;
+  serverAction: (
+    state: Awaited<unknown>,
+    payload: FormData,
+  ) => Promise<TFormActionReturn<TProjectData>>;
+  submitButtonText: string;
+};
+
+const ProjectForm = ({
+  defaultValues,
+  serverAction,
+  submitButtonText,
+}: TProjectFormProps) => {
+  const [state, action, isPending] = useActionState(serverAction, undefined);
   const form = useForm<TProjectData>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
       name: '',
       description: '',
+      ...defaultValues, // it will override the default empty values
     },
   });
 
@@ -91,7 +105,7 @@ const NewProjectForm = () => {
           </DialogClose>
 
           <Button className="cursor-pointer" type="submit" disabled={isPending}>
-            Create Project
+            {submitButtonText}
           </Button>
         </DialogFooter>
       </form>
@@ -99,4 +113,4 @@ const NewProjectForm = () => {
   );
 };
 
-export default NewProjectForm;
+export default ProjectForm;

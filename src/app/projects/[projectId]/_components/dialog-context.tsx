@@ -10,11 +10,7 @@ type TDialogContext = {
 
 const DialogContext = createContext<TDialogContext | undefined>(undefined);
 
-export const AddMemberDialogProvider = ({
-  children,
-}: {
-  children: ReactNode;
-}) => {
+export const DialogProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -26,7 +22,7 @@ export const AddMemberDialogProvider = ({
   );
 };
 
-export function useAddMemberDialog() {
+export function useDialog() {
   const context = useContext(DialogContext);
   if (!context) {
     throw new Error(

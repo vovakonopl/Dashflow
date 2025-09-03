@@ -17,7 +17,7 @@ import { useDebounce } from '@/lib/hooks/useDebounce';
 import { useGetUsersByEmailQuery } from '@/lib/store/api';
 import { TUser } from '@/lib/types/user';
 import { userSchema } from '@/lib/validation/user-schema';
-import { useAddMemberDialog } from './dialog-context';
+import { useDialog } from '../dialog-context';
 import SelectUserList from './SelectUserList';
 
 const errorMsg = 'Error occurred on the server';
@@ -31,7 +31,7 @@ const AddMemberInput = () => {
     addMemberToProject,
     undefined,
   );
-  const { setIsOpen } = useAddMemberDialog();
+  const { setIsOpen } = useDialog();
 
   // fetch list of users with current searchValue
   const { data, isLoading, isUninitialized } = useGetUsersByEmailQuery(
