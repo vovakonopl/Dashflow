@@ -15,19 +15,19 @@ import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
 
 type TProjectFormProps = {
   defaultValues?: Partial<TProjectData>;
-  serverAction: (
-    state: Awaited<unknown>,
-    payload: FormData,
+  action: (
+    _: unknown,
+    formData: FormData,
   ) => Promise<TFormActionReturn<TProjectData>>;
   submitButtonText: string;
 };
 
 const ProjectForm = ({
   defaultValues,
-  serverAction,
+  action: submitAction,
   submitButtonText,
 }: TProjectFormProps) => {
-  const [state, action, isPending] = useActionState(serverAction, undefined);
+  const [state, action, isPending] = useActionState(submitAction, undefined);
   const form = useForm<TProjectData>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
@@ -37,8 +37,9 @@ const ProjectForm = ({
     },
   });
 
+  // handle errors from the action
   useEffect(() => {
-    if (!state) return;
+    if (!state || state.isSuccess) return;
 
     const { errors } = state;
     for (const field in errors) {

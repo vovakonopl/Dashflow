@@ -16,10 +16,7 @@ const NewProjectModal = () => {
 
       <Separator />
 
-      <ProjectForm
-        serverAction={newProject}
-        submitButtonText="Create Project"
-      />
+      <ProjectForm action={newProject} submitButtonText="Create Project" />
     </DialogContent>
   );
 };
