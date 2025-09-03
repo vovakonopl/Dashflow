@@ -4,23 +4,17 @@ import bcrypt from 'bcrypt';
 import { z } from 'zod';
 import { users } from '@/drizzle/schema';
 import { SALT_ROUNDS } from '@/lib/constants/auth/SALT_ROUNDS';
-import { PostgresErrorCodes } from '@/lib/constants/drizzle-error-codes';
 import { db } from '@/lib/db';
 import { createSession } from '@/lib/server/session';
 import { TFormActionReturn } from '@/lib/types/form-action-return';
 import { TUser } from '@/lib/types/user';
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 import { actionError } from '@/lib/utils/action-error';
+import { isUniqueConstraintViolation } from '@/lib/utils/is-unique-constraint-violation';
 import {
   signUpSchema,
   TSignUpData,
 } from '@/lib/validation/auth/sign-up-schema';
-
-const errorSchema = z.object({
-  cause: z.object({
-    code: z.string(),
-  }),
-});
 
 type TSignUpReturn = TFormActionReturn<TSignUpData, TUser>;
 
@@ -69,13 +63,7 @@ export async function signUp(
       data: user[0],
     };
   } catch (error: unknown) {
-    // Return an error if it occurred during inserting user data.
-    const { success, data: parsedError } = errorSchema.safeParse(error);
-    const isUniqueConstraintViolation =
-      success &&
-      parsedError.cause.code === PostgresErrorCodes.UniqueConstraintViolation;
-
-    const errorMessage = isUniqueConstraintViolation
+    const errorMessage = isUniqueConstraintViolation(error)
       ? 'An account with this email address already exists.'
       : 'An error occurred on the server. Please, contact support.';
 
