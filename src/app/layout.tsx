@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import SideNavbar from '@/components/layout/sidebar';
 import Providers from '@/components/providers/Providers';
 import './globals.css';
+import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({
   subsets: ['cyrillic', 'latin'],
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
   title: 'Dashflow',
 };
 
+const toastDuration = 6000; // 6 seconds
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,6 +37,7 @@ export default function RootLayout({
             <SideNavbar />
 
             <div className="flex flex-1 flex-col">
+              <Toaster position="top-center" duration={toastDuration} />
               <main className="grid flex-1">{children}</main>
               <Footer />
             </div>

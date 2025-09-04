@@ -2,6 +2,7 @@
 
 import { Settings, UserRoundX } from 'lucide-react';
 import { startTransition, useActionState, useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -36,7 +37,23 @@ const DropdownSettings = ({
     if (!isPending) {
       setIsMenuOpened(false);
     }
-  }, [isPending]);
+  }, [isPending, state]);
+
+  // notify about the occurred error with sonner toast
+  useEffect(() => {
+    if (!state) return;
+    if (!state.isSuccess) {
+      toast('Failed to remove the user', {
+        description: state.errors.root?.errors[0],
+        action: {
+          label: 'OK',
+          onClick: () => {
+            toast.dismiss();
+          },
+        },
+      });
+    }
+  }, [state]);
 
   const handleRemoveMember = () => {
     startTransition(() => action({ projectId, userId: memberId }));
