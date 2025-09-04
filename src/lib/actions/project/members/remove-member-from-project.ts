@@ -16,6 +16,9 @@ export async function removeMemberFromProject(
   { projectId, userId }: TPayload,
 ): Promise<TServerActionReturn> {
   const initiatorSession = await verifySession();
+  if (userId === initiatorSession.userId) {
+    return actionError({ root: { errors: ['You cannot remove yourself.'] } });
+  }
 
   const userToRemoveAlias = alias(projectMembers, 'user_to_remove');
   try {
