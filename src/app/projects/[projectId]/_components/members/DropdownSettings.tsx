@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { removeMemberFromProject } from '@/lib/actions/project/remove-member-from-project';
+import { removeMemberFromProject } from '@/lib/actions/project/members/remove-member-from-project';
 import { TMemberRole } from '@/lib/types/tables/member-roles';
 
 type TDropdownSettingsProps = {
