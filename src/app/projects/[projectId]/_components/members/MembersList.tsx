@@ -70,9 +70,9 @@ const MembersList = ({ className, project, userId }: TMembersListProps) => {
                   userId={userId}
                 >
                   <DropdownSettings
-                    memberId={member.id}
-                    memberRole={member.role}
-                    projectId={project.id}
+                    currentUserId={userId}
+                    member={member}
+                    project={project}
                   />
                 </DropdownSettingsWrapper>
               )}
