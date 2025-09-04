@@ -6,7 +6,7 @@ import { z } from 'zod';
 import { users } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { createSession } from '@/lib/server/session';
-import { TFormActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/form-action-return';
 import { DB_USER_INCLUDED_COLUMNS, TUser } from '@/lib/types/tables/user';
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 import { actionError } from '@/lib/utils/action-error';
@@ -15,7 +15,7 @@ import {
   TSignInData,
 } from '@/lib/validation/auth/sign-in-schema';
 
-type TSignInReturn = TFormActionReturn<TSignInData, TUser>;
+type TSignInReturn = TServerActionReturn<TSignInData, TUser>;
 
 export async function signIn(
   _: unknown,

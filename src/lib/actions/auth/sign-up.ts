@@ -6,7 +6,7 @@ import { users } from '@/drizzle/schema';
 import { SALT_ROUNDS } from '@/lib/constants/auth/SALT_ROUNDS';
 import { db } from '@/lib/db';
 import { createSession } from '@/lib/server/session';
-import { TFormActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/form-action-return';
 import { TUser } from '@/lib/types/tables/user';
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 import { actionError } from '@/lib/utils/action-error';
@@ -16,7 +16,7 @@ import {
   TSignUpData,
 } from '@/lib/validation/auth/sign-up-schema';
 
-type TSignUpReturn = TFormActionReturn<TSignUpData, TUser>;
+type TSignUpReturn = TServerActionReturn<TSignUpData, TUser>;
 
 export async function signUp(
   _: unknown,

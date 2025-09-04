@@ -10,7 +10,7 @@ import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Form, FormField } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
 import { PROJECT_LENGTHS } from '@/lib/constants/project-lengths';
-import { TFormActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/form-action-return';
 import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
 
 type TProjectFormProps = {
@@ -18,7 +18,7 @@ type TProjectFormProps = {
   action: (
     _: unknown,
     formData: FormData,
-  ) => Promise<TFormActionReturn<TProjectData>>;
+  ) => Promise<TServerActionReturn<TProjectData>>;
   submitButtonText: string;
 };
 

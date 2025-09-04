@@ -1,6 +1,6 @@
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 
-export type TFormActionReturn<FormData, Result = undefined> =
+export type TServerActionReturn<FormData = object, Result = undefined> =
   | { isSuccess: false; errors: TZodObjectErrors<FormData> }
   | (Result extends undefined
       ? { isSuccess: true }

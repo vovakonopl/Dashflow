@@ -5,12 +5,12 @@ import { z } from 'zod';
 import { projectMembers, projects } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
-import { TFormActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/form-action-return';
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 import { actionError } from '@/lib/utils/action-error';
 import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
 
-type TNewProjectReturn = TFormActionReturn<TProjectData>;
+type TNewProjectReturn = TServerActionReturn<TProjectData>;
 
 export async function newProject(
   _: unknown,

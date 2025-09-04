@@ -6,7 +6,7 @@ import { z } from 'zod';
 import { projectMembers, projects } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
-import { TFormActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/form-action-return';
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 import { actionError } from '@/lib/utils/action-error';
 import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
@@ -18,7 +18,7 @@ const projectWithIdSchema = projectSchema.extend({
 export async function editProject(
   _: unknown,
   formData: FormData,
-): Promise<TFormActionReturn<TProjectData>> {
+): Promise<TServerActionReturn<TProjectData>> {
   const { userId } = await verifySession();
   const validationResult = projectWithIdSchema.safeParse(
     Object.fromEntries(formData.entries()),

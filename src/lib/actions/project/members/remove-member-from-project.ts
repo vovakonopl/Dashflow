@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache';
 import { projectMembers, projects } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
-import { TFormActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/form-action-return';
 import { actionError } from '@/lib/utils/action-error';
 
 type TPayload = { projectId: string; userId: string };
@@ -14,7 +14,7 @@ type TPayload = { projectId: string; userId: string };
 export async function removeMemberFromProject(
   _: unknown,
   { projectId, userId }: TPayload,
-): Promise<TFormActionReturn<object>> {
+): Promise<TServerActionReturn> {
   const initiatorSession = await verifySession();
 
   const userToRemoveAlias = alias(projectMembers, 'user_to_remove');
