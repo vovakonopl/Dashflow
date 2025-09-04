@@ -24,7 +24,11 @@ const User = ({ isCurrentUser, role, user, size = 'md' }: TUserProps) => {
       )}
     >
       <Avatar
-        className={cn(size === 'sm' && 'size-8', size === 'md' && 'size-10')}
+        className={cn(
+          'select-none',
+          size === 'sm' && 'size-8',
+          size === 'md' && 'size-10',
+        )}
       >
         <AvatarFallback>{avatarFallback}</AvatarFallback>
       </Avatar>

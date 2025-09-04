@@ -25,9 +25,7 @@ export const DialogProvider = ({ children }: { children: ReactNode }) => {
 export function useDialog() {
   const context = useContext(DialogContext);
   if (!context) {
-    throw new Error(
-      'useAddMemberDialog must be used within an AddMemberDialogProvider',
-    );
+    throw new Error('useDialog must be used within an DialogProvider');
   }
 
   return context;

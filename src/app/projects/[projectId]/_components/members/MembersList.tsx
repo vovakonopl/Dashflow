@@ -1,3 +1,4 @@
+import { ComponentProps } from 'react';
 import LeadersOnly from '@/app/projects/[projectId]/_components/LeadersOnly';
 import DropdownSettings from '@/app/projects/[projectId]/_components/members/DropdownSettings';
 import OwnerOnly from '@/app/projects/[projectId]/_components/OwnerOnly';
@@ -7,6 +8,21 @@ import { TMemberRole } from '@/lib/types/tables/member-roles';
 import { TProjectWithTasksAndUsers } from '@/lib/types/tables/project';
 import { TUser } from '@/lib/types/tables/user';
 import { cn } from '@/lib/utils/cn';
+
+const DropdownSettingsWrapper = ({
+  children,
+  role,
+  ...props
+}: ComponentProps<typeof OwnerOnly> & {
+  role: TMemberRole;
+}) => {
+  // if the member is a leader, then only the owner can see the settings
+  if (role === 'leader') {
+    return <OwnerOnly {...props}>{children}</OwnerOnly>;
+  }
+
+  return children;
+};
 
 type TMembersListProps = {
   className?: string;
@@ -47,15 +63,19 @@ const MembersList = ({ className, project, userId }: TMembersListProps) => {
 
             <LeadersOnly project={project} userId={userId}>
               {/* display settings button for all users except the current one  */}
-              {member.id !== userId &&
-                // if the member is a leader, then only the owner can see the settings
-                (member.role === 'leader' ? (
-                  <OwnerOnly ownerId={project.ownerId} userId={userId}>
-                    <DropdownSettings memberRole={member.role} />
-                  </OwnerOnly>
-                ) : (
-                  <DropdownSettings memberRole={member.role} />
-                ))}
+              {member.id !== userId && (
+                <DropdownSettingsWrapper
+                  role={member.role}
+                  ownerId={project.ownerId}
+                  userId={userId}
+                >
+                  <DropdownSettings
+                    memberId={member.id}
+                    memberRole={member.role}
+                    projectId={project.id}
+                  />
+                </DropdownSettingsWrapper>
+              )}
             </LeadersOnly>
           </li>
         ))}

@@ -131,6 +131,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
             </SheetContent>
           </Sheet>
         </div>
+
         {/* main content */}
         <div className="flex flex-1 flex-col gap-6">
           {project.description && (

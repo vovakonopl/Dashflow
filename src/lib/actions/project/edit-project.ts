@@ -11,8 +11,6 @@ import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 import { actionError } from '@/lib/utils/action-error';
 import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
 
-type TNewProjectReturn = TFormActionReturn<TProjectData>;
-
 const projectWithIdSchema = projectSchema.extend({
   id: z.string().min(1),
 });
@@ -20,7 +18,7 @@ const projectWithIdSchema = projectSchema.extend({
 export async function editProject(
   _: unknown,
   formData: FormData,
-): Promise<TNewProjectReturn> {
+): Promise<TFormActionReturn<TProjectData>> {
   const { userId } = await verifySession();
   const validationResult = projectWithIdSchema.safeParse(
     Object.fromEntries(formData.entries()),
