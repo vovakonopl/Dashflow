@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { PROJECT_LENGTHS } from '@/lib/constants/project-lengths';
+import { PROJECT_LENGTHS } from '@/lib/constants/field-lengths/project-lengths';
 
 export const projectSchema = z.object({
   name: z

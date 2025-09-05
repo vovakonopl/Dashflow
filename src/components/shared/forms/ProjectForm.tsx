@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Form, FormField } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
-import { PROJECT_LENGTHS } from '@/lib/constants/project-lengths';
+import { PROJECT_LENGTHS } from '@/lib/constants/field-lengths/project-lengths';
 import { TServerActionReturn } from '@/lib/types/form-action-return';
 import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
 
