@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { TMemberRole } from '@/lib/types/tables/member-roles';
+import { TMemberRole } from '@/lib/types/tables/member-roles-enum';
 import { TUser } from '@/lib/types/tables/user';
 import { cn } from '@/lib/utils/cn';
 

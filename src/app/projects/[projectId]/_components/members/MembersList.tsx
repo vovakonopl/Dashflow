@@ -4,7 +4,7 @@ import DropdownSettings from '@/app/projects/[projectId]/_components/members/Dro
 import OwnerOnly from '@/app/projects/[projectId]/_components/OwnerOnly';
 import User from '@/components/shared/User';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { TMemberRole } from '@/lib/types/tables/member-roles';
+import { TMemberRole } from '@/lib/types/tables/member-roles-enum';
 import { TProjectWithTasksAndUsers } from '@/lib/types/tables/project';
 import { TUser } from '@/lib/types/tables/user';
 import { cn } from '@/lib/utils/cn';

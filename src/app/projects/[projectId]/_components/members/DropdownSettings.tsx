@@ -15,7 +15,7 @@ import {
 import { removeMemberFromProject } from '@/lib/actions/project/members/remove-member-from-project';
 import { updateMemberRole } from '@/lib/actions/project/members/update-member-role';
 import { useActionStatus } from '@/lib/actions/project/members/useActionStatus';
-import { TMemberRole } from '@/lib/types/tables/member-roles';
+import { TMemberRole } from '@/lib/types/tables/member-roles-enum';
 import { TProject } from '@/lib/types/tables/project';
 import { TUser } from '@/lib/types/tables/user';
 

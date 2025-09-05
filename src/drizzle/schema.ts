@@ -8,15 +8,11 @@ import {
   uniqueIndex,
   uuid,
 } from 'drizzle-orm/pg-core';
+import { priorities } from '@/lib/types/tables/task-priority-enum';
 
 // Enums
 export const projectRoleEnum = pgEnum('project_role', ['leader', 'member']);
-export const taskPriorityEnum = pgEnum('task_priority', [
-  'low',
-  'medium',
-  'high',
-  'critical',
-]);
+export const taskPriorityEnum = pgEnum('task_priority', priorities);
 
 // Users
 export const users = pgTable(

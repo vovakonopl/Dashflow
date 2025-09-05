@@ -6,7 +6,7 @@ import { projectMembers, projects } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
 import { TServerActionReturn } from '@/lib/types/form-action-return';
-import { TMemberRole } from '@/lib/types/tables/member-roles';
+import { TMemberRole } from '@/lib/types/tables/member-roles-enum';
 import { actionError } from '@/lib/utils/action-error';
 
 type TPayload = {
