@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm';
 import { Pencil, Users } from 'lucide-react';
 import { notFound, redirect } from 'next/navigation';
 import EditProjectDialog from '@/app/projects/[projectId]/_components/edit-project/EditProjectDialog';
+import NewTaskDialog from '@/app/projects/[projectId]/_components/new-task/NewTaskDialog';
 import TitleH1 from '@/components/shared/TitleH1';
 import { Button } from '@/components/ui/button';
 import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
@@ -146,10 +147,23 @@ export default async function ProjectPage({ params }: TProjectPage) {
             </SectionCard>
           )}
 
-          {/* list of tasks */}
+          {/* table with tasks */}
           <SectionCard>
-            <CardHeader>
+            <CardHeader className="flex justify-between gap-2">
               <SectionTitle>Project Tasks</SectionTitle>
+
+              <LeadersOnly project={project} userId={userId}>
+                <DialogProvider>
+                  <DialogTrigger asChild>
+                    <Button>Add task</Button>
+                  </DialogTrigger>
+
+                  <NewTaskDialog
+                    members={project.members.map((member) => member.user)}
+                    projectId={project.id}
+                  />
+                </DialogProvider>
+              </LeadersOnly>
             </CardHeader>
 
             <PaginationProvider>

@@ -22,7 +22,13 @@ export const taskSchema = z.object({
     )
     .optional(),
 
-  deadline: z.date(),
-  priority: z.enum(priorities),
+  deadline: z.date({ message: 'Date is expected' }),
+
+  priority: z.enum(priorities, {
+    message: `Priority is required (${priorities.join(' | ')})`,
+  }),
+
   projectId: z.string(),
 });
+
+export type TTaskData = z.infer<typeof taskSchema>;
