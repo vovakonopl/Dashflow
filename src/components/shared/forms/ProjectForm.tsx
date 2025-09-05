@@ -3,8 +3,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { startTransition, useActionState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import FormInput from '@/components/shared/FormInput';
-import FormTextarea from '@/components/shared/FormTextarea';
+import FormInput from '@/components/shared/inputs/FormInput';
+import FormTextarea from '@/components/shared/inputs/FormTextarea';
 import { Button } from '@/components/ui/button';
 import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Form, FormField } from '@/components/ui/form';
