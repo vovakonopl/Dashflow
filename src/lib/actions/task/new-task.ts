@@ -1,3 +1,5 @@
+'use server';
+
 import { and, eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
@@ -10,8 +12,13 @@ import { actionError } from '@/lib/utils/action-error';
 import { taskSchema, TTaskData } from '@/lib/validation/task-schema';
 
 // FormData object contains several elements appended with the same key,
-// so it is necessary to create an array of these elements.
+// so it is necessary to create an array of these elements
 const arrayKey: keyof TTaskData = 'assignedMemberIds';
+
+// FormData object contains a date as a string,
+// so it is necessary to parse it first
+const dateKey: keyof TTaskData = 'deadline';
+
 type TFormObject = {
   [key: string]: unknown;
 };
@@ -23,7 +30,13 @@ export async function newTask(
   const initiatorSession = await verifySession();
 
   const formObject: TFormObject = Object.fromEntries(formData.entries());
-  formObject[arrayKey] = formData.getAll('assignedMemberIds');
+  formObject[arrayKey] = formData.getAll(arrayKey); // get as array
+
+  // create a date object from the ISO string
+  const dateStr = formData.get(dateKey);
+  if (typeof dateStr === 'string') {
+    formObject[dateKey] = new Date(dateStr);
+  }
 
   const validationResult = taskSchema.safeParse(formObject);
   if (!validationResult.success) {

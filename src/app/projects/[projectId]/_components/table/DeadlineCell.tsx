@@ -16,11 +16,7 @@ type TDeadlineCellProps = {
 
 const DeadlineCell = ({ date, isCompleted }: TDeadlineCellProps) => {
   const currentDate = new Date();
-  const isOverdue: boolean =
-    !isCompleted &&
-    (currentDate.getFullYear() > date.getFullYear() ||
-      currentDate.getMonth() > date.getMonth() ||
-      currentDate.getDay() > date.getDay());
+  const isOverdue: boolean = !isCompleted && currentDate > date;
 
   const formattedDate = date
     .toLocaleDateString(undefined, dateOptions)
