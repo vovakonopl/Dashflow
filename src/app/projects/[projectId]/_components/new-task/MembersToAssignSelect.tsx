@@ -72,21 +72,25 @@ const MembersToAssignSelect = ({
     });
 
   return (
-    <div className="mx-auto flex w-fit flex-col gap-2">
-      <Label className={cn(error && 'text-destructive')}>
+    <div className="flex flex-col gap-2">
+      <Label
+        className={cn(error && 'text-destructive')}
+        htmlFor="members-to-assign"
+      >
         Members to assign
       </Label>
 
       <Popover modal>
         <PopoverTrigger asChild>
           <Button
-            variant="outline"
+            id="members-to-assign"
+            className="cursor-pointer justify-between"
             role="combobox"
-            className="w-96 cursor-pointer justify-between"
+            variant="outline"
           >
             <span
               className={cn(
-                'overflow-hidden text-start text-ellipsis whitespace-nowrap',
+                'w-0 flex-1 overflow-hidden text-start text-ellipsis whitespace-nowrap',
                 values.length < 1 && 'text-muted-foreground',
               )}
             >
