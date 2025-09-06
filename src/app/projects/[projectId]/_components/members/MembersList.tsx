@@ -31,18 +31,8 @@ type TMembersListProps = {
 };
 
 const MembersList = ({ className, project, userId }: TMembersListProps) => {
-  const sortedMembersList: (TUser & { role: TMemberRole })[] = project.members
-    .map((member) => ({ ...member.user, role: member.role }))
-    .sort((a, b) => {
-      // the current user must be on the first place
-      if (a.id === userId) return -1;
-      if (b.id === userId) return 1;
-
-      // compare alphabetically
-      const fullNameA = (a.firstName + a.lastName).toLowerCase();
-      const fullNameB = (b.firstName + b.lastName).toLowerCase();
-      return fullNameA.localeCompare(fullNameB);
-    });
+  const sortedMembersList: (TUser & { role: TMemberRole })[] =
+    project.members.map((member) => ({ ...member.user, role: member.role }));
 
   return (
     <ScrollArea

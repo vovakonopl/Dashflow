@@ -48,7 +48,7 @@ const DatePicker = ({
           <Button
             id={id}
             className={cn(
-              'data-[empty=true]:text-muted-foreground w-52 justify-start text-left font-normal',
+              'data-[empty=true]:text-muted-foreground w-52 cursor-pointer justify-start text-left font-normal',
               classNames?.trigger,
               error && 'border-destructive',
             )}

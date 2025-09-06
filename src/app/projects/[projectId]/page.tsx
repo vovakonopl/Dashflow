@@ -70,6 +70,16 @@ export default async function ProjectPage({ params }: TProjectPage) {
     redirect('/projects');
   }
 
+  // sort the list of members alphabetically (current user first)
+  project.members.sort((a, b) => {
+    if (a.user.id === userId) return -1;
+    if (b.user.id === userId) return 1;
+
+    const fullNameA = (a.user.firstName + a.user.lastName).toLowerCase();
+    const fullNameB = (b.user.firstName + b.user.lastName).toLowerCase();
+    return fullNameA.localeCompare(fullNameB);
+  });
+
   return (
     <div className="flex flex-col gap-6 p-8 max-md:p-4">
       <div className="flex justify-between gap-4 break-all max-md:flex-col md:items-center">

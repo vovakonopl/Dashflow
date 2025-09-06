@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import MembersToAssignSelect from '@/app/projects/[projectId]/_components/new-task/MembersToAssignSelect';
 import PrioritySelect from '@/app/projects/[projectId]/_components/new-task/PrioritySelect';
 import DatePicker from '@/components/shared/inputs/DatePicker';
 import FormInput from '@/components/shared/inputs/FormInput';
@@ -28,6 +29,7 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
       description: '',
       priority: 'low',
       projectId,
+      assignedMemberIds: [],
     },
   });
 
@@ -35,17 +37,20 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
     const formData = new FormData();
     for (const key in data) {
       const value = data[key as keyof TTaskData];
-      let strValue: string;
 
+      // stringify date object
       if (value instanceof Date) {
-        // stringify date object
-        strValue = value.toISOString();
-      } else {
-        // description may be empty
-        strValue = value ?? '';
+        formData.set(key, value.toISOString());
+        continue;
       }
 
-      formData.set(key, strValue);
+      // append each id in array
+      if (Array.isArray(value)) {
+        value.forEach((val) => formData.append(key, val));
+        continue;
+      }
+
+      formData.set(key, value ?? '');
     }
 
     // startTransition(() => action(formData));
@@ -55,7 +60,7 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
     <ScrollArea className="-mr-4 h-[50dvh] pr-4">
       <Form {...form}>
         <form
-          className="flex flex-col gap-4"
+          className="flex flex-col gap-4 px-1"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <FormField
@@ -99,7 +104,7 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
                   id="deadline"
                   classNames={{ container: 'flex-1', trigger: 'w-full' }}
                   error={error?.message}
-                  label="Description"
+                  label="Deadline"
                 />
               )}
             />
@@ -112,6 +117,19 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
               )}
             />
           </div>
+
+          <FormField
+            control={form.control}
+            name="assignedMemberIds"
+            render={({ field, fieldState: { error } }) => (
+              <MembersToAssignSelect
+                error={error?.message}
+                members={members}
+                values={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
 
           <Separator />
 

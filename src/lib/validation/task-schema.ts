@@ -29,6 +29,8 @@ export const taskSchema = z.object({
   }),
 
   projectId: z.string(),
+
+  assignedMemberIds: z.array(z.string()).min(1, 'Select at least one member'),
 });
 
 export type TTaskData = z.infer<typeof taskSchema>;

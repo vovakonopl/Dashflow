@@ -26,7 +26,7 @@ const PrioritySelect = ({ error, value, onChange }: TPrioritySelectProps) => {
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger
           id="priority"
-          className={cn('w-full', error && 'border-destructive')}
+          className={cn('w-full cursor-pointer', error && 'border-destructive')}
         >
           <SelectValue placeholder="Theme" />
         </SelectTrigger>
