@@ -1,7 +1,9 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { startTransition, useActionState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDialog } from '@/app/projects/[projectId]/_components/dialog-context';
 import MembersToAssignSelect from '@/app/projects/[projectId]/_components/new-task/MembersToAssignSelect';
 import PrioritySelect from '@/app/projects/[projectId]/_components/new-task/PrioritySelect';
 import DatePicker from '@/components/shared/inputs/DatePicker';
@@ -12,6 +14,7 @@ import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Form, FormField } from '@/components/ui/form';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
+import { newTask } from '@/lib/actions/task/new-task';
 import { TASK_LENGTHS } from '@/lib/constants/field-lengths/tasks-max-lenths';
 import { TUser } from '@/lib/types/tables/user';
 import { taskSchema, TTaskData } from '@/lib/validation/task-schema';
@@ -22,16 +25,38 @@ type TNewTaskFormProps = {
 };
 
 const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
+  const [state, action, isPending] = useActionState(newTask, undefined);
+  const { setIsOpen } = useDialog();
   const form = useForm<TTaskData>({
     resolver: zodResolver(taskSchema),
     defaultValues: {
       title: '',
       description: '',
       priority: 'low',
-      projectId,
       assignedMemberIds: [],
+      projectId,
     },
   });
+
+  // handle errors from the action
+  useEffect(() => {
+    if (!state || state.isSuccess) return;
+
+    const { errors } = state;
+    for (const field in errors) {
+      const error = errors[field as keyof typeof errors]?.errors[0];
+      form.setError(field as keyof TTaskData, {
+        message: error,
+      });
+    }
+  }, [form, state]);
+
+  // close the dialog on success
+  useEffect(() => {
+    if (state?.isSuccess) {
+      setIsOpen(false);
+    }
+  }, [setIsOpen, state]);
 
   const onSubmit = (data: TTaskData) => {
     const formData = new FormData();
@@ -53,7 +78,7 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
       formData.set(key, value ?? '');
     }
 
-    // startTransition(() => action(formData));
+    startTransition(() => action(formData));
   };
 
   return (
@@ -134,13 +159,17 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
           <Separator />
 
           <DialogFooter>
-            <DialogClose asChild>
+            <DialogClose asChild disabled={isPending}>
               <Button className="cursor-pointer" variant="outline">
                 Cancel
               </Button>
             </DialogClose>
 
-            <Button className="cursor-pointer" type="submit">
+            <Button
+              className="cursor-pointer"
+              type="submit"
+              disabled={isPending}
+            >
               Create Task
             </Button>
           </DialogFooter>
