@@ -12,7 +12,7 @@ import { z } from 'zod';
 import ErrorMessage from '@/components/shared/ErrorMessage';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { addMemberToProject } from '@/lib/actions/project/members/add-member-to-project';
+import { addMember } from '@/lib/actions/project/members/add-member';
 import { useDebounce } from '@/lib/hooks/useDebounce';
 import { useGetUsersByEmailQuery } from '@/lib/store/api';
 import { TUser } from '@/lib/types/tables/user';
@@ -27,10 +27,7 @@ const AddMemberInput = () => {
   const [error, setError] = useState<string | null>(null);
   const { projectId } = useParams<{ projectId: string }>();
   const debounce = useDebounce();
-  const [actionState, action, isPending] = useActionState(
-    addMemberToProject,
-    undefined,
-  );
+  const [actionState, action, isPending] = useActionState(addMember, undefined);
   const { setIsOpen } = useDialog();
 
   // fetch list of users with current searchValue

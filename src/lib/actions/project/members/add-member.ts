@@ -10,10 +10,7 @@ import { isUniqueConstraintViolation } from '@/lib/utils/is-unique-constraint-vi
 
 type TPayload = { projectId: string; userId: string };
 
-export async function addMemberToProject(
-  _: unknown,
-  { projectId, userId }: TPayload,
-) {
+export async function addMember(_: unknown, { projectId, userId }: TPayload) {
   const initiatorSession = await verifySession();
   const initiator = await db.query.projectMembers.findFirst({
     where: and(

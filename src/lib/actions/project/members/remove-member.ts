@@ -11,7 +11,7 @@ import { actionError } from '@/lib/utils/action-error';
 
 type TPayload = { projectId: string; userId: string };
 
-export async function removeMemberFromProject(
+export async function removeMember(
   _: unknown,
   { projectId, userId }: TPayload,
 ): Promise<TServerActionReturn> {

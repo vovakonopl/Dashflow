@@ -2,6 +2,7 @@
 
 import { Settings, UserRoundX } from 'lucide-react';
 import { startTransition, useActionState, useCallback, useState } from 'react';
+import { useActionStatus } from '@/app/projects/[projectId]/_components/members/useActionStatus';
 import OwnerOnly from '@/app/projects/[projectId]/_components/OwnerOnly';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,9 +13,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { removeMemberFromProject } from '@/lib/actions/project/members/remove-member-from-project';
+import { removeMember } from '@/lib/actions/project/members/remove-member';
 import { updateMemberRole } from '@/lib/actions/project/members/update-member-role';
-import { useActionStatus } from '@/lib/actions/project/members/useActionStatus';
 import { TMemberRole } from '@/lib/types/tables/member-roles-enum';
 import { TProject } from '@/lib/types/tables/project';
 import { TUser } from '@/lib/types/tables/user';
@@ -32,7 +32,7 @@ const DropdownSettings = ({
 }: TDropdownSettingsProps) => {
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
   const [removeState, removeAction, isRemovePending] = useActionState(
-    removeMemberFromProject,
+    removeMember,
     undefined,
   );
   const [updateState, updateAction, isUpdatePending] = useActionState(
