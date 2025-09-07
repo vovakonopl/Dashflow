@@ -45,7 +45,7 @@ export default async function ProjectsPage() {
 
         <ProjectOverview projectsCount={8} />
 
-        <ul className="gap grid grid-cols-[repeat(auto-fit,minmax(16.75rem,1fr))] gap-6">
+        <ul className="grid grid-cols-[repeat(auto-fit,minmax(16.75rem,1fr))] gap-6">
           {projects.map((project) => (
             <li key={project.id}>
               <ProjectCard project={project} />

@@ -3,6 +3,7 @@ import { Pencil, Users } from 'lucide-react';
 import { notFound, redirect } from 'next/navigation';
 import EditProjectDialog from '@/app/projects/[projectId]/_components/edit-project/EditProjectDialog';
 import NewTaskDialog from '@/app/projects/[projectId]/_components/new-task/NewTaskDialog';
+import StatsArticles from '@/app/projects/[projectId]/_components/StatsArticles';
 import TitleH1 from '@/components/shared/TitleH1';
 import { Button } from '@/components/ui/button';
 import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
@@ -115,7 +116,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
       </div>
 
       {/* articles */}
-      <div className="">{/* TODO: add articles */}</div>
+      <StatsArticles tasks={project.tasks} />
 
       <div className="flex gap-6 max-lg:flex-col">
         {/* display modal sheet with list of members on smaller screens */}
