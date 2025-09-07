@@ -1,5 +1,5 @@
-import CompletionProgress from '@/components/shared/statistics/CompletionProgress';
 import OverdueTasks from '@/components/shared/statistics/OverdueTasks';
+import TasksCompletionProgress from '@/components/shared/statistics/TasksCompletionProgress';
 import TasksInProgress from '@/components/shared/statistics/TasksInProgress';
 import TotalTasks from '@/components/shared/statistics/TotalTasks';
 import { TTaskWithMemberIds } from '@/lib/types/tables/task';
@@ -30,7 +30,8 @@ const StatsArticles = ({ tasks }: TStatsArticlesProps) => {
             .length
         }
       />
-      <CompletionProgress
+      <TasksCompletionProgress
+        tasksFor="project"
         className={cn('col-span-2 max-sm:col-span-1', className)}
         completedTasksCount={tasks.filter((task) => task.completed).length}
         totalTasksCount={tasks.length}
