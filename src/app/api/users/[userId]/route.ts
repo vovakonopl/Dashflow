@@ -2,7 +2,7 @@ import { eq } from 'drizzle-orm';
 import { NextRequest, NextResponse } from 'next/server';
 import { users } from '@/drizzle/schema';
 import { db } from '@/lib/db';
-import { DB_USER_INCLUDED_COLUMNS, TUser } from '@/lib/types/user';
+import { DB_USER_INCLUDED_COLUMNS, TUser } from '@/lib/types/tables/user';
 
 export async function GET(_: NextRequest, params: Promise<{ userId: string }>) {
   const { userId } = await params;

@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import PasswordInput from '@/components/shared/PasswordInput';
+import PasswordInput from '@/components/shared/inputs/PasswordInput';
 
 describe('PasswordInput', () => {
   test('should toggle visibility after clicking on button ', () => {

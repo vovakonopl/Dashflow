@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { MAX_NAME_LENGTH } from '@/lib/constants/names-max-length';
+import { MAX_NAME_LENGTH } from '@/lib/constants/field-lengths/names-max-length';
 
 export const nameSchema = z
   .string()

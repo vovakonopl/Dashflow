@@ -1,0 +1,2 @@
+CREATE UNIQUE INDEX "project_user_idx" ON "project_members" USING btree ("project_id","user_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "task_user_idx" ON "task_assignments" USING btree ("task_id","user_id");

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { tryGetUser } from '@/lib/server/get-user';
-import { TUser } from '@/lib/types/user';
+import { TUser } from '@/lib/types/tables/user';
 
 // This route checks if the user has a valid session and returns user data or null.
 export async function GET() {

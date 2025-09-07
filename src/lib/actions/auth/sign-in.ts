@@ -6,24 +6,16 @@ import { z } from 'zod';
 import { users } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { createSession } from '@/lib/server/session';
-import { DB_USER_INCLUDED_COLUMNS, TUser } from '@/lib/types/user';
+import { TServerActionReturn } from '@/lib/types/form-action-return';
+import { DB_USER_INCLUDED_COLUMNS, TUser } from '@/lib/types/tables/user';
 import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
+import { actionError } from '@/lib/utils/action-error';
 import {
   signInSchema,
   TSignInData,
 } from '@/lib/validation/auth/sign-in-schema';
 
-type TSignInReturn =
-  | { isSuccess: true; data: TUser; errors: null }
-  | { isSuccess: false; data: null; errors: TZodObjectErrors<TSignInData> };
-
-function createError(errors: TZodObjectErrors<TSignInData>): TSignInReturn {
-  return {
-    isSuccess: false,
-    data: null,
-    errors,
-  };
-}
+type TSignInReturn = TServerActionReturn<TSignInData, TUser>;
 
 export async function signIn(
   _: unknown,
@@ -34,8 +26,9 @@ export async function signIn(
   );
 
   if (!validationResult.success) {
-    return createError(
-      z.treeifyError(validationResult.error) as TZodObjectErrors<TSignInData>,
+    return actionError(
+      z.treeifyError(validationResult.error)
+        .properties as TZodObjectErrors<TSignInData>,
     );
   }
 
@@ -49,7 +42,7 @@ export async function signIn(
 
     // User was not found
     if (!userWithPassword) {
-      return createError({ root: { errors: ['Invalid email or password.'] } });
+      return actionError({ root: { errors: ['Invalid email or password.'] } });
     }
 
     // Compare received and stored passwords
@@ -58,7 +51,7 @@ export async function signIn(
 
     // Invalid password
     if (!isMatching) {
-      return createError({ root: { errors: ['Invalid email or password.'] } });
+      return actionError({ root: { errors: ['Invalid email or password.'] } });
     }
 
     // Create a session
@@ -66,11 +59,10 @@ export async function signIn(
     return {
       isSuccess: true,
       data: user,
-      errors: null,
     };
   } catch {
     // Return an error if it occurred while searching user data.
-    return createError({
+    return actionError({
       root: {
         errors: ['An error occurred on the server. Please, contact support.'],
       },

@@ -2,38 +2,37 @@ import { CalendarDays, CircleCheck, ListTodo, Rocket } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ComponentProps } from 'react';
+import StatsArticle from '@/components/shared/statistics/StatsArticle';
 import TitleH1 from '@/components/shared/TitleH1';
-import UserProgressArticle from '@/components/shared/UserProgressArticle';
 import { Button } from '@/components/ui/button';
 import CenteredContent from '@/components/utils/CenteredContent';
 import SignedIn from '@/components/utils/user-state/SignedIn';
 import SignedOut from '@/components/utils/user-state/SignedOut';
 import { cn } from '@/lib/utils/cn';
 
-// List of snapshot placeholders that will be displayed to unauthorised users
-const listOfSnapshotPlaceholders: ComponentProps<typeof UserProgressArticle>[] =
-  [
-    {
-      title: 'Tasks Completed',
-      description: "Track how many tasks you've completed this week",
-      icon: CircleCheck,
-    },
-    {
-      title: 'Remaining Tasks',
-      description: 'See how many tasks remain to be completed',
-      icon: ListTodo,
-    },
-    {
-      title: 'Active Projects',
-      description: 'See how many projects are currently in progress',
-      icon: Rocket,
-    },
-    {
-      title: 'Upcoming Deadlines',
-      description: 'View your most critical project deadlines',
-      icon: CalendarDays,
-    },
-  ];
+// List of snapshot placeholders that will be displayed to unauthorized users
+const listOfSnapshotPlaceholders: ComponentProps<typeof StatsArticle>[] = [
+  {
+    title: 'Tasks Completed',
+    description: "Track how many tasks you've completed this week",
+    icon: CircleCheck,
+  },
+  {
+    title: 'Remaining Tasks',
+    description: 'See how many tasks remain to be completed',
+    icon: ListTodo,
+  },
+  {
+    title: 'Active Projects',
+    description: 'See how many projects are currently in progress',
+    icon: Rocket,
+  },
+  {
+    title: 'Upcoming Deadlines',
+    description: 'View your most critical project deadlines',
+    icon: CalendarDays,
+  },
+];
 
 export default function Home() {
   return (
@@ -46,7 +45,7 @@ export default function Home() {
         )}
       >
         <div className="flex max-w-96 flex-col gap-6 max-lg:max-w-lg max-lg:gap-4">
-          <TitleH1 className="max-xl:text-5xl max-sm:text-4xl">
+          <TitleH1 className="text-6xl font-extrabold max-xl:text-5xl max-sm:text-4xl">
             Unlock Your Check&apos;s Full Potential
           </TitleH1>
 
@@ -87,14 +86,14 @@ export default function Home() {
         <div className="flex flex-wrap justify-center gap-8 max-xl:gap-6">
           <SignedOut>
             {listOfSnapshotPlaceholders.map((placeholder) => (
-              <UserProgressArticle {...placeholder} key={placeholder.title} />
+              <StatsArticle {...placeholder} key={placeholder.title} />
             ))}
           </SignedOut>
 
           <SignedIn>
             {/* TODO: add user-specific info instead of basic placeholders */}
             {listOfSnapshotPlaceholders.map((placeholder) => (
-              <UserProgressArticle {...placeholder} key={placeholder.title} />
+              <StatsArticle {...placeholder} key={placeholder.title} />
             ))}
           </SignedIn>
         </div>

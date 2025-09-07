@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useGetProfileQuery } from '@/lib/store/api';
 import { setUserAndStatus, signOut } from '@/lib/store/slices/user-slice';
-import { TUser } from '@/lib/types/user';
+import { TUser } from '@/lib/types/tables/user';
 import { userSchema } from '@/lib/validation/user-schema';
 
 const UserFetcher = () => {
