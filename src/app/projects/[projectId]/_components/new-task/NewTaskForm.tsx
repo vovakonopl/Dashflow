@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { startTransition, useActionState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDialog } from '@/app/projects/[projectId]/_components/dialog-context';
 import MembersToAssignSelect from '@/app/projects/[projectId]/_components/new-task/MembersToAssignSelect';
@@ -16,6 +16,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { newTask } from '@/lib/actions/task/new-task';
 import { TASK_LENGTHS } from '@/lib/constants/field-lengths/tasks-max-lenths';
+import { useServerAction } from '@/lib/hooks/useServerAction';
 import { TUser } from '@/lib/types/tables/user';
 import { taskSchema, TTaskData } from '@/lib/validation/task-schema';
 
@@ -25,7 +26,7 @@ type TNewTaskFormProps = {
 };
 
 const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
-  const [state, action, isPending] = useActionState(newTask, undefined);
+  const [state, action, isPending] = useServerAction(newTask);
   const { setIsOpen } = useDialog();
   const form = useForm<TTaskData>({
     resolver: zodResolver(taskSchema),
@@ -78,7 +79,7 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
       formData.set(key, value ?? '');
     }
 
-    startTransition(() => action(formData));
+    action(formData);
   };
 
   return (

@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { startTransition, useActionState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import FormInput from '@/components/shared/inputs/FormInput';
 import FormTextarea from '@/components/shared/inputs/FormTextarea';
@@ -10,15 +10,13 @@ import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Form, FormField } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
 import { PROJECT_LENGTHS } from '@/lib/constants/field-lengths/project-lengths';
+import { useServerAction } from '@/lib/hooks/useServerAction';
 import { TServerActionReturn } from '@/lib/types/form-action-return';
 import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
 
 type TProjectFormProps = {
   defaultValues?: Partial<TProjectData>;
-  action: (
-    _: unknown,
-    formData: FormData,
-  ) => Promise<TServerActionReturn<TProjectData>>;
+  action: (formData: FormData) => Promise<TServerActionReturn<TProjectData>>;
   submitButtonText: string;
 };
 
@@ -27,7 +25,7 @@ const ProjectForm = ({
   action: submitAction,
   submitButtonText,
 }: TProjectFormProps) => {
-  const [state, action, isPending] = useActionState(submitAction, undefined);
+  const [state, action, isPending] = useServerAction(submitAction);
   const form = useForm<TProjectData>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
@@ -56,7 +54,7 @@ const ProjectForm = ({
       formData.set(key, data[key as keyof TProjectData] ?? '');
     }
 
-    startTransition(() => action(formData));
+    action(formData);
   };
 
   return (

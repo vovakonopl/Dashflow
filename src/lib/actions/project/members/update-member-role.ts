@@ -15,10 +15,11 @@ type TPayload = {
   projectId: string;
 };
 
-export async function updateMemberRole(
-  _: unknown,
-  { userId, newRole, projectId }: TPayload,
-): Promise<TServerActionReturn> {
+export async function updateMemberRole({
+  userId,
+  newRole,
+  projectId,
+}: TPayload): Promise<TServerActionReturn> {
   const initiatorSession = await verifySession();
   if (initiatorSession.userId === userId) {
     return actionError({ root: { errors: ['You cannot update yourself.'] } });

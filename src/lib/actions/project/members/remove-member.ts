@@ -11,10 +11,10 @@ import { actionError } from '@/lib/utils/action-error';
 
 type TPayload = { projectId: string; userId: string };
 
-export async function removeMember(
-  _: unknown,
-  { projectId, userId }: TPayload,
-): Promise<TServerActionReturn> {
+export async function removeMember({
+  projectId,
+  userId,
+}: TPayload): Promise<TServerActionReturn> {
   const initiatorSession = await verifySession();
   if (userId === initiatorSession.userId) {
     return actionError({ root: { errors: ['You cannot remove yourself.'] } });

@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import React, { startTransition, useActionState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import SubmitButton from '@/app/(auth)/_components/SubmitButton';
@@ -11,6 +11,7 @@ import FormInput from '@/components/shared/inputs/FormInput';
 import PasswordInput from '@/components/shared/inputs/PasswordInput';
 import { Form, FormField } from '@/components/ui/form';
 import { signIn } from '@/lib/actions/auth/sign-in';
+import { useServerAction } from '@/lib/hooks/useServerAction';
 import { setUserAndStatus } from '@/lib/store/slices/user-slice';
 import {
   signInSchema,
@@ -18,7 +19,7 @@ import {
 } from '@/lib/validation/auth/sign-in-schema';
 
 const SignInForm = () => {
-  const [state, action, isPending] = useActionState(signIn, undefined);
+  const [state, action, isPending] = useServerAction(signIn);
   const dispatch = useDispatch();
   const router = useRouter();
   const form = useForm<TSignInData>({
@@ -59,7 +60,7 @@ const SignInForm = () => {
       formData.set(key, data[key as keyof TSignInData]);
     }
 
-    startTransition(() => action(formData));
+    action(formData);
   };
 
   const rootErrorMsg: string | undefined = form.formState.errors.root?.message;

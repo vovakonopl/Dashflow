@@ -1,19 +1,14 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import {
-  ChangeEvent,
-  startTransition,
-  useActionState,
-  useEffect,
-  useState,
-} from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { z } from 'zod';
 import ErrorMessage from '@/components/shared/ErrorMessage';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { addMember } from '@/lib/actions/project/members/add-member';
 import { useDebounce } from '@/lib/hooks/useDebounce';
+import { useServerAction } from '@/lib/hooks/useServerAction';
 import { useGetUsersByEmailQuery } from '@/lib/store/api';
 import { TUser } from '@/lib/types/tables/user';
 import { userSchema } from '@/lib/validation/user-schema';
@@ -27,7 +22,7 @@ const AddMemberInput = () => {
   const [error, setError] = useState<string | null>(null);
   const { projectId } = useParams<{ projectId: string }>();
   const debounce = useDebounce();
-  const [actionState, action, isPending] = useActionState(addMember, undefined);
+  const [actionState, action, isPending] = useServerAction(addMember);
   const { setIsOpen } = useDialog();
 
   // fetch list of users with current searchValue
@@ -71,7 +66,7 @@ const AddMemberInput = () => {
 
   // add new member to the project
   const handleSelect = (userId: string) => {
-    startTransition(() => action({ projectId, userId }));
+    action({ projectId, userId });
   };
 
   return (

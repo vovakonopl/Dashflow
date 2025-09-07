@@ -18,10 +18,7 @@ import {
 
 type TSignUpReturn = TServerActionReturn<TSignUpData, TUser>;
 
-export async function signUp(
-  _: unknown,
-  formData: FormData,
-): Promise<TSignUpReturn> {
+export async function signUp(formData: FormData): Promise<TSignUpReturn> {
   const validationResult = signUpSchema.safeParse(
     Object.fromEntries(formData.entries()),
   );

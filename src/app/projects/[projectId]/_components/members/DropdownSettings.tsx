@@ -1,7 +1,7 @@
 'use client';
 
 import { Settings, UserRoundX } from 'lucide-react';
-import { startTransition, useActionState, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useActionStatus } from '@/app/projects/[projectId]/_components/members/useActionStatus';
 import OwnerOnly from '@/app/projects/[projectId]/_components/OwnerOnly';
 import { Button } from '@/components/ui/button';
@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { removeMember } from '@/lib/actions/project/members/remove-member';
 import { updateMemberRole } from '@/lib/actions/project/members/update-member-role';
+import { useServerAction } from '@/lib/hooks/useServerAction';
 import { TMemberRole } from '@/lib/types/tables/member-roles-enum';
 import { TProject } from '@/lib/types/tables/project';
 import { TUser } from '@/lib/types/tables/user';
@@ -31,52 +32,10 @@ const DropdownSettings = ({
   project,
 }: TDropdownSettingsProps) => {
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
-  const [removeState, removeAction, isRemovePending] = useActionState(
-    removeMember,
-    undefined,
-  );
-  const [updateState, updateAction, isUpdatePending] = useActionState(
-    updateMemberRole,
-    undefined,
-  );
-
-  // // close the menu when the action is finished
-  // // for remove action
-  // useEffect(() => {
-  //   if (!isRemovePending) {
-  //     setIsMenuOpened(false);
-  //   }
-  // }, [isRemovePending, removeState]);
-  //
-  // // for update action
-  // useEffect(() => {
-  //   if (!isUpdatePending) {
-  //     setIsMenuOpened(false);
-  //   }
-  // }, [isUpdatePending, updateState]);
-  //
-  // // notify about the occurred error with sonner toast
-  // // for remove action
-  // useEffect(() => {
-  //   if (!removeState) return;
-  //   if (!removeState.isSuccess) {
-  //     createToast(
-  //       'Failed to remove the user',
-  //       removeState.errors.root?.errors[0],
-  //     );
-  //   }
-  // }, [removeState]);
-  //
-  // // for update action
-  // useEffect(() => {
-  //   if (!updateState) return;
-  //   if (!updateState.isSuccess) {
-  //     createToast(
-  //       'Failed to update the role',
-  //       updateState.errors.root?.errors[0],
-  //     );
-  //   }
-  // }, [updateState]);
+  const [removeState, removeAction, isRemovePending] =
+    useServerAction(removeMember);
+  const [updateState, updateAction, isUpdatePending] =
+    useServerAction(updateMemberRole);
 
   const closeMenu = useCallback(() => {
     setIsMenuOpened(false);
@@ -99,16 +58,12 @@ const DropdownSettings = ({
   });
 
   const handleRemoveMember = () => {
-    startTransition(() =>
-      removeAction({ projectId: project.id, userId: member.id }),
-    );
+    removeAction({ projectId: project.id, userId: member.id });
   };
 
   const newRole: TMemberRole = member.role === 'member' ? 'leader' : 'member';
   const handleUpdateRole = () => {
-    startTransition(() =>
-      updateAction({ newRole, projectId: project.id, userId: member.id }),
-    );
+    updateAction({ newRole, projectId: project.id, userId: member.id });
   };
 
   return (

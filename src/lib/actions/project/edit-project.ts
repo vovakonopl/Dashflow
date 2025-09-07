@@ -16,7 +16,6 @@ const projectWithIdSchema = projectSchema.extend({
 });
 
 export async function editProject(
-  _: unknown,
   formData: FormData,
 ): Promise<TServerActionReturn<TProjectData>> {
   const { userId } = await verifySession();

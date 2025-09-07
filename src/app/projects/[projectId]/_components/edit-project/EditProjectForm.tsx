@@ -12,9 +12,9 @@ type TEditProjectFormProps = {
 const EditProjectForm = ({ project }: TEditProjectFormProps) => {
   const { setIsOpen } = useDialog();
 
-  const handleSubmit = async (_: unknown, formData: FormData) => {
+  const handleSubmit = async (formData: FormData) => {
     formData.set('id', project.id);
-    const result = await editProject(null, formData);
+    const result = await editProject(formData);
 
     if (result.isSuccess) {
       setIsOpen(false);

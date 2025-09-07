@@ -24,7 +24,6 @@ type TFormObject = {
 };
 
 export async function newTask(
-  _: unknown,
   formData: FormData,
 ): Promise<TServerActionReturn<TTaskData>> {
   const initiatorSession = await verifySession();

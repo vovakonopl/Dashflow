@@ -13,7 +13,6 @@ import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
 type TNewProjectReturn = TServerActionReturn<TProjectData>;
 
 export async function newProject(
-  _: unknown,
   formData: FormData,
 ): Promise<TNewProjectReturn> {
   const { userId } = await verifySession();
