@@ -43,7 +43,7 @@ export default async function ProjectsPage() {
           <NewProjectButton />
         </div>
 
-        <ProjectOverview projectsCount={8} />
+        <ProjectOverview projectsCount={projects.length} />
 
         <ul className="grid grid-cols-[repeat(auto-fit,minmax(16.75rem,1fr))] gap-6">
           {projects.map((project) => (
