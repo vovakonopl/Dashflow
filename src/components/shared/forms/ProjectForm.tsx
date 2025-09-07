@@ -11,7 +11,7 @@ import { Form, FormField } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
 import { PROJECT_LENGTHS } from '@/lib/constants/field-lengths/project-lengths';
 import { useServerAction } from '@/lib/hooks/useServerAction';
-import { TServerActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/action-return';
 import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
 
 type TProjectFormProps = {
@@ -41,7 +41,7 @@ const ProjectForm = ({
 
     const { errors } = state;
     for (const field in errors) {
-      const error = errors[field as keyof typeof errors]?.errors[0];
+      const error = errors[field as keyof typeof errors]?.[0];
       form.setError(field as keyof TProjectData, {
         message: error,
       });

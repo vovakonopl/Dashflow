@@ -4,11 +4,11 @@ import bcrypt from 'bcrypt';
 import { z } from 'zod';
 import { users } from '@/drizzle/schema';
 import { SALT_ROUNDS } from '@/lib/constants/auth/SALT_ROUNDS';
+import { ERROR_MSG } from '@/lib/constants/error-messages';
 import { db } from '@/lib/db';
 import { createSession } from '@/lib/server/session';
-import { TServerActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/action-return';
 import { TUser } from '@/lib/types/tables/user';
-import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 import { actionError } from '@/lib/utils/action-error';
 import { isUniqueConstraintViolation } from '@/lib/utils/is-unique-constraint-violation';
 import {
@@ -24,10 +24,7 @@ export async function signUp(formData: FormData): Promise<TSignUpReturn> {
   );
 
   if (!validationResult.success) {
-    return actionError(
-      z.treeifyError(validationResult.error)
-        .properties as TZodObjectErrors<TSignUpData>,
-    );
+    return actionError(z.treeifyError(validationResult.error).properties);
   }
 
   // Create user
@@ -62,15 +59,8 @@ export async function signUp(formData: FormData): Promise<TSignUpReturn> {
   } catch (error: unknown) {
     const errorMessage = isUniqueConstraintViolation(error)
       ? 'An account with this email address already exists.'
-      : 'An error occurred on the server. Please, contact support.';
+      : ERROR_MSG.errorOnServer;
 
-    return {
-      isSuccess: false,
-      errors: {
-        root: {
-          errors: [errorMessage],
-        },
-      },
-    };
+    return actionError({ root: [errorMessage] });
   }
 }

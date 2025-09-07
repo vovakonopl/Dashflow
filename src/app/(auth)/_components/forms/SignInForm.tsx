@@ -36,7 +36,7 @@ const SignInForm = () => {
 
     const { errors } = state;
     for (const field in errors) {
-      const error = errors[field as keyof typeof errors]?.errors[0];
+      const error = errors[field as keyof typeof errors]?.[0];
       form.setError(field as keyof TSignInData, {
         message: error,
       });

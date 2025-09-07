@@ -3,9 +3,10 @@
 import { and, eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
 import { projectMembers, projects } from '@/drizzle/schema';
+import { ERROR_MSG } from '@/lib/constants/error-messages';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
-import { TServerActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/action-return';
 import { TMemberRole } from '@/lib/types/tables/member-roles-enum';
 import { actionError } from '@/lib/utils/action-error';
 
@@ -22,7 +23,7 @@ export async function updateMemberRole({
 }: TPayload): Promise<TServerActionReturn> {
   const initiatorSession = await verifySession();
   if (initiatorSession.userId === userId) {
-    return actionError({ root: { errors: ['You cannot update yourself.'] } });
+    return actionError({ root: ['You cannot update yourself.'] });
   }
 
   try {
@@ -32,7 +33,7 @@ export async function updateMemberRole({
     });
 
     if (!ownerId || ownerId.ownerId !== initiatorSession.userId) {
-      return actionError({ root: { errors: ['Access denied.'] } });
+      return actionError({ root: [ERROR_MSG.accessDenied] });
     }
 
     await db
@@ -50,9 +51,7 @@ export async function updateMemberRole({
   } catch (err) {
     console.log(err);
     return actionError({
-      root: {
-        errors: ['An error occurred on the server. Please, contact support.'],
-      },
+      root: [ERROR_MSG.errorOnServer],
     });
   }
 }

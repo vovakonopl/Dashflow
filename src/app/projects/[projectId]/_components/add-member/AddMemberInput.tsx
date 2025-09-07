@@ -55,7 +55,7 @@ const AddMemberInput = () => {
       return;
     }
 
-    setError(actionState.errors.root?.errors[0] ?? null);
+    setError(actionState.errors.root?.[0] ?? null);
   }, [actionState, setIsOpen]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

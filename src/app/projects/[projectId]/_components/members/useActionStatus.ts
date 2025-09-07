@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { toast } from 'sonner';
-import { TServerActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/action-return';
 
 type TActionStatus = {
   closeMenu: () => void;
@@ -27,7 +27,7 @@ export function useActionStatus({
     if (!state) return;
     if (!state.isSuccess) {
       toast(toastTitle, {
-        description: state.errors.root?.errors[0],
+        description: state.errors.root?.[0],
         action: {
           label: 'OK',
           onClick: () => {

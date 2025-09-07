@@ -3,10 +3,10 @@
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 import { projectMembers, projects } from '@/drizzle/schema';
+import { ERROR_MSG } from '@/lib/constants/error-messages';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
-import { TServerActionReturn } from '@/lib/types/form-action-return';
-import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
+import { TServerActionReturn } from '@/lib/types/action-return';
 import { actionError } from '@/lib/utils/action-error';
 import { projectSchema, TProjectData } from '@/lib/validation/project-schema';
 
@@ -22,10 +22,7 @@ export async function newProject(
   );
 
   if (!validationResult.success) {
-    return actionError(
-      z.treeifyError(validationResult.error)
-        .properties as TZodObjectErrors<TProjectData>,
-    );
+    return actionError(z.treeifyError(validationResult.error).properties);
   }
 
   const { name, description } = validationResult.data;
@@ -51,9 +48,7 @@ export async function newProject(
     return { isSuccess: true };
   } catch {
     return actionError({
-      root: {
-        errors: ['An error occurred on the server. Please, contact support.'],
-      },
+      errors: [ERROR_MSG.errorOnServer],
     });
   } finally {
     // redirect on success

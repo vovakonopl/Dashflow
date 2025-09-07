@@ -4,11 +4,11 @@ import bcrypt from 'bcrypt';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 import { users } from '@/drizzle/schema';
+import { ERROR_MSG } from '@/lib/constants/error-messages';
 import { db } from '@/lib/db';
 import { createSession } from '@/lib/server/session';
-import { TServerActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/action-return';
 import { DB_USER_INCLUDED_COLUMNS, TUser } from '@/lib/types/tables/user';
-import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
 import { actionError } from '@/lib/utils/action-error';
 import {
   signInSchema,
@@ -17,16 +17,15 @@ import {
 
 type TSignInReturn = TServerActionReturn<TSignInData, TUser>;
 
+const invalidEmailOrPasswordMsg = 'Invalid email or password.';
+
 export async function signIn(formData: FormData): Promise<TSignInReturn> {
   const validationResult = signInSchema.safeParse(
     Object.fromEntries(formData.entries()),
   );
 
   if (!validationResult.success) {
-    return actionError(
-      z.treeifyError(validationResult.error)
-        .properties as TZodObjectErrors<TSignInData>,
-    );
+    return actionError(z.treeifyError(validationResult.error).properties);
   }
 
   const { email, password } = validationResult.data;
@@ -39,7 +38,7 @@ export async function signIn(formData: FormData): Promise<TSignInReturn> {
 
     // User was not found
     if (!userWithPassword) {
-      return actionError({ root: { errors: ['Invalid email or password.'] } });
+      return actionError({ root: [invalidEmailOrPasswordMsg] });
     }
 
     // Compare received and stored passwords
@@ -48,7 +47,7 @@ export async function signIn(formData: FormData): Promise<TSignInReturn> {
 
     // Invalid password
     if (!isMatching) {
-      return actionError({ root: { errors: ['Invalid email or password.'] } });
+      return actionError({ root: [invalidEmailOrPasswordMsg] });
     }
 
     // Create a session
@@ -60,9 +59,7 @@ export async function signIn(formData: FormData): Promise<TSignInReturn> {
   } catch {
     // Return an error if it occurred while searching user data.
     return actionError({
-      root: {
-        errors: ['An error occurred on the server. Please, contact support.'],
-      },
+      root: [ERROR_MSG.errorOnServer],
     });
   }
 }

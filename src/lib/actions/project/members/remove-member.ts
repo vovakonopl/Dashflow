@@ -4,9 +4,10 @@ import { and, eq } from 'drizzle-orm';
 import { alias } from 'drizzle-orm/pg-core';
 import { revalidatePath } from 'next/cache';
 import { projectMembers, projects } from '@/drizzle/schema';
+import { ERROR_MSG } from '@/lib/constants/error-messages';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
-import { TServerActionReturn } from '@/lib/types/form-action-return';
+import { TServerActionReturn } from '@/lib/types/action-return';
 import { actionError } from '@/lib/utils/action-error';
 
 type TPayload = { projectId: string; userId: string };
@@ -17,7 +18,7 @@ export async function removeMember({
 }: TPayload): Promise<TServerActionReturn> {
   const initiatorSession = await verifySession();
   if (userId === initiatorSession.userId) {
-    return actionError({ root: { errors: ['You cannot remove yourself.'] } });
+    return actionError({ root: ['You cannot remove yourself.'] });
   }
 
   const userToRemoveAlias = alias(projectMembers, 'user_to_remove');
@@ -46,7 +47,7 @@ export async function removeMember({
 
     // check if data was found
     if (!result) {
-      return actionError({ root: { errors: ['Access denied.'] } });
+      return actionError({ root: [ERROR_MSG.accessDenied] });
     }
 
     const { initiatorRole, userToRemoveRole, projectOwnerId } = result;
@@ -64,7 +65,7 @@ export async function removeMember({
       isInitiatorLeader && isInitiatorOwner && isUserToRemoveLeader;
 
     if (!(canRemoveMember || canRemoveLeader)) {
-      return actionError({ root: { errors: ['Access denied.'] } });
+      return actionError({ root: [ERROR_MSG.accessDenied] });
     }
 
     await db
@@ -80,9 +81,7 @@ export async function removeMember({
     return { isSuccess: true };
   } catch {
     return actionError({
-      root: {
-        errors: ['An error occurred on the server. Please, contact support.'],
-      },
+      root: [ERROR_MSG.errorOnServer],
     });
   }
 }

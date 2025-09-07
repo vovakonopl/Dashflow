@@ -4,10 +4,10 @@ import { and, eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { projectMembers, taskAssignments, tasks } from '@/drizzle/schema';
+import { ERROR_MSG } from '@/lib/constants/error-messages';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
-import { TServerActionReturn } from '@/lib/types/form-action-return';
-import { TZodObjectErrors } from '@/lib/types/zod-object-errors';
+import { TServerActionReturn } from '@/lib/types/action-return';
 import { actionError } from '@/lib/utils/action-error';
 import { taskSchema, TTaskData } from '@/lib/validation/task-schema';
 
@@ -39,10 +39,7 @@ export async function newTask(
 
   const validationResult = taskSchema.safeParse(formObject);
   if (!validationResult.success) {
-    return actionError(
-      z.treeifyError(validationResult.error)
-        .properties as TZodObjectErrors<TTaskData>,
-    );
+    return actionError(z.treeifyError(validationResult.error).properties);
   }
 
   try {
@@ -54,7 +51,7 @@ export async function newTask(
     });
 
     if (initiator?.role !== 'leader') {
-      return actionError({ root: { errors: ['Access denied.'] } });
+      return actionError({ root: [ERROR_MSG.accessDenied] });
     }
 
     const { assignedMemberIds, ...taskData } = validationResult.data;
@@ -82,9 +79,7 @@ export async function newTask(
     return { isSuccess: true };
   } catch {
     return actionError({
-      root: {
-        errors: ['An error occurred on the server. Please, contact support.'],
-      },
+      root: [ERROR_MSG.errorOnServer],
     });
   }
 }
