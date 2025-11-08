@@ -9,7 +9,6 @@ import {
 import { Progress } from '@/components/ui/progress';
 import { TProjectWithTasksProgress } from '@/lib/types/tables/project';
 import { cn } from '@/lib/utils/cn';
-import styles from './project-card.module.css';
 
 type TProjectCardProps = {
   project: TProjectWithTasksProgress;
@@ -31,8 +30,7 @@ const ProjectCard = ({ project }: TProjectCardProps) => {
         {project.description && (
           <p
             className={cn(
-              styles.description,
-              'text-muted-foreground mb-4 max-h-20 text-sm break-words break-all text-ellipsis',
+              'text-muted-foreground mb-4 line-clamp-4 max-h-20 text-sm break-words break-all text-ellipsis',
             )}
           >
             {project.description}
