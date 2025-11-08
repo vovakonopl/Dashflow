@@ -72,7 +72,7 @@ export async function newTask(
         userId,
       }));
 
-      tx.insert(taskAssignments).values(membersToInsert);
+      await tx.insert(taskAssignments).values(membersToInsert);
     });
 
     revalidatePath(`/projects/${validationResult.data.projectId}`);
