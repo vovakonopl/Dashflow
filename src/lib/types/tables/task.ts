@@ -5,5 +5,8 @@ export type TTask = InferSelectModel<typeof tasks>;
 export type TTaskWithMemberIds = TTask & {
   assignedMembers: InferSelectModel<typeof taskAssignments>[];
 };
+export type TTaskWithProjectName = TTask & {
+  relatedProjectName: string;
+};
 
 export type TTaskPriority = (typeof taskPriorityEnum.enumValues)[number];
