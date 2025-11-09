@@ -2,11 +2,11 @@ import OverdueTasks from '@/components/shared/statistics/OverdueTasks';
 import TasksCompletionProgress from '@/components/shared/statistics/TasksCompletionProgress';
 import TasksInProgress from '@/components/shared/statistics/TasksInProgress';
 import TotalTasks from '@/components/shared/statistics/TotalTasks';
-import { TTaskWithMemberIds } from '@/lib/types/tables/task';
+import { TTask } from '@/lib/types/tables/task';
 import { cn } from '@/lib/utils/cn';
 
 type TStatsArticlesProps = {
-  tasks: TTaskWithMemberIds[];
+  tasks: TTask[];
 };
 
 const StatsArticles = ({ tasks }: TStatsArticlesProps) => {
