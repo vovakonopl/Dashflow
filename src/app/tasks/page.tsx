@@ -1,22 +1,8 @@
-import { eq, getTableColumns } from 'drizzle-orm';
 import TitleH1 from '@/components/shared/TitleH1';
-import { projects, taskAssignments, tasks } from '@/drizzle/schema';
-import { db } from '@/lib/db';
+import { getTasksWithProjectNameForUser } from '@/lib/server/db-queries/tasks';
 import { verifySession } from '@/lib/server/session';
 import { TTaskWithProjectName } from '@/lib/types/tables/task';
 import TaskCard from './_components/TaskCard';
-
-async function getUserTasks(userId: string): Promise<TTaskWithProjectName[]> {
-  return db
-    .select({
-      ...getTableColumns(tasks),
-      relatedProjectName: projects.name,
-    })
-    .from(taskAssignments)
-    .innerJoin(tasks, eq(taskAssignments.taskId, tasks.id))
-    .innerJoin(projects, eq(tasks.projectId, projects.id))
-    .where(eq(taskAssignments.userId, userId));
-}
 
 function sortTasksByName(
   tasks: TTaskWithProjectName[],
@@ -34,7 +20,7 @@ function sortTasksByName(
 export default async function TasksPage() {
   const { userId } = await verifySession();
   const userTasks: TTaskWithProjectName[] = sortTasksByName(
-    await getUserTasks(userId),
+    await getTasksWithProjectNameForUser(userId),
   );
 
   return (
