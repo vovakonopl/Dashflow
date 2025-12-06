@@ -4,11 +4,11 @@ import {
   House,
   LayoutDashboard,
   LogIn,
-  Settings,
-  Users,
 } from 'lucide-react';
 import Link from 'next/link';
 import Logo from '@/components/layout/Logo';
+import ButtonSkeleton from '@/components/layout/sidebar/ButtonSkeleton';
+import OpenSettingsButton from '@/components/layout/sidebar/OpenSettingsButton';
 import ActiveSidebarMenuButton from '@/components/layout/sidebar/SidebarMenuButton';
 import SignOutButton from '@/components/layout/sidebar/SignOutButton';
 import SkeletonBlock from '@/components/layout/sidebar/SkeletonBlock';
@@ -99,24 +99,19 @@ const SideNavbar = async () => {
               <SidebarGroup>
                 <SidebarMenu>
                   {/* content for authorised users*/}
-                  <SignedIn waitUntilLoaded>
-                    <SidebarMenuItem>
-                      <ActiveSidebarMenuButton asChild href="/settings">
-                        <Link href="/settings">
-                          <Settings />
-                          <span>Settings</span>
-                        </Link>
-                      </ActiveSidebarMenuButton>
-                    </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <OpenSettingsButton />
+                  </SidebarMenuItem>
 
-                    <SidebarMenuItem>
-                      <ActiveSidebarMenuButton asChild href="/profile">
-                        <Link href="/profile">
-                          <Users />
-                          <span>Profile</span>
-                        </Link>
-                      </ActiveSidebarMenuButton>
-                    </SidebarMenuItem>
+                  <SignedIn waitUntilLoaded>
+                    {/*<SidebarMenuItem>*/}
+                    {/*  <ActiveSidebarMenuButton asChild href="/profile">*/}
+                    {/*    <Link href="/profile">*/}
+                    {/*      <Users />*/}
+                    {/*      <span>Profile</span>*/}
+                    {/*    </Link>*/}
+                    {/*  </ActiveSidebarMenuButton>*/}
+                    {/*</SidebarMenuItem>*/}
 
                     <SidebarMenuItem>
                       <SignOutButton />
@@ -137,7 +132,8 @@ const SideNavbar = async () => {
 
                   {/* display skeleton while loading user data */}
                   <UserLoading>
-                    <SkeletonBlock />
+                    <ButtonSkeleton textLineClassName="w-3/4" />
+                    <ButtonSkeleton textLineClassName="w-1/2" />
                   </UserLoading>
                 </SidebarMenu>
               </SidebarGroup>

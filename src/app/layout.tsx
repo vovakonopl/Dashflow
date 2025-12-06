@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { Inter, Archivo } from 'next/font/google';
 import { ReactNode } from 'react';
-import ThemeSwitcherDevTool from '@/components/dev/ThemeSwitcherDevTool';
 import Footer from '@/components/layout/Footer';
+import SettingsDialog from '@/components/layout/SettingsDialog';
 import SideNavbar from '@/components/layout/sidebar';
 import Providers from '@/components/providers/Providers';
-import './globals.css';
 import { Toaster } from '@/components/ui/sonner';
+import './globals.css';
 
 const inter = Inter({
   subsets: ['cyrillic', 'latin'],
@@ -42,8 +42,10 @@ export default function RootLayout({
               <Footer />
             </div>
 
-            <ThemeSwitcherDevTool />
+            {/*<ThemeSwitcherDevTool />*/}
           </div>
+
+          <SettingsDialog />
         </Providers>
       </body>
     </html>

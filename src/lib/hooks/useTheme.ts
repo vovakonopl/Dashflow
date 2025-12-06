@@ -1,7 +1,7 @@
 import { useTheme as useNextTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
-type TTheme = 'light' | 'dark';
+export type TTheme = 'light' | 'dark' | 'system';
 
 export function useTheme() {
   const { theme, setTheme, resolvedTheme, ...rest } = useNextTheme();
@@ -14,7 +14,7 @@ export function useTheme() {
   return {
     isMounted,
     setTheme: (theme: TTheme) => setTheme(theme),
-    resolvedTheme: resolvedTheme as TTheme | 'system' | undefined,
+    resolvedTheme: resolvedTheme as TTheme | undefined,
     theme: theme as TTheme | undefined,
     ...rest,
   };
