@@ -6,7 +6,7 @@ const publicRoutes = ['/', '/sign-in', '/sign-up'];
 // Routes that are allowed only for unauthorized users
 const authRoutes = ['/sign-in', '/sign-up'];
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const currentPath: string = req.nextUrl.pathname;
 
   // Check whether the current route is protected.

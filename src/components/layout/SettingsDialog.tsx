@@ -2,6 +2,7 @@
 
 import { Monitor, Moon, Sun } from 'lucide-react';
 import { ReactNode } from 'react';
+import ReactCountryFlag from 'react-country-flag';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@/components/ui/button';
 import {
@@ -11,6 +12,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import {
   Tooltip,
   TooltipContent,
@@ -35,7 +43,7 @@ const SettingsDialog = () => {
           <DialogDescription>Configure your app preferences</DialogDescription>
         </DialogHeader>
 
-        <ul className="mt-auto flex h-fit flex-col gap-2">
+        <ul className="mt-auto flex h-fit flex-col gap-4">
           <li className="flex items-center gap-2 capitalize">
             <span>App theme:</span>
 
@@ -57,6 +65,29 @@ const SettingsDialog = () => {
                 </ThemeButton>
               </li>
             </ul>
+          </li>
+
+          <li className="flex items-center gap-2 capitalize">
+            <span>Language:</span>
+
+            <Select>
+              <SelectTrigger className="text-base">
+                <SelectValue
+                  className="items-center"
+                  placeholder="Select a language"
+                />
+              </SelectTrigger>
+
+              <SelectContent>
+                <SelectItem value="ua">
+                  <Locale countryCode="ua" label="Ukrainian" />
+                </SelectItem>
+
+                <SelectItem value="en">
+                  <Locale countryCode="gb" label="English" />
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </li>
         </ul>
       </DialogContent>
@@ -91,5 +122,23 @@ const ThemeButton = ({ theme, tooltip, children }: TThemeButtonProps) => {
         <p>{tooltip}</p>
       </TooltipContent>
     </Tooltip>
+  );
+};
+
+type TLocaleProps = {
+  countryCode: string;
+  label: string;
+};
+
+const Locale = ({ countryCode, label }: TLocaleProps) => {
+  return (
+    <div className="flex items-center gap-2">
+      <ReactCountryFlag
+        countryCode={countryCode}
+        style={{ height: '0.875em', width: 'auto' }}
+        svg
+      />
+      <span className="capitalize">{label}</span>
+    </div>
   );
 };
