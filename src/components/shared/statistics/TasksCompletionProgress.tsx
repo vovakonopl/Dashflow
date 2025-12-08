@@ -25,7 +25,7 @@ const TasksCompletionProgress = ({
     <StatsArticle
       {...props}
       title={t('title')}
-      description={t(`description.${t(tasksFor)}`)}
+      description={t(`description.${tasksFor}`)}
     >
       <div className="flex w-full items-center justify-between gap-2">
         <Progress value={percentage} />

@@ -21,7 +21,7 @@ const ToggleTaskCompletionButton = ({
       onClick={() => action(taskId)}
       disabled={isPending}
     >
-      {t(isCompleted ? 'incomplete' : 'complete')}
+      {t(isCompleted ? 'incomplete' : 'completed')}
     </Button>
   );
 };

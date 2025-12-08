@@ -58,6 +58,10 @@
       }
     }
   },
+  "dashboardPage": {
+    "title": "Dashboard",
+    "tasksLink": "Go check your tasks!"
+  },
   "tasksPage": {
     "title": "My tasks",
     "task": {
@@ -70,10 +74,6 @@
         "incomplete": "Mark as Incomplete"
       }
     }
-  },
-  "dashboardPage": {
-    "title": "Dashboard",
-    "tasksLink": "Go check your tasks!"
   },
   "statistics": {
     "totalTasks": {
