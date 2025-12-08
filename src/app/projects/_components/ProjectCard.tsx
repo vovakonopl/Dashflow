@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -15,6 +16,7 @@ type TProjectCardProps = {
 };
 
 const ProjectCard = ({ project }: TProjectCardProps) => {
+  const t = useTranslations('projects.project');
   const progressPercentage: number =
     (project.completedTasks / project.totalTasks) * 100;
 
@@ -40,12 +42,13 @@ const ProjectCard = ({ project }: TProjectCardProps) => {
         {/* Slider with % of completed tasks */}
         <div className="text-sm">
           {project.totalTasks <= 0 ? (
-            <span className="text-muted-foreground italic">No tasks yet</span>
+            <span className="text-muted-foreground italic">{t('noTasks')}</span>
           ) : (
             <>
               <Progress value={progressPercentage} className="mb-1" />
               <span className="text-primary">
-                {project.completedTasks}/{project.totalTasks} Completed
+                {project.completedTasks}/{project.totalTasks}{' '}
+                {t('tasksCompleted')}
               </span>
             </>
           )}
@@ -54,7 +57,9 @@ const ProjectCard = ({ project }: TProjectCardProps) => {
 
       <CardFooter>
         <Button asChild className="w-full" variant="outline">
-          <Link href={`/projects/${project.id}`}>View Project</Link>
+          <Link href={`/projects/${project.id}`} className="capitalize">
+            {t('view')}
+          </Link>
         </Button>
       </CardFooter>
     </Card>

@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import FormInput from '@/components/shared/inputs/FormInput';
@@ -25,6 +26,7 @@ const ProjectForm = ({
   action: submitAction,
   submitButtonText,
 }: TProjectFormProps) => {
+  const t = useTranslations('projects.project.form');
   const [state, action, isPending] = useServerAction(submitAction);
   const form = useForm<TProjectData>({
     resolver: zodResolver(projectSchema),
@@ -70,8 +72,8 @@ const ProjectForm = ({
             <FormInput
               {...field}
               error={error?.message}
-              label="Project name"
-              placeholder="My project"
+              label={t('field.name.label')}
+              placeholder={t('field.name.placeholder')}
               type="text"
               minLength={PROJECT_LENGTHS.name.min}
               maxLength={PROJECT_LENGTHS.name.max}
@@ -87,8 +89,8 @@ const ProjectForm = ({
               {...field}
               className="min-h-24"
               error={error?.message}
-              label="Project description"
-              placeholder="Optional description"
+              label={t('field.description.label')}
+              placeholder={t('field.description.placeholder')}
               maxLength={PROJECT_LENGTHS.description.max}
             />
           )}
@@ -99,11 +101,15 @@ const ProjectForm = ({
         <DialogFooter>
           <DialogClose asChild>
             <Button className="cursor-pointer" variant="outline">
-              Cancel
+              {t('cancel')}
             </Button>
           </DialogClose>
 
-          <Button className="cursor-pointer" type="submit" disabled={isPending}>
+          <Button
+            className="cursor-pointer capitalize"
+            type="submit"
+            disabled={isPending}
+          >
             {submitButtonText}
           </Button>
         </DialogFooter>

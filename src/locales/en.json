@@ -62,6 +62,42 @@
     "title": "Dashboard",
     "tasksLink": "Go check your tasks!"
   },
+  "projects": {
+    "title": "My projects",
+    "newProject": "Create new project",
+    "overview": {
+      "title": "Project overview",
+      "totalProjects": "Total projects",
+      "description": "Effectively manage all your projects, track progress, and collaborate seamlessly with your team."
+    },
+    "project": {
+      "noTasks": "No tasks yet",
+      "tasksCompleted": "Completed",
+      "view": "View project",
+      "form": {
+        "cancel": "Cancel",
+        "newProject": {
+          "title": "New project",
+          "submit": "Create project"
+        },
+        "editProject": {
+          "title": "Edit the project",
+          "description": "Change the project's name and description.",
+          "submit": "Submit changes"
+        },
+        "field": {
+          "name": {
+            "label": "Project name",
+            "placeholder": "My project"
+          },
+          "description": {
+            "label": "Project description",
+            "placeholder": "Optional description"
+          }
+        }
+      }
+    }
+  },
   "tasksPage": {
     "title": "My tasks",
     "task": {

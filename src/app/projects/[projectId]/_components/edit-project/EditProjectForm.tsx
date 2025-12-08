@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useDialog } from '@/app/projects/[projectId]/_components/dialog-context';
 import ProjectForm from '@/components/shared/forms/ProjectForm';
 import { editProject } from '@/lib/actions/project/edit-project';
@@ -10,6 +11,7 @@ type TEditProjectFormProps = {
 };
 
 const EditProjectForm = ({ project }: TEditProjectFormProps) => {
+  const t = useTranslations('projects.project.form.editProject');
   const { setIsOpen } = useDialog();
 
   const handleSubmit = async (formData: FormData) => {
@@ -30,7 +32,7 @@ const EditProjectForm = ({ project }: TEditProjectFormProps) => {
         description: project.description || '',
       }}
       action={handleSubmit}
-      submitButtonText="Submit Changes"
+      submitButtonText={t('submit')}
     />
   );
 };

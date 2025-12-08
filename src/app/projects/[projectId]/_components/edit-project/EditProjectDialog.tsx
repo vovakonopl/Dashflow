@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import EditProjectForm from '@/app/projects/[projectId]/_components/edit-project/EditProjectForm';
 import {
   DialogContent,
@@ -12,15 +13,15 @@ type TEditProjectDialogProps = {
 };
 
 const EditProjectDialog = ({ project }: TEditProjectDialogProps) => {
+  const t = useTranslations('projects.project.form.editProject');
+
   return (
     <DialogContent>
       <DialogHeader className="gap-1">
         <DialogTitle className="font-archivo text-2xl">
-          Edit the project
+          {t('title')}
         </DialogTitle>
-        <DialogDescription>
-          Change the project&apos;s name and description.
-        </DialogDescription>
+        <DialogDescription>{t('description')}</DialogDescription>
       </DialogHeader>
 
       <EditProjectForm project={project} />

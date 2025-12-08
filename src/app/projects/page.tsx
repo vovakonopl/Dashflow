@@ -1,4 +1,5 @@
 import { count, eq, getTableColumns, sql } from 'drizzle-orm';
+import { getTranslations } from 'next-intl/server';
 import NewProjectButton from '@/app/projects/_components/new-project/NewProjectButton';
 import NewProjectModal from '@/app/projects/_components/new-project/NewProjectModal';
 import ProjectCard from '@/app/projects/_components/ProjectCard';
@@ -31,6 +32,7 @@ async function getUserProjects(
 }
 
 export default async function ProjectsPage() {
+  const t = await getTranslations('projects');
   // Get user id to fetch the required projects
   const { userId } = await verifySession();
   const projects: TProjectWithTasksProgress[] = await getUserProjects(userId);
@@ -39,7 +41,9 @@ export default async function ProjectsPage() {
     <Dialog>
       <div className="flex flex-col gap-6 p-8 max-md:gap-4 max-md:p-4">
         <div className="flex justify-between gap-4 max-md:flex-col">
-          <TitleH1 className="max-md:text-center">My Projects</TitleH1>
+          <TitleH1 className="capitalize max-md:text-center">
+            {t('title')}
+          </TitleH1>
           <NewProjectButton />
         </div>
 
