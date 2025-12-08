@@ -1,3 +1,4 @@
+import deepmerge from 'deepmerge';
 import { cookies } from 'next/headers';
 import { getRequestConfig } from 'next-intl/server';
 
@@ -5,8 +6,11 @@ export default getRequestConfig(async () => {
   const store = await cookies();
   const locale = store.get('locale')?.value || 'en';
 
+  const messages = (await import(`@/locales/${locale}.json`)).default;
+  const defaultMessages = (await import(`@/locales/en.json`)).default;
+
   return {
     locale,
-    messages: (await import(`@/locales/${locale}.json`)).default,
+    messages: deepmerge(defaultMessages, messages),
   };
 });
