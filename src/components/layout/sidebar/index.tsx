@@ -6,6 +6,7 @@ import {
   LogIn,
 } from 'lucide-react';
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 import Logo from '@/components/layout/Logo';
 import ButtonSkeleton from '@/components/layout/sidebar/ButtonSkeleton';
 import OpenSettingsButton from '@/components/layout/sidebar/OpenSettingsButton';
@@ -29,6 +30,8 @@ import SignedOut from '@/components/utils/user-state/SignedOut';
 import UserLoading from '@/components/utils/user-state/UserLoading';
 
 const SideNavbar = async () => {
+  const t = await getTranslations('layout.sidebar');
+
   return (
     <aside>
       <nav>
@@ -52,7 +55,7 @@ const SideNavbar = async () => {
                     <ActiveSidebarMenuButton asChild href="/">
                       <Link href="/">
                         <House />
-                        <span>Home</span>
+                        <span>{t('links.home')}</span>
                       </Link>
                     </ActiveSidebarMenuButton>
                   </SidebarMenuItem>
@@ -63,7 +66,7 @@ const SideNavbar = async () => {
                       <ActiveSidebarMenuButton asChild href="/dashboard">
                         <Link href="/dashboard">
                           <LayoutDashboard />
-                          <span>Dashboard</span>
+                          <span>{t('links.dashboard')}</span>
                         </Link>
                       </ActiveSidebarMenuButton>
                     </SidebarMenuItem>
@@ -72,7 +75,7 @@ const SideNavbar = async () => {
                       <ActiveSidebarMenuButton asChild href="/projects">
                         <Link href="/projects">
                           <FolderOpen />
-                          <span>Projects</span>
+                          <span>{t('links.projects')}</span>
                         </Link>
                       </ActiveSidebarMenuButton>
                     </SidebarMenuItem>
@@ -81,7 +84,7 @@ const SideNavbar = async () => {
                       <ActiveSidebarMenuButton asChild href="/tasks">
                         <Link href="/tasks">
                           <ClipboardList />
-                          <span>Tasks</span>
+                          <span>{t('links.tasks')}</span>
                         </Link>
                       </ActiveSidebarMenuButton>
                     </SidebarMenuItem>
@@ -124,7 +127,7 @@ const SideNavbar = async () => {
                       <SidebarMenuButton asChild className="cursor-pointer">
                         <Link href="/sign-in">
                           <LogIn />
-                          <span>Sign In</span>
+                          <span>{t('buttons.signIn')}</span>
                         </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>

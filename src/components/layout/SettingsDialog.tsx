@@ -34,7 +34,8 @@ import { RootState } from '@/lib/store';
 import { setOpened } from '@/lib/store/slices/settings-slice';
 
 const SettingsDialog = () => {
-  const t = useTranslations('locales');
+  const tSettings = useTranslations('settings');
+  const tLocales = useTranslations('locales');
   const locale = useLocale();
   const [, action, isPending] = useServerAction(setLocale);
   const dispatch = useDispatch();
@@ -47,13 +48,13 @@ const SettingsDialog = () => {
         className="min-h-72"
       >
         <DialogHeader>
-          <DialogTitle>Settings</DialogTitle>
-          <DialogDescription>Configure your app preferences</DialogDescription>
+          <DialogTitle className="capitalize">{tSettings('title')}</DialogTitle>
+          <DialogDescription>{tSettings('description')}</DialogDescription>
         </DialogHeader>
 
         <ul className="mt-auto flex h-fit flex-col gap-4">
           <li className="flex items-center gap-2 capitalize">
-            <span>App theme:</span>
+            <span>{tSettings('options.theme')}:</span>
 
             <ul className="flex gap-1">
               <li>
@@ -77,7 +78,7 @@ const SettingsDialog = () => {
           </li>
 
           <li className="flex items-center gap-2 capitalize">
-            <span>Language:</span>
+            <span>{tSettings('options.language.label')}:</span>
 
             <Select
               disabled={isPending}
@@ -87,7 +88,7 @@ const SettingsDialog = () => {
               <SelectTrigger className="cursor-pointer text-base">
                 <SelectValue
                   className="items-center"
-                  placeholder="Select a language"
+                  placeholder={tSettings('options.language.placeholder')}
                 />
               </SelectTrigger>
 
@@ -98,7 +99,10 @@ const SettingsDialog = () => {
                     key={locale}
                     className="cursor-pointer"
                   >
-                    <Locale countryCode={countryCode} label={t(locale)} />
+                    <Locale
+                      countryCode={countryCode}
+                      label={tLocales(locale)}
+                    />
                   </SelectItem>
                 ))}
               </SelectContent>

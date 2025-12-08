@@ -225,5 +225,34 @@
       "member": "member",
       "leader": "leader"
     }
+  },
+  "layout": {
+    "sidebar": {
+      "links": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "projects": "Projects",
+        "tasks": "Tasks"
+      },
+      "buttons": {
+        "settings": "Settings",
+        "signIn": "Sign in",
+        "signOut": "Sign out"
+      }
+    },
+    "footer": {
+      "caption": "© 2025 Dashflow. All content and design by Vova Konoplianyk."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Configure your app preferences",
+    "options": {
+      "theme": "App theme",
+      "language": {
+        "label": "Language",
+        "placeholder": "Select a language"
+      }
+    }
   }
 }

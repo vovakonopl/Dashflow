@@ -1,6 +1,6 @@
 import { TLocale } from '@/lib/types/locales';
 
-export const APP_LOCALES: Readonly<TLocale[]> = [
+export const APP_LOCALES = [
   {
     locale: 'ua',
     countryCode: 'ua',
@@ -9,4 +9,4 @@ export const APP_LOCALES: Readonly<TLocale[]> = [
     locale: 'en',
     countryCode: 'gb',
   },
-];
+] as const satisfies Readonly<TLocale[]>;

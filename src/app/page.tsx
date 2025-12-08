@@ -16,7 +16,7 @@ const listOfSnapshotPlaceholders = [
   { key: 'remainingTasks', icon: ListTodo },
   { key: 'activeProjects', icon: Rocket },
   { key: 'upcomingDeadlines', icon: CalendarDays },
-];
+] as const;
 
 export default function Home() {
   const t = useTranslations('homePage');
@@ -44,7 +44,7 @@ export default function Home() {
               </SignedOut>
 
               <SignedIn>
-                <Link href="/dashboard">{'toDashboard'}</Link>
+                <Link href="/dashboard">{t('toDashboard')}</Link>
               </SignedIn>
             </span>
           </Button>

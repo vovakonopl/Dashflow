@@ -2,6 +2,7 @@
 
 import { LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { SidebarMenuButton } from '@/components/ui/sidebar';
@@ -9,6 +10,7 @@ import { deleteSessionCookie } from '@/lib/actions/auth/delete-session-cookie';
 import { signOut } from '@/lib/store/slices/user-slice';
 
 const SignOutButton = () => {
+  const t = useTranslations('layout.sidebar.buttons');
   const [isPending, setIsPending] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -31,7 +33,7 @@ const SignOutButton = () => {
       onClick={handleClick}
     >
       <LogOut />
-      <span>Sign Out</span>
+      <span>{t('signOut')}</span>
     </SidebarMenuButton>
   );
 };

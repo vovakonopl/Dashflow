@@ -1,9 +1,12 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import Github from '@/../public/icons/github.svg';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils/cn';
 
 const Footer = () => {
+  const t = useTranslations('layout.footer');
+
   return (
     <div className="mt-auto">
       <Separator />
@@ -14,7 +17,7 @@ const Footer = () => {
           'max-lg:px-12 max-lg:py-8',
         )}
       >
-        <p>© 2025 Dashflow. All content and design by Vova Konoplianyk.</p>
+        <p>{t('caption')}</p>
         <Link
           className="fill-foreground size-6 min-w-6"
           href="https://github.com/vovakonopl/Dashflow"
