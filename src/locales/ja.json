@@ -1,0 +1,264 @@
+{
+  "locales": {
+    "en": "英語",
+    "ua": "ウクライナ語",
+    "de": "ドイツ語",
+    "fr": "フランス語",
+    "pl": "ポーランド語",
+    "ja": "日本語",
+    "zh": "中国語（簡体字）",
+    "ar": "アラビア語"
+  },
+  "notFound": {
+    "title": "404 - ページが見つかりません",
+    "description": "お探しのページは削除されたか、名前が変更されたか、一時的に利用できない可能性があります。URLを確認するか、メインページに戻ってください。",
+    "goBack": "ホームに戻る"
+  },
+  "auth": {
+    "signIn": {
+      "signIn": "ログイン",
+      "title": "お帰りなさい！生産性ダッシュボードにログインしてください。",
+      "footer": "アカウントをお持ちでないですか？ <link>登録する</link>",
+      "form": {
+        "email": "メールアドレス",
+        "password": "パスワード",
+        "submit": "ログイン"
+      }
+    },
+    "signUp": {
+      "signUp": "登録",
+      "title": "Dashflowの新しいアカウントを作成します。",
+      "footer": "すでにアカウントをお持ちですか？ <link>ログイン</link>",
+      "form": {
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "メールアドレス",
+        "password": "パスワード",
+        "confirmPassword": "パスワード（確認）",
+        "submit": "登録"
+      }
+    }
+  },
+  "homePage": {
+    "title": "あなたの可能性を最大限に引き出す",
+    "description": "Dashflowでプロジェクトのタスクを効率化し、簡単に共同作業を行い、目標をより早く達成しましょう。究極の生産性ハブです。",
+    "signUp": "始める — 無料です",
+    "toDashboard": "ダッシュボードへ",
+    "snapshotTitle": "生産性のスナップショット",
+    "snapshot": {
+      "tasksCompleted": {
+        "title": "完了したタスク",
+        "description": "今週完了したタスクの数を確認"
+      },
+      "remainingTasks": {
+        "title": "残りのタスク",
+        "description": "完了すべき残りのタスク数を確認"
+      },
+      "activeProjects": {
+        "title": "アクティブなプロジェクト",
+        "description": "現在進行中のプロジェクト数を確認"
+      },
+      "upcomingDeadlines": {
+        "title": "今後の期限",
+        "description": "最も重要なプロジェクトの期限を表示"
+      }
+    }
+  },
+  "dashboardPage": {
+    "title": "ダッシュボード",
+    "tasksLink": "タスクを確認しましょう！"
+  },
+  "projects": {
+    "title": "マイプロジェクト",
+    "newProject": "新しいプロジェクトを作成",
+    "overview": {
+      "title": "プロジェクト概要",
+      "totalProjects": "総プロジェクト数",
+      "description": "すべてのプロジェクトを効果的に管理し、進捗を追跡し、チームとシームレスに連携します。"
+    },
+    "project": {
+      "description": "プロジェクトの説明",
+      "noTasks": "タスクはまだありません",
+      "tasksCompleted": "完了",
+      "actions": {
+        "view": "プロジェクトを表示",
+        "edit": "プロジェクトを編集"
+      },
+      "members": {
+        "title": "割り当てられたメンバー",
+        "actions": {
+          "add": "メンバーを追加",
+          "view": "メンバーを表示",
+          "manage": "ユーザーを管理",
+          "appointAs": "任命する",
+          "remove": "プロジェクトから削除"
+        },
+        "errors": {
+          "failedToRemove": "ユーザーの削除に失敗しました",
+          "failedToUpdate": "役割の更新に失敗しました"
+        },
+        "modal": {
+          "title": "プロジェクトにメンバーを追加",
+          "description": "ユーザーのメールアドレスを入力して、プロジェクトに追加してください。",
+          "fieldLabel": "ユーザーを検索",
+          "noMatches": "一致するユーザーが見つかりません"
+        }
+      },
+      "tasks": {
+        "title": "プロジェクトのタスク",
+        "actions": {
+          "add": "タスクを追加"
+        },
+        "table": {
+          "caption": "タスクはまだありません",
+          "head": {
+            "name": "タスク名",
+            "status": "ステータス",
+            "dueDate": "期限",
+            "priority": "優先度"
+          },
+          "status": {
+            "completed": "完了",
+            "inProgress": "進行中"
+          },
+          "overdue": "期限切れ"
+        },
+        "modal": {
+          "title": "新しいタスクを作成",
+          "description": "以下のタスク詳細を入力してください。チームメンバーに割り当て、期限を設定できます。",
+          "actions": {
+            "cancel": "キャンセル",
+            "create": "タスクを作成"
+          },
+          "field": {
+            "title": {
+              "label": "タスクのタイトル",
+              "placeholder": "新しいタスク"
+            },
+            "description": {
+              "label": "説明",
+              "placeholder": "任意のタスク説明"
+            },
+            "dueDate": {
+              "label": "期限",
+              "placeholder": "日付を選択"
+            },
+            "priority": {
+              "label": "優先度",
+              "placeholder": "優先度"
+            },
+            "members": {
+              "label": "割り当てるメンバー",
+              "placeholder": "メンバーを選択..."
+            },
+            "searchMember": {
+              "placeholder": "メンバーを検索...",
+              "notFound": "メンバーが見つかりません。"
+            }
+          }
+        }
+      },
+      "form": {
+        "cancel": "キャンセル",
+        "newProject": {
+          "title": "新しいプロジェクト",
+          "submit": "プロジェクトを作成"
+        },
+        "editProject": {
+          "title": "プロジェクトを編集",
+          "description": "プロジェクト名と説明を変更します。",
+          "submit": "変更を送信"
+        },
+        "field": {
+          "name": {
+            "label": "プロジェクト名",
+            "placeholder": "マイプロジェクト"
+          },
+          "description": {
+            "label": "プロジェクトの説明",
+            "placeholder": "任意の説明"
+          }
+        }
+      }
+    }
+  },
+  "tasksPage": {
+    "title": "マイタスク",
+    "task": {
+      "inProject": "プロジェクト内",
+      "due": "期限",
+      "completed": "完了",
+      "inProgress": "進行中",
+      "markAs": {
+        "completed": "完了としてマーク",
+        "incomplete": "未完了としてマーク"
+      }
+    }
+  },
+  "statistics": {
+    "totalTasks": {
+      "title": "総タスク数",
+      "description": {
+        "project": "このプロジェクト内の全タスク",
+        "user": "あなたに割り当てられた全タスク"
+      }
+    },
+    "overdueTasks": {
+      "title": "期限切れのタスク",
+      "description": "期限を過ぎたタスク"
+    },
+    "tasksInProgress": {
+      "title": "進行中のタスク",
+      "description": "現在アクティブなタスク"
+    },
+    "completionProgress": {
+      "title": "完了の進捗",
+      "description": {
+        "project": "プロジェクト完了に向けた進捗",
+        "user": "全タスクにわたる個人の進捗"
+      }
+    }
+  },
+  "priority": {
+    "low": "低",
+    "medium": "中",
+    "high": "高",
+    "critical": "緊急"
+  },
+  "user": {
+    "me": "私",
+    "role": {
+      "member": "メンバー",
+      "leader": "リーダー"
+    }
+  },
+  "layout": {
+    "sidebar": {
+      "links": {
+        "home": "ホーム",
+        "dashboard": "ダッシュボード",
+        "projects": "プロジェクト",
+        "tasks": "タスク"
+      },
+      "buttons": {
+        "settings": "設定",
+        "signIn": "ログイン",
+        "signOut": "ログアウト"
+      }
+    },
+    "footer": {
+      "caption": "© 2025 Dashflow. 全コンテンツとデザイン by Vova Konoplianyk."
+    }
+  },
+  "settings": {
+    "title": "設定",
+    "description": "アプリの設定を構成します",
+    "options": {
+      "theme": "アプリのテーマ",
+      "language": {
+        "label": "言語",
+        "placeholder": "言語を選択"
+      }
+    }
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "locales": {
+    "en": "Anglais",
+    "ua": "Ukrainien",
+    "de": "Allemand",
+    "fr": "Français",
+    "pl": "Polonais",
+    "ja": "Japonais",
+    "zh": "Chinois (Simplifié)",
+    "ar": "Arabe"
+  },
+  "notFound": {
+    "title": "404 - Page non trouvée",
+    "description": "La page que vous recherchez a peut-être été supprimée, renommée ou est temporairement indisponible. Veuillez vérifier l'URL ou retourner à la page d'accueil.",
+    "goBack": "Retour à l'accueil"
+  },
+  "auth": {
+    "signIn": {
+      "signIn": "Se connecter",
+      "title": "Bon retour ! Connectez-vous à votre tableau de bord de productivité.",
+      "footer": "Vous n'avez pas de compte ? <link>S'inscrire</link>",
+      "form": {
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "submit": "Se connecter"
+      }
+    },
+    "signUp": {
+      "signUp": "S'inscrire",
+      "title": "Créer un nouveau compte Dashflow.",
+      "footer": "Vous avez déjà un compte ? <link>Se connecter</link>",
+      "form": {
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "confirmPassword": "Confirmer le mot de passe",
+        "submit": "S'inscrire"
+      }
+    }
+  },
+  "homePage": {
+    "title": "Libérez tout votre potentiel",
+    "description": "Rationalisez les tâches de projet, collaborez sans effort et atteignez vos objectifs plus rapidement avec Dashflow. Votre centre ultime de productivité.",
+    "signUp": "Commencer – c'est gratuit",
+    "toDashboard": "Aller au tableau de bord",
+    "snapshotTitle": "Votre aperçu de productivité",
+    "snapshot": {
+      "tasksCompleted": {
+        "title": "Tâches terminées",
+        "description": "Suivez le nombre de tâches que vous avez terminées cette semaine"
+      },
+      "remainingTasks": {
+        "title": "Tâches restantes",
+        "description": "Voyez combien de tâches restent à accomplir"
+      },
+      "activeProjects": {
+        "title": "Projets actifs",
+        "description": "Voyez combien de projets sont actuellement en cours"
+      },
+      "upcomingDeadlines": {
+        "title": "Échéances à venir",
+        "description": "Consultez les échéances de projet les plus critiques"
+      }
+    }
+  },
+  "dashboardPage": {
+    "title": "Tableau de bord",
+    "tasksLink": "Allez voir vos tâches !"
+  },
+  "projects": {
+    "title": "Mes projets",
+    "newProject": "Créer un nouveau projet",
+    "overview": {
+      "title": "Aperçu du projet",
+      "totalProjects": "Total des projets",
+      "description": "Gérez efficacement tous vos projets, suivez les progrès et collaborez en toute transparence avec votre équipe."
+    },
+    "project": {
+      "description": "Description du projet",
+      "noTasks": "Pas encore de tâches",
+      "tasksCompleted": "Terminé",
+      "actions": {
+        "view": "Voir le projet",
+        "edit": "Modifier le projet"
+      },
+      "members": {
+        "title": "Membres assignés",
+        "actions": {
+          "add": "Ajouter un membre",
+          "view": "Voir les membres",
+          "manage": "Gérer l'utilisateur",
+          "appointAs": "Nommer comme",
+          "remove": "Retirer du projet"
+        },
+        "errors": {
+          "failedToRemove": "Échec de la suppression de l'utilisateur",
+          "failedToUpdate": "Échec de la mise à jour du rôle"
+        },
+        "modal": {
+          "title": "Ajouter un membre au projet",
+          "description": "Entrez l'adresse e-mail de l'utilisateur pour l'ajouter au projet.",
+          "fieldLabel": "Trouver un utilisateur",
+          "noMatches": "Aucune correspondance trouvée"
+        }
+      },
+      "tasks": {
+        "title": "Tâches du projet",
+        "actions": {
+          "add": "Ajouter une tâche"
+        },
+        "table": {
+          "caption": "Pas encore de tâches",
+          "head": {
+            "name": "Nom de la tâche",
+            "status": "Statut",
+            "dueDate": "Échéance",
+            "priority": "Priorité"
+          },
+          "status": {
+            "completed": "Terminé",
+            "inProgress": "En cours"
+          },
+          "overdue": "En retard"
+        },
+        "modal": {
+          "title": "Créer une nouvelle tâche",
+          "description": "Entrez les détails de la tâche ci-dessous. Vous pouvez l'assigner à un membre de l'équipe et définir une date d'échéance.",
+          "actions": {
+            "cancel": "Annuler",
+            "create": "Créer la tâche"
+          },
+          "field": {
+            "title": {
+              "label": "Titre de la tâche",
+              "placeholder": "Nouvelle tâche"
+            },
+            "description": {
+              "label": "Description",
+              "placeholder": "Description optionnelle"
+            },
+            "dueDate": {
+              "label": "Date d'échéance",
+              "placeholder": "Choisir une date"
+            },
+            "priority": {
+              "label": "Priorité",
+              "placeholder": "priorité"
+            },
+            "members": {
+              "label": "Membres à assigner",
+              "placeholder": "Sélectionner des membres..."
+            },
+            "searchMember": {
+              "placeholder": "Rechercher un membre...",
+              "notFound": "Membre introuvable."
+            }
+          }
+        }
+      },
+      "form": {
+        "cancel": "Annuler",
+        "newProject": {
+          "title": "Nouveau projet",
+          "submit": "Créer le projet"
+        },
+        "editProject": {
+          "title": "Modifier le projet",
+          "description": "Modifiez le nom et la description du projet.",
+          "submit": "Soumettre les changements"
+        },
+        "field": {
+          "name": {
+            "label": "Nom du projet",
+            "placeholder": "Mon projet"
+          },
+          "description": {
+            "label": "Description du projet",
+            "placeholder": "Description optionnelle"
+          }
+        }
+      }
+    }
+  },
+  "tasksPage": {
+    "title": "Mes tâches",
+    "task": {
+      "inProject": "Dans le projet",
+      "due": "pour le",
+      "completed": "Fait",
+      "inProgress": "En cours",
+      "markAs": {
+        "completed": "Marquer comme terminé",
+        "incomplete": "Marquer comme incomplet"
+      }
+    }
+  },
+  "statistics": {
+    "totalTasks": {
+      "title": "Total des tâches",
+      "description": {
+        "project": "Toutes les tâches dans ce projet",
+        "user": "Toutes les tâches qui vous sont assignées"
+      }
+    },
+    "overdueTasks": {
+      "title": "Tâches en retard",
+      "description": "Tâches ayant dépassé leur date d'échéance"
+    },
+    "tasksInProgress": {
+      "title": "Tâches en cours",
+      "description": "Tâches actuellement actives"
+    },
+    "completionProgress": {
+      "title": "Progression",
+      "description": {
+        "project": "Progression vers l'achèvement du projet",
+        "user": "Progression personnelle sur toutes les tâches"
+      }
+    }
+  },
+  "priority": {
+    "low": "faible",
+    "medium": "moyen",
+    "high": "élevé",
+    "critical": "critique"
+  },
+  "user": {
+    "me": "moi",
+    "role": {
+      "member": "membre",
+      "leader": "leader"
+    }
+  },
+  "layout": {
+    "sidebar": {
+      "links": {
+        "home": "Accueil",
+        "dashboard": "Tableau de bord",
+        "projects": "Projets",
+        "tasks": "Tâches"
+      },
+      "buttons": {
+        "settings": "Paramètres",
+        "signIn": "Se connecter",
+        "signOut": "Se déconnecter"
+      }
+    },
+    "footer": {
+      "caption": "© 2025 Dashflow. Tout contenu et design par Vova Konoplianyk."
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "description": "Configurez vos préférences d'application",
+    "options": {
+      "theme": "Thème de l'app",
+      "language": {
+        "label": "Langue",
+        "placeholder": "Sélectionner une langue"
+      }
+    }
+  }
+}

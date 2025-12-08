@@ -1,0 +1,264 @@
+{
+  "locales": {
+    "en": "英语",
+    "ua": "乌克兰语",
+    "de": "德语",
+    "fr": "法语",
+    "pl": "波兰语",
+    "ja": "日语",
+    "zh": "中文（简体）",
+    "ar": "阿拉伯语"
+  },
+  "notFound": {
+    "title": "404 - 页面未找到",
+    "description": "您查找的页面可能已被删除、更名或暂时无法访问。请检查URL或返回主页。",
+    "goBack": "返回首页"
+  },
+  "auth": {
+    "signIn": {
+      "signIn": "登录",
+      "title": "欢迎回来！请登录您的工作效率仪表板。",
+      "footer": "还没有账号？<link>注册</link>",
+      "form": {
+        "email": "邮箱",
+        "password": "密码",
+        "submit": "登录"
+      }
+    },
+    "signUp": {
+      "signUp": "注册",
+      "title": "为Dashflow创建一个新账号。",
+      "footer": "已有账号？<link>登录</link>",
+      "form": {
+        "firstName": "名字",
+        "lastName": "姓氏",
+        "email": "邮箱",
+        "password": "密码",
+        "confirmPassword": "确认密码",
+        "submit": "注册"
+      }
+    }
+  },
+  "homePage": {
+    "title": "释放您的全部潜能",
+    "description": "使用Dashflow简化项目任务，轻松协作，并更快达成目标。您的终极工作效率中心。",
+    "signUp": "开始使用 – 免费",
+    "toDashboard": "前往仪表板",
+    "snapshotTitle": "您的工作效率快照",
+    "snapshot": {
+      "tasksCompleted": {
+        "title": "已完成任务",
+        "description": "追踪您本周完成了多少任务"
+      },
+      "remainingTasks": {
+        "title": "剩余任务",
+        "description": "查看还有多少任务待完成"
+      },
+      "activeProjects": {
+        "title": "活跃项目",
+        "description": "查看当前有多少项目正在进行中"
+      },
+      "upcomingDeadlines": {
+        "title": "即将到期的截止日期",
+        "description": "查看您最关键的项目截止日期"
+      }
+    }
+  },
+  "dashboardPage": {
+    "title": "仪表板",
+    "tasksLink": "去检查您的任务！"
+  },
+  "projects": {
+    "title": "我的项目",
+    "newProject": "创建新项目",
+    "overview": {
+      "title": "项目概览",
+      "totalProjects": "项目总数",
+      "description": "高效管理您的所有项目，追踪进度，并与团队无缝协作。"
+    },
+    "project": {
+      "description": "项目描述",
+      "noTasks": "暂无任务",
+      "tasksCompleted": "已完成",
+      "actions": {
+        "view": "查看项目",
+        "edit": "编辑项目"
+      },
+      "members": {
+        "title": "已分配成员",
+        "actions": {
+          "add": "添加成员",
+          "view": "查看成员",
+          "manage": "管理用户",
+          "appointAs": "任命为",
+          "remove": "从项目中移除"
+        },
+        "errors": {
+          "failedToRemove": "移除用户失败",
+          "failedToUpdate": "更新角色失败"
+        },
+        "modal": {
+          "title": "添加成员到项目",
+          "description": "输入用户的电子邮件地址将其添加到项目中。",
+          "fieldLabel": "查找用户",
+          "noMatches": "未找到匹配项"
+        }
+      },
+      "tasks": {
+        "title": "项目任务",
+        "actions": {
+          "add": "添加任务"
+        },
+        "table": {
+          "caption": "暂无任务",
+          "head": {
+            "name": "任务名称",
+            "status": "状态",
+            "dueDate": "截止日期",
+            "priority": "优先级"
+          },
+          "status": {
+            "completed": "已完成",
+            "inProgress": "进行中"
+          },
+          "overdue": "已逾期"
+        },
+        "modal": {
+          "title": "创建新任务",
+          "description": "在下方输入任务详情。您可以将其分配给团队成员并设置截止日期。",
+          "actions": {
+            "cancel": "取消",
+            "create": "创建任务"
+          },
+          "field": {
+            "title": {
+              "label": "任务标题",
+              "placeholder": "新任务"
+            },
+            "description": {
+              "label": "描述",
+              "placeholder": "可选任务描述"
+            },
+            "dueDate": {
+              "label": "截止日期",
+              "placeholder": "选择截止日期"
+            },
+            "priority": {
+              "label": "任务优先级",
+              "placeholder": "优先级"
+            },
+            "members": {
+              "label": "分配成员",
+              "placeholder": "选择成员..."
+            },
+            "searchMember": {
+              "placeholder": "搜索成员...",
+              "notFound": "未找到成员。"
+            }
+          }
+        }
+      },
+      "form": {
+        "cancel": "取消",
+        "newProject": {
+          "title": "新项目",
+          "submit": "创建项目"
+        },
+        "editProject": {
+          "title": "编辑项目",
+          "description": "更改项目名称和描述。",
+          "submit": "提交更改"
+        },
+        "field": {
+          "name": {
+            "label": "项目名称",
+            "placeholder": "我的项目"
+          },
+          "description": {
+            "label": "项目描述",
+            "placeholder": "可选描述"
+          }
+        }
+      }
+    }
+  },
+  "tasksPage": {
+    "title": "我的任务",
+    "task": {
+      "inProject": "所属项目",
+      "due": "截止",
+      "completed": "完成",
+      "inProgress": "进行中",
+      "markAs": {
+        "completed": "标记为已完成",
+        "incomplete": "标记为未完成"
+      }
+    }
+  },
+  "statistics": {
+    "totalTasks": {
+      "title": "任务总数",
+      "description": {
+        "project": "此项目中的所有任务",
+        "user": "分配给您的所有任务"
+      }
+    },
+    "overdueTasks": {
+      "title": "逾期任务",
+      "description": "超过截止日期的任务"
+    },
+    "tasksInProgress": {
+      "title": "进行中的任务",
+      "description": "当前活跃的任务"
+    },
+    "completionProgress": {
+      "title": "完成进度",
+      "description": {
+        "project": "项目完成进度",
+        "user": "所有任务的个人进度"
+      }
+    }
+  },
+  "priority": {
+    "low": "低",
+    "medium": "中",
+    "high": "高",
+    "critical": "紧急"
+  },
+  "user": {
+    "me": "我",
+    "role": {
+      "member": "成员",
+      "leader": "组长"
+    }
+  },
+  "layout": {
+    "sidebar": {
+      "links": {
+        "home": "首页",
+        "dashboard": "仪表板",
+        "projects": "项目",
+        "tasks": "任务"
+      },
+      "buttons": {
+        "settings": "设置",
+        "signIn": "登录",
+        "signOut": "登出"
+      }
+    },
+    "footer": {
+      "caption": "© 2025 Dashflow. 所有内容和设计由 Vova Konoplianyk 制作。"
+    }
+  },
+  "settings": {
+    "title": "设置",
+    "description": "配置您的应用偏好设置",
+    "options": {
+      "theme": "应用主题",
+      "language": {
+        "label": "语言",
+        "placeholder": "选择语言"
+      }
+    }
+  }
+}

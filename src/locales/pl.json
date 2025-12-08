@@ -1,0 +1,264 @@
+{
+  "locales": {
+    "en": "Angielski",
+    "ua": "Ukraiński",
+    "de": "Niemiecki",
+    "fr": "Francuski",
+    "pl": "Polski",
+    "ja": "Japoński",
+    "zh": "Chiński (Uproszczony)",
+    "ar": "Arabski"
+  },
+  "notFound": {
+    "title": "404 - Strona nie znaleziona",
+    "description": "Strona, której szukasz, mogła zostać usunięta, jej nazwa została zmieniona lub jest tymczasowo niedostępna. Sprawdź adres URL lub wróć do strony głównej.",
+    "goBack": "Powrót do strony głównej"
+  },
+  "auth": {
+    "signIn": {
+      "signIn": "Zaloguj się",
+      "title": "Witaj ponownie! Zaloguj się do swojego pulpitu produktywności.",
+      "footer": "Nie masz konta? <link>Zarejestruj się</link>",
+      "form": {
+        "email": "E-mail",
+        "password": "Hasło",
+        "submit": "Zaloguj się"
+      }
+    },
+    "signUp": {
+      "signUp": "Zarejestruj się",
+      "title": "Utwórz nowe konto Dashflow.",
+      "footer": "Masz już konto? <link>Zaloguj się</link>",
+      "form": {
+        "firstName": "Imię",
+        "lastName": "Nazwisko",
+        "email": "E-mail",
+        "password": "Hasło",
+        "confirmPassword": "Potwierdź hasło",
+        "submit": "Zarejestruj się"
+      }
+    }
+  },
+  "homePage": {
+    "title": "Odblokuj swój pełny potencjał",
+    "description": "Usprawnij zadania projektowe, współpracuj bez wysiłku i osiągaj cele szybciej dzięki Dashflow. Twoje centrum produktywności.",
+    "signUp": "Zacznij teraz – za darmo",
+    "toDashboard": "Przejdź do pulpitu",
+    "snapshotTitle": "Migawka twojej produktywności",
+    "snapshot": {
+      "tasksCompleted": {
+        "title": "Ukończone zadania",
+        "description": "Śledź, ile zadań ukończyłeś w tym tygodniu"
+      },
+      "remainingTasks": {
+        "title": "Pozostałe zadania",
+        "description": "Zobacz, ile zadań pozostało do wykonania"
+      },
+      "activeProjects": {
+        "title": "Aktywne projekty",
+        "description": "Zobacz, ile projektów jest obecnie w toku"
+      },
+      "upcomingDeadlines": {
+        "title": "Nadchodzące terminy",
+        "description": "Zobacz swoje najważniejsze terminy projektów"
+      }
+    }
+  },
+  "dashboardPage": {
+    "title": "Pulpit",
+    "tasksLink": "Sprawdź swoje zadania!"
+  },
+  "projects": {
+    "title": "Moje projekty",
+    "newProject": "Utwórz nowy projekt",
+    "overview": {
+      "title": "Przegląd projektu",
+      "totalProjects": "Wszystkie projekty",
+      "description": "Efektywnie zarządzaj wszystkimi projektami, śledź postępy i bezproblemowo współpracuj z zespołem."
+    },
+    "project": {
+      "description": "Opis projektu",
+      "noTasks": "Brak zadań",
+      "tasksCompleted": "Ukończono",
+      "actions": {
+        "view": "Wyświetl projekt",
+        "edit": "Edytuj projekt"
+      },
+      "members": {
+        "title": "Przypisani członkowie",
+        "actions": {
+          "add": "Dodaj członka",
+          "view": "Wyświetl członków",
+          "manage": "Zarządzaj użytkownikiem",
+          "appointAs": "Mianuj jako",
+          "remove": "Usuń z projektu"
+        },
+        "errors": {
+          "failedToRemove": "Nie udało się usunąć użytkownika",
+          "failedToUpdate": "Nie udało się zaktualizować roli"
+        },
+        "modal": {
+          "title": "Dodaj członka do projektu",
+          "description": "Wpisz adres e-mail użytkownika, aby dodać go do projektu.",
+          "fieldLabel": "Znajdź użytkownika",
+          "noMatches": "Nie znaleziono dopasowań"
+        }
+      },
+      "tasks": {
+        "title": "Zadania projektu",
+        "actions": {
+          "add": "Dodaj zadanie"
+        },
+        "table": {
+          "caption": "Brak zadań",
+          "head": {
+            "name": "Nazwa zadania",
+            "status": "Status",
+            "dueDate": "Termin",
+            "priority": "Priorytet"
+          },
+          "status": {
+            "completed": "Ukończono",
+            "inProgress": "W toku"
+          },
+          "overdue": "Zaległe"
+        },
+        "modal": {
+          "title": "Utwórz nowe zadanie",
+          "description": "Wpisz szczegóły zadania poniżej. Możesz przypisać je do członka zespołu i ustawić termin.",
+          "actions": {
+            "cancel": "Anuluj",
+            "create": "Utwórz zadanie"
+          },
+          "field": {
+            "title": {
+              "label": "Tytuł zadania",
+              "placeholder": "Nowe zadanie"
+            },
+            "description": {
+              "label": "Opis",
+              "placeholder": "Opcjonalny opis zadania"
+            },
+            "dueDate": {
+              "label": "Termin",
+              "placeholder": "Wybierz datę"
+            },
+            "priority": {
+              "label": "Priorytet",
+              "placeholder": "priorytet"
+            },
+            "members": {
+              "label": "Przypisz członków",
+              "placeholder": "Wybierz członków..."
+            },
+            "searchMember": {
+              "placeholder": "Szukaj członka...",
+              "notFound": "Członek nie znaleziony."
+            }
+          }
+        }
+      },
+      "form": {
+        "cancel": "Anuluj",
+        "newProject": {
+          "title": "Nowy projekt",
+          "submit": "Utwórz projekt"
+        },
+        "editProject": {
+          "title": "Edytuj projekt",
+          "description": "Zmień nazwę i opis projektu.",
+          "submit": "Zapisz zmiany"
+        },
+        "field": {
+          "name": {
+            "label": "Nazwa projektu",
+            "placeholder": "Mój projekt"
+          },
+          "description": {
+            "label": "Opis projektu",
+            "placeholder": "Opcjonalny opis"
+          }
+        }
+      }
+    }
+  },
+  "tasksPage": {
+    "title": "Moje zadania",
+    "task": {
+      "inProject": "W projekcie",
+      "due": "do",
+      "completed": "Zrobione",
+      "inProgress": "W toku",
+      "markAs": {
+        "completed": "Oznacz jako ukończone",
+        "incomplete": "Oznacz jako nieukończone"
+      }
+    }
+  },
+  "statistics": {
+    "totalTasks": {
+      "title": "Wszystkie zadania",
+      "description": {
+        "project": "Wszystkie zadania w tym projekcie",
+        "user": "Wszystkie zadania przypisane do ciebie"
+      }
+    },
+    "overdueTasks": {
+      "title": "Zaległe zadania",
+      "description": "Zadania po terminie"
+    },
+    "tasksInProgress": {
+      "title": "Zadania w toku",
+      "description": "Obecnie aktywne zadania"
+    },
+    "completionProgress": {
+      "title": "Postęp realizacji",
+      "description": {
+        "project": "Postęp w realizacji projektu",
+        "user": "Osobisty postęp we wszystkich zadaniach"
+      }
+    }
+  },
+  "priority": {
+    "low": "niski",
+    "medium": "średni",
+    "high": "wysoki",
+    "critical": "krytyczny"
+  },
+  "user": {
+    "me": "ja",
+    "role": {
+      "member": "członek",
+      "leader": "lider"
+    }
+  },
+  "layout": {
+    "sidebar": {
+      "links": {
+        "home": "Strona główna",
+        "dashboard": "Pulpit",
+        "projects": "Projekty",
+        "tasks": "Zadania"
+      },
+      "buttons": {
+        "settings": "Ustawienia",
+        "signIn": "Zaloguj się",
+        "signOut": "Wyloguj się"
+      }
+    },
+    "footer": {
+      "caption": "© 2025 Dashflow. Cała zawartość i projekt: Vova Konoplianyk."
+    }
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "description": "Skonfiguruj preferencje aplikacji",
+    "options": {
+      "theme": "Motyw aplikacji",
+      "language": {
+        "label": "Język",
+        "placeholder": "Wybierz język"
+      }
+    }
+  }
+}

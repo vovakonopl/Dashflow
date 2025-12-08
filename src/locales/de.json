@@ -1,0 +1,264 @@
+{
+  "locales": {
+    "en": "Englisch",
+    "ua": "Ukrainisch",
+    "de": "Deutsch",
+    "fr": "Französisch",
+    "pl": "Polnisch",
+    "ja": "Japanisch",
+    "zh": "Chinesisch (Vereinfacht)",
+    "ar": "Arabisch"
+  },
+  "notFound": {
+    "title": "404 - Seite nicht gefunden",
+    "description": "Die gesuchte Seite wurde möglicherweise entfernt, umbenannt oder ist vorübergehend nicht verfügbar. Bitte überprüfen Sie die URL oder kehren Sie zur Startseite zurück.",
+    "goBack": "Zurück zur Startseite"
+  },
+  "auth": {
+    "signIn": {
+      "signIn": "Anmelden",
+      "title": "Willkommen zurück! Melden Sie sich bei Ihrem Produktivitäts-Dashboard an.",
+      "footer": "Sie haben noch kein Konto? <link>Registrieren</link>",
+      "form": {
+        "email": "E-Mail",
+        "password": "Passwort",
+        "submit": "Anmelden"
+      }
+    },
+    "signUp": {
+      "signUp": "Registrieren",
+      "title": "Erstellen Sie ein neues Konto für Dashflow.",
+      "footer": "Sie haben bereits ein Konto? <link>Anmelden</link>",
+      "form": {
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "email": "E-Mail",
+        "password": "Passwort",
+        "confirmPassword": "Passwort bestätigen",
+        "submit": "Registrieren"
+      }
+    }
+  },
+  "homePage": {
+    "title": "Entfalten Sie Ihr volles Potenzial",
+    "description": "Optimieren Sie Projektaufgaben, arbeiten Sie mühelos zusammen und erreichen Sie Ihre Ziele schneller mit Dashflow. Ihr zentraler Ort für Produktivität.",
+    "signUp": "Jetzt starten – kostenlos",
+    "toDashboard": "Zum Dashboard",
+    "snapshotTitle": "Ihr Produktivitäts-Überblick",
+    "snapshot": {
+      "tasksCompleted": {
+        "title": "Erledigte Aufgaben",
+        "description": "Verfolgen Sie, wie viele Aufgaben Sie diese Woche erledigt haben"
+      },
+      "remainingTasks": {
+        "title": "Verbleibende Aufgaben",
+        "description": "Sehen Sie, wie viele Aufgaben noch zu erledigen sind"
+      },
+      "activeProjects": {
+        "title": "Aktive Projekte",
+        "description": "Sehen Sie, wie viele Projekte derzeit in Arbeit sind"
+      },
+      "upcomingDeadlines": {
+        "title": "Anstehende Fristen",
+        "description": "Sehen Sie Ihre wichtigsten Projektfristen"
+      }
+    }
+  },
+  "dashboardPage": {
+    "title": "Dashboard",
+    "tasksLink": "Prüfen Sie Ihre Aufgaben!"
+  },
+  "projects": {
+    "title": "Meine Projekte",
+    "newProject": "Neues Projekt erstellen",
+    "overview": {
+      "title": "Projektübersicht",
+      "totalProjects": "Projekte gesamt",
+      "description": "Verwalten Sie effektiv alle Ihre Projekte, verfolgen Sie den Fortschritt und arbeiten Sie nahtlos mit Ihrem Team zusammen."
+    },
+    "project": {
+      "description": "Projektbeschreibung",
+      "noTasks": "Noch keine Aufgaben",
+      "tasksCompleted": "Erledigt",
+      "actions": {
+        "view": "Projekt ansehen",
+        "edit": "Projekt bearbeiten"
+      },
+      "members": {
+        "title": "Zugewiesene Mitglieder",
+        "actions": {
+          "add": "Mitglied hinzufügen",
+          "view": "Mitglieder ansehen",
+          "manage": "Benutzer verwalten",
+          "appointAs": "Ernennen als",
+          "remove": "Aus Projekt entfernen"
+        },
+        "errors": {
+          "failedToRemove": "Benutzer konnte nicht entfernt werden",
+          "failedToUpdate": "Rolle konnte nicht aktualisiert werden"
+        },
+        "modal": {
+          "title": "Mitglied zum Projekt hinzufügen",
+          "description": "Geben Sie die E-Mail-Adresse des Benutzers ein, um ihn zum Projekt hinzuzufügen.",
+          "fieldLabel": "Benutzer suchen",
+          "noMatches": "Keine Treffer gefunden"
+        }
+      },
+      "tasks": {
+        "title": "Projektaufgaben",
+        "actions": {
+          "add": "Aufgabe hinzufügen"
+        },
+        "table": {
+          "caption": "Noch keine Aufgaben",
+          "head": {
+            "name": "Aufgabenname",
+            "status": "Status",
+            "dueDate": "Fälligkeitsdatum",
+            "priority": "Priorität"
+          },
+          "status": {
+            "completed": "Erledigt",
+            "inProgress": "In Bearbeitung"
+          },
+          "overdue": "Überfällig"
+        },
+        "modal": {
+          "title": "Neue Aufgabe erstellen",
+          "description": "Geben Sie die Aufgabendetails unten ein. Sie können sie einem Teammitglied zuweisen und ein Fälligkeitsdatum festlegen.",
+          "actions": {
+            "cancel": "Abbrechen",
+            "create": "Aufgabe erstellen"
+          },
+          "field": {
+            "title": {
+              "label": "Aufgabentitel",
+              "placeholder": "Neue Aufgabe"
+            },
+            "description": {
+              "label": "Beschreibung",
+              "placeholder": "Optionale Aufgabenbeschreibung"
+            },
+            "dueDate": {
+              "label": "Fälligkeitsdatum",
+              "placeholder": "Wählen Sie ein Datum"
+            },
+            "priority": {
+              "label": "Priorität",
+              "placeholder": "Priorität"
+            },
+            "members": {
+              "label": "Mitglieder zuweisen",
+              "placeholder": "Mitglieder auswählen..."
+            },
+            "searchMember": {
+              "placeholder": "Mitglied suchen...",
+              "notFound": "Mitglied nicht gefunden."
+            }
+          }
+        }
+      },
+      "form": {
+        "cancel": "Abbrechen",
+        "newProject": {
+          "title": "Neues Projekt",
+          "submit": "Projekt erstellen"
+        },
+        "editProject": {
+          "title": "Projekt bearbeiten",
+          "description": "Ändern Sie den Namen und die Beschreibung des Projekts.",
+          "submit": "Änderungen speichern"
+        },
+        "field": {
+          "name": {
+            "label": "Projektname",
+            "placeholder": "Mein Projekt"
+          },
+          "description": {
+            "label": "Projektbeschreibung",
+            "placeholder": "Optionale Beschreibung"
+          }
+        }
+      }
+    }
+  },
+  "tasksPage": {
+    "title": "Meine Aufgaben",
+    "task": {
+      "inProject": "In Projekt",
+      "due": "fällig",
+      "completed": "Fertig",
+      "inProgress": "In Bearbeitung",
+      "markAs": {
+        "completed": "Als erledigt markieren",
+        "incomplete": "Als unerledigt markieren"
+      }
+    }
+  },
+  "statistics": {
+    "totalTasks": {
+      "title": "Aufgaben gesamt",
+      "description": {
+        "project": "Alle Aufgaben in diesem Projekt",
+        "user": "Alle Ihnen zugewiesenen Aufgaben"
+      }
+    },
+    "overdueTasks": {
+      "title": "Überfällige Aufgaben",
+      "description": "Aufgaben nach Fälligkeitsdatum"
+    },
+    "tasksInProgress": {
+      "title": "Laufende Aufgaben",
+      "description": "Derzeit aktive Aufgaben"
+    },
+    "completionProgress": {
+      "title": "Fortschritt",
+      "description": {
+        "project": "Fortschritt zum Projektabschluss",
+        "user": "Persönlicher Fortschritt über alle Aufgaben"
+      }
+    }
+  },
+  "priority": {
+    "low": "niedrig",
+    "medium": "mittel",
+    "high": "hoch",
+    "critical": "kritisch"
+  },
+  "user": {
+    "me": "ich",
+    "role": {
+      "member": "Mitglied",
+      "leader": "Leiter"
+    }
+  },
+  "layout": {
+    "sidebar": {
+      "links": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "projects": "Projekte",
+        "tasks": "Aufgaben"
+      },
+      "buttons": {
+        "settings": "Einstellungen",
+        "signIn": "Anmelden",
+        "signOut": "Abmelden"
+      }
+    },
+    "footer": {
+      "caption": "© 2025 Dashflow. Alle Inhalte und Design von Vova Konoplianyk."
+    }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "description": "Konfigurieren Sie Ihre App-Einstellungen",
+    "options": {
+      "theme": "App-Design",
+      "language": {
+        "label": "Sprache",
+        "placeholder": "Wählen Sie eine Sprache"
+      }
+    }
+  }
+}

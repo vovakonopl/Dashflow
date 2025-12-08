@@ -1,7 +1,13 @@
 {
   "locales": {
     "en": "English",
-    "ua": "Ukrainian"
+    "ua": "Ukrainian",
+    "de": "German",
+    "fr": "French",
+    "pl": "Polish",
+    "ja": "Japanese",
+    "zh": "Chinese (Simplified)",
+    "ar": "Arabic"
   },
   "notFound": {
     "title": "404 - Page not found",

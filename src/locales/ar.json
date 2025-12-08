@@ -1,0 +1,264 @@
+{
+  "locales": {
+    "en": "الإنجليزية",
+    "ua": "الأوكرانية",
+    "de": "الألمانية",
+    "fr": "الفرنسية",
+    "pl": "البولندية",
+    "ja": "اليابانية",
+    "zh": "الصينية (المبسطة)",
+    "ar": "العربية"
+  },
+  "notFound": {
+    "title": "404 - الصفحة غير موجودة",
+    "description": "قد تكون الصفحة التي تبحث عنها قد أزيلت، أو تغير اسمها، أو أنها غير متاحة مؤقتاً. يرجى التحقق من الرابط أو العودة إلى الصفحة الرئيسية.",
+    "goBack": "العودة إلى الرئيسية"
+  },
+  "auth": {
+    "signIn": {
+      "signIn": "تسجيل الدخول",
+      "title": "مرحباً بعودتك! سجل الدخول إلى لوحة معلومات الإنتاجية الخاصة بك.",
+      "footer": "ليس لديك حساب؟ <link>إنشاء حساب</link>",
+      "form": {
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "submit": "تسجيل الدخول"
+      }
+    },
+    "signUp": {
+      "signUp": "إنشاء حساب",
+      "title": "أنشئ حساباً جديداً لـ Dashflow.",
+      "footer": "لديك حساب بالفعل؟ <link>تسجيل الدخول</link>",
+      "form": {
+        "firstName": "الاسم الأول",
+        "lastName": "اسم العائلة",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "confirmPassword": "تأكيد كلمة المرور",
+        "submit": "إنشاء حساب"
+      }
+    }
+  },
+  "homePage": {
+    "title": "أطلق العنان لإمكانياتك الكاملة",
+    "description": "قم بتبسيط مهام المشروع، وتعاون بجهد أقل، وحقق أهدافك بشكل أسرع مع Dashflow. مركزك النهائي للإنتاجية.",
+    "signUp": "ابدأ الآن - مجاناً",
+    "toDashboard": "الذهاب إلى لوحة المعلومات",
+    "snapshotTitle": "لمحة عن إنتاجيتك",
+    "snapshot": {
+      "tasksCompleted": {
+        "title": "المهام المكتملة",
+        "description": "تتبع عدد المهام التي أكملتها هذا الأسبوع"
+      },
+      "remainingTasks": {
+        "title": "المهام المتبقية",
+        "description": "شاهد عدد المهام المتبقية للإكمال"
+      },
+      "activeProjects": {
+        "title": "المشاريع النشطة",
+        "description": "شاهد عدد المشاريع الجارية حالياً"
+      },
+      "upcomingDeadlines": {
+        "title": "المواعيد النهائية القادمة",
+        "description": "اعرض المواعيد النهائية الأكثر أهمية لمشاريعك"
+      }
+    }
+  },
+  "dashboardPage": {
+    "title": "لوحة المعلومات",
+    "tasksLink": "اذهب وتفقد مهامك!"
+  },
+  "projects": {
+    "title": "مشاريعي",
+    "newProject": "إنشاء مشروع جديد",
+    "overview": {
+      "title": "نظرة عامة على المشروع",
+      "totalProjects": "إجمالي المشاريع",
+      "description": "أدر جميع مشاريعك بفعالية، وتتبع التقدم، وتعاون بسلاسة مع فريقك."
+    },
+    "project": {
+      "description": "وصف المشروع",
+      "noTasks": "لا توجد مهام بعد",
+      "tasksCompleted": "مكتملة",
+      "actions": {
+        "view": "عرض المشروع",
+        "edit": "تعديل المشروع"
+      },
+      "members": {
+        "title": "الأعضاء المعينون",
+        "actions": {
+          "add": "إضافة عضو",
+          "view": "عرض الأعضاء",
+          "manage": "إدارة المستخدم",
+          "appointAs": "تعيين كـ",
+          "remove": "إزالة من المشروع"
+        },
+        "errors": {
+          "failedToRemove": "فشل في إزالة المستخدم",
+          "failedToUpdate": "فشل في تحديث الدور"
+        },
+        "modal": {
+          "title": "إضافة عضو إلى المشروع",
+          "description": "أدخل عنوان البريد الإلكتروني للمستخدم لإضافته إلى المشروع.",
+          "fieldLabel": "البحث عن مستخدم",
+          "noMatches": "لم يتم العثور على تطابقات"
+        }
+      },
+      "tasks": {
+        "title": "مهام المشروع",
+        "actions": {
+          "add": "إضافة مهمة"
+        },
+        "table": {
+          "caption": "لا توجد مهام بعد",
+          "head": {
+            "name": "اسم المهمة",
+            "status": "الحالة",
+            "dueDate": "تاريخ الاستحقاق",
+            "priority": "الأولوية"
+          },
+          "status": {
+            "completed": "مكتملة",
+            "inProgress": "قيد التنفيذ"
+          },
+          "overdue": "متأخرة"
+        },
+        "modal": {
+          "title": "إنشاء مهمة جديدة",
+          "description": "أدخل تفاصيل المهمة أدناه. يمكنك تعيينها لعضو في الفريق وتحديد موعد نهائي.",
+          "actions": {
+            "cancel": "إلغاء",
+            "create": "إنشاء المهمة"
+          },
+          "field": {
+            "title": {
+              "label": "عنوان المهمة",
+              "placeholder": "مهمة جديدة"
+            },
+            "description": {
+              "label": "الوصف",
+              "placeholder": "وصف اختياري للمهمة"
+            },
+            "dueDate": {
+              "label": "تاريخ الاستحقاق",
+              "placeholder": "اختر تاريخاً"
+            },
+            "priority": {
+              "label": "أولوية المهمة",
+              "placeholder": "الأولوية"
+            },
+            "members": {
+              "label": "الأعضاء لتعيينهم",
+              "placeholder": "اختر الأعضاء..."
+            },
+            "searchMember": {
+              "placeholder": "بحث عن عضو...",
+              "notFound": "المستخدم غير موجود."
+            }
+          }
+        }
+      },
+      "form": {
+        "cancel": "إلغاء",
+        "newProject": {
+          "title": "مشروع جديد",
+          "submit": "إنشاء المشروع"
+        },
+        "editProject": {
+          "title": "تعديل المشروع",
+          "description": "تغيير اسم المشروع ووصفه.",
+          "submit": "إرسال التغييرات"
+        },
+        "field": {
+          "name": {
+            "label": "اسم المشروع",
+            "placeholder": "مشروعي"
+          },
+          "description": {
+            "label": "وصف المشروع",
+            "placeholder": "وصف اختياري"
+          }
+        }
+      }
+    }
+  },
+  "tasksPage": {
+    "title": "مهامي",
+    "task": {
+      "inProject": "في مشروع",
+      "due": "يستحق في",
+      "completed": "تم",
+      "inProgress": "قيد التنفيذ",
+      "markAs": {
+        "completed": "تحديد كمكتملة",
+        "incomplete": "تحديد كغير مكتملة"
+      }
+    }
+  },
+  "statistics": {
+    "totalTasks": {
+      "title": "إجمالي المهام",
+      "description": {
+        "project": "جميع المهام في هذا المشروع",
+        "user": "جميع المهام المعينة لك"
+      }
+    },
+    "overdueTasks": {
+      "title": "المهام المتأخرة",
+      "description": "المهام التي تجاوزت موعد استحقاقها"
+    },
+    "tasksInProgress": {
+      "title": "مهام قيد التنفيذ",
+      "description": "المهام النشطة حالياً"
+    },
+    "completionProgress": {
+      "title": "تقدم الإنجاز",
+      "description": {
+        "project": "التقدم نحو إكمال المشروع",
+        "user": "التقدم الشخصي عبر جميع المهام"
+      }
+    }
+  },
+  "priority": {
+    "low": "منخفضة",
+    "medium": "متوسطة",
+    "high": "عالية",
+    "critical": "حرجة"
+  },
+  "user": {
+    "me": "أنا",
+    "role": {
+      "member": "عضو",
+      "leader": "قائد"
+    }
+  },
+  "layout": {
+    "sidebar": {
+      "links": {
+        "home": "الرئيسية",
+        "dashboard": "لوحة المعلومات",
+        "projects": "المشاريع",
+        "tasks": "المهام"
+      },
+      "buttons": {
+        "settings": "الإعدادات",
+        "signIn": "تسجيل الدخول",
+        "signOut": "تسجيل الخروج"
+      }
+    },
+    "footer": {
+      "caption": "© 2025 Dashflow. جميع المحتويات والتصميم بواسطة Vova Konoplianyk."
+    }
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "description": "تكوين تفضيلات التطبيق الخاص بك",
+    "options": {
+      "theme": "سمة التطبيق",
+      "language": {
+        "label": "الغة",
+        "placeholder": "اختر لغة"
+      }
+    }
+  }
+}
