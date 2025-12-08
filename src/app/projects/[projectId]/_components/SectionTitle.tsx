@@ -5,7 +5,7 @@ type TSectionTitleProps = {
 };
 
 const SectionTitle = ({ children }: TSectionTitleProps) => {
-  return <h2 className="text-lg font-semibold">{children}</h2>;
+  return <h2 className="text-lg font-semibold capitalize">{children}</h2>;
 };
 
 export default SectionTitle;

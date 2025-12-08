@@ -58,7 +58,7 @@ const ProjectCard = ({ project }: TProjectCardProps) => {
       <CardFooter>
         <Button asChild className="w-full" variant="outline">
           <Link href={`/projects/${project.id}`} className="capitalize">
-            {t('view')}
+            {t('actions.view')}
           </Link>
         </Button>
       </CardFooter>

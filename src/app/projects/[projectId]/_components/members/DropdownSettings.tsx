@@ -1,6 +1,7 @@
 'use client';
 
 import { Settings, UserRoundX } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useCallback, useState } from 'react';
 import { useActionStatus } from '@/app/projects/[projectId]/_components/members/useActionStatus';
 import OwnerOnly from '@/app/projects/[projectId]/_components/OwnerOnly';
@@ -31,6 +32,8 @@ const DropdownSettings = ({
   member,
   project,
 }: TDropdownSettingsProps) => {
+  const t = useTranslations('projects.project.members');
+  const tUserRoles = useTranslations('user.role');
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
   const [removeState, removeAction, isRemovePending] =
     useServerAction(removeMember);
@@ -46,7 +49,7 @@ const DropdownSettings = ({
     closeMenu,
     isPending: isRemovePending,
     state: removeState,
-    toastTitle: 'Failed to remove the user',
+    toastTitle: t('errors.failedToRemove'),
   });
 
   // for update action
@@ -54,7 +57,7 @@ const DropdownSettings = ({
     closeMenu,
     isPending: isUpdatePending,
     state: updateState,
-    toastTitle: 'Failed to update the role',
+    toastTitle: t('errors.failedToUpdate'),
   });
 
   const handleRemoveMember = () => {
@@ -79,7 +82,10 @@ const DropdownSettings = ({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
-        <DropdownMenuLabel>Manage User</DropdownMenuLabel>
+        <DropdownMenuLabel className="capitalize">
+          {t('actions.manage')}
+        </DropdownMenuLabel>
+
         <DropdownMenuSeparator />
 
         <OwnerOnly ownerId={project.ownerId} userId={currentUserId}>
@@ -92,7 +98,8 @@ const DropdownSettings = ({
             }}
           >
             <span>
-              Appoint as <span className="font-medium">{newRole}</span>
+              {t('actions.appointAs')}{' '}
+              <span className="font-medium">{tUserRoles(newRole)}</span>
             </span>
           </DropdownMenuItem>
         </OwnerOnly>
@@ -105,7 +112,7 @@ const DropdownSettings = ({
             handleRemoveMember();
           }}
         >
-          <span className="text-destructive">Remove from project</span>
+          <span className="text-destructive">{t('actions.remove')}</span>
           <UserRoundX className="text-destructive" />
         </DropdownMenuItem>
       </DropdownMenuContent>

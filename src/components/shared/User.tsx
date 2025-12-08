@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { TMemberRole } from '@/lib/types/tables/member-roles-enum';
 import { TUser } from '@/lib/types/tables/user';
@@ -11,6 +12,7 @@ type TUserProps = {
 };
 
 const User = ({ isCurrentUser, role, user, size = 'md' }: TUserProps) => {
+  const t = useTranslations('user');
   const avatarFallback: string = (
     user.firstName.charAt(0) + user.lastName.charAt(0)
   ).toUpperCase();
@@ -37,10 +39,10 @@ const User = ({ isCurrentUser, role, user, size = 'md' }: TUserProps) => {
         className={cn('flex flex-col break-all', size === 'sm' && 'text-sm')}
       >
         <span className={cn('capitalize', isCurrentUser && 'font-semibold')}>
-          {user.firstName} {user.lastName} {isCurrentUser && '(Me)'}
+          {user.firstName} {user.lastName} {isCurrentUser && `(${t('me')})`}
           {role === 'leader' && (
             <span className="text-muted-foreground ml-1 text-xs font-normal">
-              (leader)
+              ({t('role.leader')})
             </span>
           )}
         </span>

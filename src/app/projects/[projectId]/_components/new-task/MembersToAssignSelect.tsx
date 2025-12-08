@@ -1,4 +1,5 @@
 import { Check, ChevronsUpDown } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 import ErrorMessage from '@/components/shared/ErrorMessage';
 import User from '@/components/shared/User';
@@ -35,11 +36,12 @@ const MembersToAssignSelect = ({
   onChange,
   values,
 }: TMembersToAssignSelectProps) => {
+  const t = useTranslations('projects.project.tasks.modal.field');
+
   const membersMap = useMemo(
     () => new Map(members.map((member) => [member.id, member])),
     [members],
   );
-
   const selectedMemberIdsSet = useMemo(() => new Set(values), [values]);
 
   const handleSelect = (memberId: string) => {
@@ -77,7 +79,7 @@ const MembersToAssignSelect = ({
         className={cn(error && 'text-destructive')}
         htmlFor="members-to-assign"
       >
-        Members to assign
+        {t('members.label')}
       </Label>
 
       <Popover modal>
@@ -95,7 +97,7 @@ const MembersToAssignSelect = ({
               )}
             >
               {values.length < 1
-                ? 'Select members...'
+                ? t('members.placeholder')
                 : `(${values.length}) ${displayedMemberNames.join(', ')}`}
             </span>
 
@@ -105,10 +107,13 @@ const MembersToAssignSelect = ({
 
         <PopoverContent className="p-0">
           <Command filter={filter}>
-            <CommandInput placeholder="Search member..." className="h-9" />
+            <CommandInput
+              placeholder={t('searchMember.placeholder')}
+              className="h-9"
+            />
 
             <CommandList>
-              <CommandEmpty>Member is not found.</CommandEmpty>
+              <CommandEmpty>{t('searchMember.notFound')}</CommandEmpty>
 
               <CommandGroup>
                 {members.map((member) => (

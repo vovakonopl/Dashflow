@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { z } from 'zod';
 import ErrorMessage from '@/components/shared/ErrorMessage';
@@ -18,6 +19,7 @@ import SelectUserList from './SelectUserList';
 const errorMsg = 'Error occurred on the server';
 
 const AddMemberInput = () => {
+  const t = useTranslations('projects.project.members.modal');
   const [searchValue, setSearchValue] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const { projectId } = useParams<{ projectId: string }>();
@@ -71,8 +73,8 @@ const AddMemberInput = () => {
 
   return (
     <div>
-      <Label className="mb-2" htmlFor="find-user">
-        Find User
+      <Label className="mb-2 capitalize" htmlFor="find-user">
+        {t('fieldLabel')}
       </Label>
       <Input id="find-user" onChange={handleChange} />
 

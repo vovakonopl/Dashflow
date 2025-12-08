@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import ErrorMessage from '@/components/shared/ErrorMessage';
 import { Label } from '@/components/ui/label';
 import {
@@ -17,24 +18,27 @@ type TPrioritySelectProps = {
 };
 
 const PrioritySelect = ({ error, value, onChange }: TPrioritySelectProps) => {
+  const tField = useTranslations('projects.project.tasks.modal.field.priority');
+  const tPriority = useTranslations('priority');
+
   return (
     <div
       className={cn('flex flex-1 flex-col gap-2', error && 'text-destructive')}
     >
-      <Label htmlFor="priority">Task Priority</Label>
+      <Label htmlFor="priority">{tField('label')}</Label>
 
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger
           id="priority"
           className={cn('w-full cursor-pointer', error && 'border-destructive')}
         >
-          <SelectValue placeholder="Theme" />
+          <SelectValue placeholder={tField('placeholder')} />
         </SelectTrigger>
 
         <SelectContent>
           {priorities.map((priority) => (
             <SelectItem value={priority} id={priority} key={priority}>
-              {priority}
+              {tPriority(priority)}
             </SelectItem>
           ))}
         </SelectContent>

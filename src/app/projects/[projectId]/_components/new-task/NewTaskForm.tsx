@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDialog } from '@/app/projects/[projectId]/_components/dialog-context';
@@ -26,6 +27,7 @@ type TNewTaskFormProps = {
 };
 
 const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
+  const t = useTranslations('projects.project.tasks.modal');
   const [state, action, isPending] = useServerAction(newTask);
   const { setIsOpen } = useDialog();
   const form = useForm<TTaskData>({
@@ -83,7 +85,7 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
   };
 
   return (
-    <ScrollArea className="-mr-4 h-[50dvh] pr-4">
+    <ScrollArea className="-mr-4 max-h-[50svh] pr-4">
       <Form {...form}>
         <form
           className="flex flex-col gap-4 px-1"
@@ -96,8 +98,8 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
               <FormInput
                 {...field}
                 error={error?.message}
-                label="Task title"
-                placeholder="New task"
+                label={t('field.title.label')}
+                placeholder={t('field.title.placeholder')}
                 type="text"
                 minLength={TASK_LENGTHS.title.min}
                 maxLength={TASK_LENGTHS.title.max}
@@ -113,8 +115,8 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
                 {...field}
                 className="min-h-24"
                 error={error?.message}
-                label="Description"
-                placeholder="Optional task description"
+                label={t('field.description.label')}
+                placeholder={t('field.description.placeholder')}
                 maxLength={TASK_LENGTHS.description.max}
               />
             )}
@@ -127,10 +129,11 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
               render={({ field, fieldState: { error } }) => (
                 <DatePicker
                   {...field}
-                  id="deadline"
+                  id="due-date"
                   classNames={{ container: 'flex-1', trigger: 'w-full' }}
                   error={error?.message}
-                  label="Deadline"
+                  label={t('field.dueDate.label')}
+                  placeholder={t('field.dueDate.placeholder')}
                 />
               )}
             />
@@ -161,17 +164,17 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
 
           <DialogFooter>
             <DialogClose asChild disabled={isPending}>
-              <Button className="cursor-pointer" variant="outline">
-                Cancel
+              <Button className="cursor-pointer capitalize" variant="outline">
+                {t('actions.cancel')}
               </Button>
             </DialogClose>
 
             <Button
-              className="cursor-pointer"
+              className="cursor-pointer capitalize"
               type="submit"
               disabled={isPending}
             >
-              Create Task
+              {t('actions.create')}
             </Button>
           </DialogFooter>
         </form>

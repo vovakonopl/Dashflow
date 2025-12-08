@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import BreakRowsOnPages from '@/app/projects/[projectId]/_components/table/pagination/BreakRowsOnPages';
 import TaskRow from '@/app/projects/[projectId]/_components/table/TaskRow';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
@@ -16,15 +17,17 @@ type TTasksTableProps = {
 };
 
 const TasksTable = ({ tasks }: TTasksTableProps) => {
+  const t = useTranslations('projects.project.tasks.table');
+
   return (
     <ScrollArea className="w-1 flex-1 pb-4">
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead>Task Name</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Due Date</TableHead>
-            <TableHead className="text-right">Priority</TableHead>
+          <TableRow className="capitalize">
+            <TableHead>{t('head.name')}</TableHead>
+            <TableHead>{t('head.status')}</TableHead>
+            <TableHead>{t('head.dueDate')}</TableHead>
+            <TableHead className="text-right">{t('head.priority')}</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -37,7 +40,9 @@ const TasksTable = ({ tasks }: TTasksTableProps) => {
         </TableBody>
 
         {tasks.length === 0 && (
-          <TableCaption className="text-base italic">No tasks yet</TableCaption>
+          <TableCaption className="text-base italic">
+            {t('caption')}
+          </TableCaption>
         )}
       </Table>
 

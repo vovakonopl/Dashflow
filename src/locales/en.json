@@ -71,9 +71,87 @@
       "description": "Effectively manage all your projects, track progress, and collaborate seamlessly with your team."
     },
     "project": {
+      "description": "Project Description",
       "noTasks": "No tasks yet",
       "tasksCompleted": "Completed",
-      "view": "View project",
+      "actions": {
+        "view": "View project",
+        "edit": "Edit project"
+      },
+      "members": {
+        "title": "Assigned members",
+        "actions": {
+          "add": "Add member",
+          "view": "View members",
+          "manage": "Manage user",
+          "appointAs": "Appoint as",
+          "remove": "Remove from project"
+        },
+        "errors": {
+          "failedToRemove": "Failed to remove the user",
+          "failedToUpdate": "Failed to update the role"
+        },
+        "modal": {
+          "title": "Add member to the project",
+          "description": "Enter the user's email address to add them to the project.",
+          "fieldLabel": "Find user",
+          "noMatches": "No matches were found"
+        }
+      },
+      "tasks": {
+        "title": "Project tasks",
+        "actions": {
+          "add": "Add task"
+        },
+        "table": {
+          "caption": "No tasks yet",
+          "head": {
+            "name": "Task name",
+            "status": "Status",
+            "dueDate": "Due date",
+            "priority": "Priority"
+          },
+          "status": {
+            "completed": "Completed",
+            "inProgress": "In progress"
+          },
+          "overdue": "Overdue"
+        },
+        "modal": {
+          "title": "Create new task",
+          "description": "Enter the task details below. You can assign it to a team member and set a due date.",
+          "actions": {
+            "cancel": "Cancel",
+            "create": "Create task"
+          },
+          "field": {
+            "title": {
+              "label": "Task title",
+              "placeholder": "New task"
+            },
+            "description": {
+              "label": "Description",
+              "placeholder": "Optional task description"
+            },
+            "dueDate": {
+              "label": "Due date",
+              "placeholder": "Pick a due date"
+            },
+            "priority": {
+              "label": "Task priority",
+              "placeholder": "priority"
+            },
+            "members": {
+              "label": "Members to assign",
+              "placeholder": "Select members..."
+            },
+            "searchMember": {
+              "placeholder": "Search member...",
+              "notFound": "Member is not found."
+            }
+          }
+        }
+      },
       "form": {
         "cancel": "Cancel",
         "newProject": {
@@ -140,5 +218,12 @@
     "medium": "medium",
     "high": "high",
     "critical": "critical"
+  },
+  "user": {
+    "me": "me",
+    "role": {
+      "member": "member",
+      "leader": "leader"
+    }
   }
 }

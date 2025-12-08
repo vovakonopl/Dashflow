@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import User from '@/components/shared/User';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { TUser } from '@/lib/types/tables/user';
@@ -13,6 +14,8 @@ const SelectUserList = ({
   onSelect,
   users,
 }: TSelectUserListProps) => {
+  const t = useTranslations('projects.project.members.modal');
+
   return (
     <ul className="mt-2 flex flex-col gap-1">
       <ScrollArea className="h-[30dvh] max-h-fit">
@@ -34,7 +37,7 @@ const SelectUserList = ({
         {users.length === 0 && (
           <div className="w-full text-center">
             <span className="text-muted-foreground italic">
-              No matches were found
+              {t('noMatches')}
             </span>
           </div>
         )}

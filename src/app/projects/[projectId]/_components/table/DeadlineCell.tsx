@@ -1,5 +1,6 @@
 'use client'; // required to display the date for user's timezone
 
+import { useTranslations } from 'next-intl';
 import { TableCell } from '@/components/ui/table';
 import { cn } from '@/lib/utils/cn';
 
@@ -15,6 +16,7 @@ type TDeadlineCellProps = {
 };
 
 const DeadlineCell = ({ date, isCompleted }: TDeadlineCellProps) => {
+  const t = useTranslations('projects.project.tasks.table');
   const currentDate = new Date();
   const isOverdue: boolean = !isCompleted && currentDate > date;
 
@@ -27,7 +29,7 @@ const DeadlineCell = ({ date, isCompleted }: TDeadlineCellProps) => {
       className={cn('whitespace-normal', isOverdue && 'text-destructive')}
     >
       {formattedDate}
-      {isOverdue && <span className="ml-1">(Overdue)</span>}
+      {isOverdue && <span className="ml-1">({t('overdue')})</span>}
     </TableCell>
   );
 };

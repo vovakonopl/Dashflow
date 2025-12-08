@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import NewTaskForm from '@/app/projects/[projectId]/_components/new-task/NewTaskForm';
 import {
   DialogContent,
@@ -13,16 +14,15 @@ type TNewTaskDialogProps = {
 };
 
 const NewTaskDialog = (props: TNewTaskDialogProps) => {
+  const t = useTranslations('projects.project.tasks.modal');
+
   return (
     <DialogContent>
       <DialogHeader className="gap-1">
-        <DialogTitle className="font-archivo text-2xl">
-          Create new task
+        <DialogTitle className="font-archivo text-2xl capitalize">
+          {t('title')}
         </DialogTitle>
-        <DialogDescription>
-          Enter the task details below. You can assign it to a team member and
-          set a due date.
-        </DialogDescription>
+        <DialogDescription>{t('description')}</DialogDescription>
       </DialogHeader>
 
       <NewTaskForm {...props} />

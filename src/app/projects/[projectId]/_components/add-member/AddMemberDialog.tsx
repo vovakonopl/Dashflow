@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import {
   DialogContent,
   DialogDescription,
@@ -7,15 +8,15 @@ import {
 import AddMemberInput from './AddMemberInput';
 
 const AddMemberDialog = () => {
+  const t = useTranslations('projects.project.members.modal');
+
   return (
     <DialogContent>
       <DialogHeader className="gap-1">
         <DialogTitle className="font-archivo text-2xl">
-          Add member to the project
+          {t('title')}
         </DialogTitle>
-        <DialogDescription>
-          Enter the user&apos;s email address to add them to the project.
-        </DialogDescription>
+        <DialogDescription>{t('description')}</DialogDescription>
       </DialogHeader>
 
       <AddMemberInput />

@@ -1,6 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { Pencil, Users } from 'lucide-react';
 import { notFound, redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import EditProjectDialog from '@/app/projects/[projectId]/_components/edit-project/EditProjectDialog';
 import NewTaskDialog from '@/app/projects/[projectId]/_components/new-task/NewTaskDialog';
 import StatsArticles from '@/app/projects/[projectId]/_components/StatsArticles';
@@ -37,6 +38,7 @@ type TProjectPage = {
 };
 
 export default async function ProjectPage({ params }: TProjectPage) {
+  const t = await getTranslations('projects.project');
   const { userId } = await verifySession();
   const projectId = (await params).projectId;
 
@@ -90,9 +92,13 @@ export default async function ProjectPage({ params }: TProjectPage) {
           <OwnerOnly ownerId={project.ownerId} userId={userId}>
             <DialogProvider>
               <DialogTrigger asChild>
-                <Button className="cursor-pointer" size="lg" variant="outline">
+                <Button
+                  className="cursor-pointer capitalize"
+                  size="lg"
+                  variant="outline"
+                >
                   <Pencil className="mr-1" />
-                  Edit Project
+                  {t('actions.edit')}
                 </Button>
               </DialogTrigger>
 
@@ -105,7 +111,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
               <DialogTrigger asChild>
                 <Button className="cursor-pointer" size="lg">
                   <Users className="mr-1" />
-                  Add Member
+                  {t('members.actions.add')}
                 </Button>
               </DialogTrigger>
 
@@ -123,12 +129,16 @@ export default async function ProjectPage({ params }: TProjectPage) {
         <div className="lg:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <Button className="w-full">View Members</Button>
+              <Button className="w-full capitalize">
+                {t('members.actions.view')}
+              </Button>
             </SheetTrigger>
 
             <SheetContent>
               <SheetHeader className="gap-0">
-                <SheetTitle>Assigned Members</SheetTitle>
+                <SheetTitle className="capitalize">
+                  {t('members.title')}
+                </SheetTitle>
               </SheetHeader>
 
               <Separator className="mx-2 -mt-4" />
@@ -149,7 +159,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
           {project.description && (
             <SectionCard>
               <CardHeader>
-                <SectionTitle>Project Description</SectionTitle>
+                <SectionTitle>{t('description')}</SectionTitle>
               </CardHeader>
 
               <CardContent>
@@ -161,12 +171,14 @@ export default async function ProjectPage({ params }: TProjectPage) {
           {/* table with tasks */}
           <SectionCard>
             <CardHeader className="flex justify-between gap-2">
-              <SectionTitle>Project Tasks</SectionTitle>
+              <SectionTitle>{t('tasks.title')}</SectionTitle>
 
               <LeadersOnly project={project} userId={userId}>
                 <DialogProvider>
                   <DialogTrigger asChild>
-                    <Button>Add task</Button>
+                    <Button className="capitalize">
+                      {t('tasks.actions.add')}
+                    </Button>
                   </DialogTrigger>
 
                   <NewTaskDialog
@@ -196,7 +208,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
           className="w-fit max-w-96 min-w-72 max-lg:hidden"
         >
           <CardHeader className="gap-0">
-            <SectionTitle>Assigned Members</SectionTitle>
+            <SectionTitle>{t('members.title')}</SectionTitle>
           </CardHeader>
 
           <CardContent className="px-2">

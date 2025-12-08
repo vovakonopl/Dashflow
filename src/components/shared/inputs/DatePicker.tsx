@@ -20,6 +20,7 @@ type TDatePickerProps = {
   id: string;
   error?: string;
   label: string;
+  placeholder?: string;
   onChange?: (date?: Date) => void;
   value?: Date;
   classNames?: Partial<TClassNames>;
@@ -30,6 +31,7 @@ const DatePicker = ({
   classNames,
   error,
   label,
+  placeholder,
   onChange,
   value,
 }: TDatePickerProps) => {
@@ -56,7 +58,7 @@ const DatePicker = ({
             variant="outline"
           >
             <CalendarIcon />
-            {value ? format(value, 'PPP') : <span>Pick a date</span>}
+            {value ? format(value, 'PPP') : <span>{placeholder}</span>}
           </Button>
         </PopoverTrigger>
 
