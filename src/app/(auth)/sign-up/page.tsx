@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import {
   AuthCard,
   AuthCardDescription,
@@ -9,14 +10,14 @@ import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import CenteredContent from '@/components/utils/CenteredContent';
 
 export default function SignUpPage() {
+  const t = useTranslations('auth.signUp');
+
   return (
     <CenteredContent className="p-8">
       <AuthCard>
         <CardHeader>
-          <AuthCardTitle>Sign Up</AuthCardTitle>
-          <AuthCardDescription>
-            Create a new account for Dashflow.
-          </AuthCardDescription>
+          <AuthCardTitle>{t('signUp')}</AuthCardTitle>
+          <AuthCardDescription>{t('title')}</AuthCardDescription>
         </CardHeader>
 
         <CardContent>
@@ -25,8 +26,13 @@ export default function SignUpPage() {
 
         <CardFooter className="flex flex-col gap-10">
           <p className="text-muted-foreground">
-            Already have an account?{' '}
-            <AuthLink href="/sign-in">Sign In</AuthLink>
+            {t.rich('footer', {
+              link: (children) => (
+                <AuthLink href="/sign-in" className="capitalize">
+                  {children}
+                </AuthLink>
+              ),
+            })}
           </p>
         </CardFooter>
       </AuthCard>

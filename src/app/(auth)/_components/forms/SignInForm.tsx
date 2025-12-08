@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -19,6 +20,7 @@ import {
 } from '@/lib/validation/auth/sign-in-schema';
 
 const SignInForm = () => {
+  const t = useTranslations('auth.signIn.form');
   const [state, action, isPending] = useServerAction(signIn);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -78,7 +80,7 @@ const SignInForm = () => {
             <FormInput
               {...field}
               error={error?.message}
-              label="Email"
+              label={t('email')}
               placeholder="JohnDoe@gmail.com"
               type="email"
             />
@@ -92,7 +94,7 @@ const SignInForm = () => {
             <FormInput
               {...field}
               error={error?.message}
-              label="Email"
+              label={t('password')}
               renderInput={() => <PasswordInput {...field} />}
             />
           )}
@@ -100,8 +102,8 @@ const SignInForm = () => {
 
         {rootErrorMsg && <ErrorMessage>{rootErrorMsg}</ErrorMessage>}
 
-        <SubmitButton type="submit" disabled={isPending}>
-          Sign In
+        <SubmitButton type="submit" disabled={isPending} className="capitalize">
+          {t('submit')}
         </SubmitButton>
       </form>
     </Form>

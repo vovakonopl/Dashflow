@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import {
   AuthCard,
   AuthCardDescription,
@@ -9,14 +10,14 @@ import { CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import CenteredContent from '@/components/utils/CenteredContent';
 
 export default function SignInPage() {
+  const t = useTranslations('auth.signIn');
+
   return (
     <CenteredContent className="p-8">
       <AuthCard>
         <CardHeader>
-          <AuthCardTitle>Sign In</AuthCardTitle>
-          <AuthCardDescription>
-            Welcome back! Sign in to your Productivity Dashboard.
-          </AuthCardDescription>
+          <AuthCardTitle className="capitalize">{t('signIn')}</AuthCardTitle>
+          <AuthCardDescription>{t('title')}</AuthCardDescription>
         </CardHeader>
 
         <CardContent>
@@ -25,8 +26,13 @@ export default function SignInPage() {
 
         <CardFooter className="flex flex-col gap-10">
           <p className="text-muted-foreground">
-            Don&apos;t have an account?{' '}
-            <AuthLink href="/sign-up">Sign Up</AuthLink>
+            {t.rich('footer', {
+              link: (children) => (
+                <AuthLink href="/sign-up" className="capitalize">
+                  {children}
+                </AuthLink>
+              ),
+            })}
           </p>
         </CardFooter>
       </AuthCard>

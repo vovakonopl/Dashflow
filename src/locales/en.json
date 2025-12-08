@@ -1,0 +1,31 @@
+{
+  "locales": {
+    "en": "English",
+    "ua": "Ukrainian"
+  },
+  "auth": {
+    "signIn": {
+      "signIn": "Sign in",
+      "title": "Welcome back! Sign in to your Productivity Dashboard.",
+      "footer": "Don't have an account? <link>Sign up</link>",
+      "form": {
+        "email": "Email",
+        "password": "Password",
+        "submit": "Sign in"
+      }
+    },
+    "signUp": {
+      "signUp": "Sign up",
+      "title": "Create a new account for Dashflow.",
+      "footer": "Already have an account? <link>Sign In</link>",
+      "form": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "submit": "Sign up"
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 'use client';
 
 import { Monitor, Moon, Sun } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,6 +34,7 @@ import { RootState } from '@/lib/store';
 import { setOpened } from '@/lib/store/slices/settings-slice';
 
 const SettingsDialog = () => {
+  const t = useTranslations('locales');
   const locale = useLocale();
   const [, action, isPending] = useServerAction(setLocale);
   const dispatch = useDispatch();
@@ -96,8 +98,7 @@ const SettingsDialog = () => {
                     key={locale}
                     className="cursor-pointer"
                   >
-                    {/* TODO: use label from useTranslations */}
-                    <Locale countryCode={countryCode} label="English" />
+                    <Locale countryCode={countryCode} label={t(locale)} />
                   </SelectItem>
                 ))}
               </SelectContent>

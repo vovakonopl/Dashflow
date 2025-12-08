@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -19,6 +20,7 @@ import {
 } from '@/lib/validation/auth/sign-up-schema';
 
 const SignUpForm = () => {
+  const t = useTranslations('auth.signUp.form');
   const [state, action, isPending] = useServerAction(signUp);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -83,7 +85,7 @@ const SignUpForm = () => {
               <FormInput
                 {...field}
                 error={error?.message}
-                label="First name"
+                label={t('firstName')}
                 placeholder="John"
                 type="text"
               />
@@ -97,7 +99,7 @@ const SignUpForm = () => {
               <FormInput
                 {...field}
                 error={error?.message}
-                label="Last name"
+                label={t('lastName')}
                 placeholder="Doe"
                 type="text"
               />
@@ -112,7 +114,7 @@ const SignUpForm = () => {
             <FormInput
               {...field}
               error={error?.message}
-              label="Email"
+              label={t('email')}
               placeholder="JohnDoe@gmail.com"
               type="email"
             />
@@ -126,7 +128,7 @@ const SignUpForm = () => {
             <FormInput
               {...field}
               error={error?.message}
-              label="Password"
+              label={t('password')}
               renderInput={() => <PasswordInput {...field} />}
             />
           )}
@@ -139,7 +141,7 @@ const SignUpForm = () => {
             <FormInput
               {...field}
               error={error?.message}
-              label="Confirm password"
+              label={t('confirmPassword')}
               renderInput={() => <PasswordInput {...field} />}
             />
           )}
@@ -148,7 +150,7 @@ const SignUpForm = () => {
         {rootErrorMsg && <ErrorMessage>{rootErrorMsg}</ErrorMessage>}
 
         <SubmitButton type="submit" disabled={isPending}>
-          Sign Up
+          {t('submit')}
         </SubmitButton>
       </form>
     </Form>
