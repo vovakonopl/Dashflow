@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { ComponentProps } from 'react';
 import StatsArticle from '@/components/shared/statistics/StatsArticle';
 import { Progress } from '@/components/ui/progress';
@@ -14,20 +15,17 @@ const TasksCompletionProgress = ({
   totalTasksCount,
   ...props
 }: TCompletionProgressProps) => {
+  const t = useTranslations('statistics.completionProgress');
   // the article does not make any sense if tasks count is 0.
   if (totalTasksCount === 0) return null;
 
   const percentage = (completedTasksCount / totalTasksCount) * 100;
-  const description =
-    tasksFor === 'project'
-      ? `Progress towards project completion`
-      : `Personal progress across all tasks`;
 
   return (
     <StatsArticle
       {...props}
-      title="Task completion progress"
-      description={description}
+      title={t('title')}
+      description={t(`description.${t(tasksFor)}`)}
     >
       <div className="flex w-full items-center justify-between gap-2">
         <Progress value={percentage} />

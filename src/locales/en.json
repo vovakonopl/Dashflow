@@ -70,5 +70,33 @@
         "incomplete": "Mark as Incomplete"
       }
     }
+  },
+  "dashboardPage": {
+    "title": "Dashboard",
+    "tasksLink": "Go check your tasks!"
+  },
+  "statistics": {
+    "totalTasks": {
+      "title": "Total tasks",
+      "description": {
+        "project": "All tasks in this project",
+        "user": "All tasks assigned to you"
+      }
+    },
+    "overdueTasks": {
+      "title": "Overdue tasks",
+      "description": "Tasks past their due date"
+    },
+    "tasksInProgress": {
+      "title": "Tasks in progress",
+      "description": "Currently active tasks"
+    },
+    "completionProgress": {
+      "title": "Tasks in progress",
+      "description": {
+        "project": "Progress towards project completion",
+        "user": "Personal progress across all tasks"
+      }
+    }
   }
 }

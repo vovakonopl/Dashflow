@@ -1,4 +1,5 @@
 import { ListTodo } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { ComponentProps } from 'react';
 import StatsArticle from '@/components/shared/statistics/StatsArticle';
 
@@ -8,16 +9,13 @@ type TTotalTasksProps = {
 } & Omit<ComponentProps<'article'>, 'children'>;
 
 const TotalTasks = ({ tasksFor, tasksCount, ...props }: TTotalTasksProps) => {
-  const description: string =
-    tasksFor === 'project'
-      ? 'All tasks in this project'
-      : 'All tasks assigned to you.';
+  const t = useTranslations('statistics.totalTasks');
 
   return (
     <StatsArticle
       {...props}
-      title="Total tasks"
-      description={description}
+      title={t('title')}
+      description={t(`description.${tasksFor}`)}
       icon={ListTodo}
       value={tasksCount}
     />
