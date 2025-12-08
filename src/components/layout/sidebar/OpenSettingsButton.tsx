@@ -9,7 +9,10 @@ const OpenSettingsButton = () => {
   const dispatch = useDispatch();
 
   return (
-    <SidebarMenuButton onClick={() => dispatch(setOpened(true))}>
+    <SidebarMenuButton
+      className="cursor-pointer"
+      onClick={() => dispatch(setOpened(true))}
+    >
       <Settings />
       <span>Settings</span>
     </SidebarMenuButton>

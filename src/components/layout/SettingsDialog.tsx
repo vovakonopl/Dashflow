@@ -4,6 +4,7 @@ import { Monitor, Moon, Sun } from 'lucide-react';
 import { ReactNode } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocale } from 'use-intl';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -24,11 +25,16 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { setLocale } from '@/lib/actions/set-locale';
+import { APP_LOCALES } from '@/lib/constants/app-locales';
+import { useServerAction } from '@/lib/hooks/useServerAction';
 import { TTheme, useTheme } from '@/lib/hooks/useTheme';
 import { RootState } from '@/lib/store';
 import { setOpened } from '@/lib/store/slices/settings-slice';
 
 const SettingsDialog = () => {
+  const locale = useLocale();
+  const [, action, isPending] = useServerAction(setLocale);
   const dispatch = useDispatch();
   const { opened } = useSelector((state: RootState) => state.settings);
 
@@ -53,6 +59,7 @@ const SettingsDialog = () => {
                   <Sun />
                 </ThemeButton>
               </li>
+
               <li>
                 <ThemeButton theme="dark" tooltip="Dark theme">
                   <Moon />
@@ -70,8 +77,12 @@ const SettingsDialog = () => {
           <li className="flex items-center gap-2 capitalize">
             <span>Language:</span>
 
-            <Select>
-              <SelectTrigger className="text-base">
+            <Select
+              disabled={isPending}
+              onValueChange={(locale) => action(locale)}
+              value={locale}
+            >
+              <SelectTrigger className="cursor-pointer text-base">
                 <SelectValue
                   className="items-center"
                   placeholder="Select a language"
@@ -79,13 +90,16 @@ const SettingsDialog = () => {
               </SelectTrigger>
 
               <SelectContent>
-                <SelectItem value="ua">
-                  <Locale countryCode="ua" label="Ukrainian" />
-                </SelectItem>
-
-                <SelectItem value="en">
-                  <Locale countryCode="gb" label="English" />
-                </SelectItem>
+                {APP_LOCALES.map(({ locale, countryCode }) => (
+                  <SelectItem
+                    value={locale}
+                    key={locale}
+                    className="cursor-pointer"
+                  >
+                    {/* TODO: use label from useTranslations */}
+                    <Locale countryCode={countryCode} label="English" />
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </li>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Archivo } from 'next/font/google';
+import { NextIntlClientProvider } from 'next-intl';
 import { ReactNode } from 'react';
 import Footer from '@/components/layout/Footer';
 import SettingsDialog from '@/components/layout/SettingsDialog';
@@ -32,21 +33,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${archivo.variable} font-inter`}>
-        <Providers>
-          <div className="flex min-h-dvh max-md:flex-col">
-            <SideNavbar />
+        <NextIntlClientProvider>
+          <Providers>
+            <div className="flex min-h-dvh max-md:flex-col">
+              <SideNavbar />
 
-            <div className="flex flex-1 flex-col">
-              <Toaster position="top-center" duration={toastDuration} />
-              <main className="grid flex-1">{children}</main>
-              <Footer />
+              <div className="flex flex-1 flex-col">
+                <Toaster position="top-center" duration={toastDuration} />
+                <main className="grid flex-1">{children}</main>
+                <Footer />
+              </div>
+
+              {/*<ThemeSwitcherDevTool />*/}
             </div>
 
-            {/*<ThemeSwitcherDevTool />*/}
-          </div>
-
-          <SettingsDialog />
-        </Providers>
+            <SettingsDialog />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
