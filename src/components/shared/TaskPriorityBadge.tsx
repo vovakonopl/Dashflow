@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { TTaskPriority } from '@/lib/types/tables/task';
 import { cn } from '@/lib/utils/cn';
 
@@ -6,6 +7,7 @@ type TTaskPriorityBadgeProps = {
 };
 
 const TaskPriorityBadge = ({ priority }: TTaskPriorityBadgeProps) => {
+  const t = useTranslations('priority');
   let priorityClassName: string = '';
 
   switch (priority) {
@@ -34,7 +36,7 @@ const TaskPriorityBadge = ({ priority }: TTaskPriorityBadgeProps) => {
         priorityClassName,
       )}
     >
-      {priority}
+      {t(priority)}
     </span>
   );
 };

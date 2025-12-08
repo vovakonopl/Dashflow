@@ -98,5 +98,11 @@
         "user": "Personal progress across all tasks"
       }
     }
+  },
+  "priority": {
+    "low": "low",
+    "medium": "medium",
+    "high": "high",
+    "critical": "critical"
   }
 }
