@@ -32,5 +32,30 @@
         "submit": "Sign up"
       }
     }
+  },
+  "homePage": {
+    "title": "Unlock your check's full potential",
+    "description": "Streamline project tasks, collaborate effortlessly, and achieve your goals faster with Dashflow. Your ultimate hub for productivity.",
+    "signUp": "Get started – it's free",
+    "toDashboard": "Go to dashboard",
+    "snapshotTitle": "Your productivity snapshot",
+    "snapshot": {
+      "tasksCompleted": {
+        "title": "Tasks Completed",
+        "description": "Track how many tasks you've completed this week"
+      },
+      "remainingTasks": {
+        "title": "Remaining Tasks",
+        "description": "See how many tasks remain to be completed"
+      },
+      "activeProjects": {
+        "title": "Active Projects",
+        "description": "See how many projects are currently in progress"
+      },
+      "upcomingDeadlines": {
+        "title": "Upcoming Deadlines",
+        "description": "View your most critical project deadlines"
+      }
+    }
   }
 }
