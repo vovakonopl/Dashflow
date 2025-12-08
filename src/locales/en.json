@@ -3,6 +3,11 @@
     "en": "English",
     "ua": "Ukrainian"
   },
+  "notFound": {
+    "title": "404 - Page not found",
+    "description": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Please check the URL or return to main page.",
+    "goBack": "Back to home"
+  },
   "auth": {
     "signIn": {
       "signIn": "Sign in",
