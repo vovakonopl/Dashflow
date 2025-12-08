@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server';
 import TitleH1 from '@/components/shared/TitleH1';
 import { getTasksWithProjectNameForUser } from '@/lib/server/db-queries/tasks';
 import { verifySession } from '@/lib/server/session';
@@ -18,6 +19,7 @@ function sortTasksByName(
 }
 
 export default async function TasksPage() {
+  const t = await getTranslations('tasksPage');
   const { userId } = await verifySession();
   const userTasks: TTaskWithProjectName[] = sortTasksByName(
     await getTasksWithProjectNameForUser(userId),
@@ -25,7 +27,7 @@ export default async function TasksPage() {
 
   return (
     <div className="flex flex-col gap-6 p-8 max-md:gap-4 max-md:p-4">
-      <TitleH1 className="max-md:text-center">My Tasks</TitleH1>
+      <TitleH1 className="capitalize max-md:text-center">{t('title')}</TitleH1>
 
       <ul className="grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-4">
         {userTasks.map((task) => (

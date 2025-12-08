@@ -57,5 +57,18 @@
         "description": "View your most critical project deadlines"
       }
     }
+  },
+  "tasksPage": {
+    "title": "My tasks",
+    "task": {
+      "inProject": "In project",
+      "due": "due",
+      "completed": "Done",
+      "inProgress": "In progress",
+      "markAs": {
+        "completed": "Mark as Completed",
+        "incomplete": "Mark as Incomplete"
+      }
+    }
   }
 }

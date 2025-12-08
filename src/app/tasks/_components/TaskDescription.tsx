@@ -11,10 +11,6 @@ const TaskDescription = ({ description }: TTaskDescriptionProps) => {
   // if text doesn't fit in 4 line - wrap it and unwrap only on click
   const [isTextWrapped, setIsTextWrapped] = useState<boolean>(true);
 
-  const toggleWrapped = () => {
-    setIsTextWrapped((prev) => !prev);
-  };
-
   if (!description) return null;
 
   return (
@@ -23,7 +19,7 @@ const TaskDescription = ({ description }: TTaskDescriptionProps) => {
         'text-muted-foreground text-sm break-words break-all text-ellipsis',
         isTextWrapped && 'line-clamp-4',
       )}
-      onClick={toggleWrapped}
+      onClick={() => setIsTextWrapped((prev) => !prev)}
     >
       {description}
     </p>

@@ -1,4 +1,5 @@
 import { Calendar } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import TaskDescription from '@/app/tasks/_components/TaskDescription';
 import ToggleTaskCompletionButton from '@/app/tasks/_components/ToggleTaskCompletionButton';
 import TaskPriorityBadge from '@/components/shared/TaskPriorityBadge';
@@ -16,6 +17,8 @@ type TTaskCardProps = {
 };
 
 const TaskCard = ({ task }: TTaskCardProps) => {
+  const t = useTranslations('tasksPage.task');
+
   return (
     <Card>
       <CardHeader className="flex justify-between gap-4 max-md:gap-2">
@@ -32,7 +35,7 @@ const TaskCard = ({ task }: TTaskCardProps) => {
                 : 'bg-neutral-200 text-neutral-600 dark:bg-neutral-400 dark:text-neutral-800',
             )}
           >
-            {task.completed ? 'Done' : 'In Progress'}
+            {t(task.completed ? 'completed' : 'inProgress')}
           </span>
         </div>
       </CardHeader>
@@ -42,11 +45,15 @@ const TaskCard = ({ task }: TTaskCardProps) => {
       </CardContent>
 
       <CardFooter className="text-muted-foreground mt-auto flex-col items-start gap-2 text-sm">
-        <span>In project: {task.relatedProjectName}</span>
+        <span>
+          {t('inProject')} {task.relatedProjectName}
+        </span>
 
         <div className="flex items-center gap-1">
           <Calendar className="size-4" />
-          <span>Due: {task.deadline.toDateString()}</span>
+          <span>
+            {t('due')}: {task.deadline.toDateString()}
+          </span>
         </div>
 
         <ToggleTaskCompletionButton
