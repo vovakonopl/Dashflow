@@ -4,7 +4,10 @@ import { users } from '@/drizzle/schema';
 import { db } from '@/lib/db';
 import { DB_USER_INCLUDED_COLUMNS, TUser } from '@/lib/types/tables/user';
 
-export async function GET(_: NextRequest, params: Promise<{ userId: string }>) {
+export async function GET(
+  _: NextRequest,
+  { params }: { params: Promise<{ userId: string }> },
+) {
   const { userId } = await params;
   const user: TUser | undefined = await db.query.users.findFirst({
     where: eq(users.id, userId),
