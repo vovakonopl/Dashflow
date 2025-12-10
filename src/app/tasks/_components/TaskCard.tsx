@@ -18,6 +18,7 @@ type TTaskCardProps = {
 
 const TaskCard = ({ task }: TTaskCardProps) => {
   const t = useTranslations('tasksPage.task');
+  const isCompleted = !!task.completedAt;
 
   return (
     <Card>
@@ -30,12 +31,12 @@ const TaskCard = ({ task }: TTaskCardProps) => {
           <span
             className={cn(
               'rounded-full px-2 py-1 font-medium whitespace-nowrap capitalize',
-              task.completed
+              isCompleted
                 ? 'bg-primary text-primary-foreground'
                 : 'bg-neutral-200 text-neutral-600 dark:bg-neutral-400 dark:text-neutral-800',
             )}
           >
-            {t(task.completed ? 'completed' : 'inProgress')}
+            {t(isCompleted ? 'completed' : 'inProgress')}
           </span>
         </div>
       </CardHeader>
@@ -57,7 +58,7 @@ const TaskCard = ({ task }: TTaskCardProps) => {
         </div>
 
         <ToggleTaskCompletionButton
-          isCompleted={task.completed}
+          isCompleted={isCompleted}
           taskId={task.id}
         />
       </CardFooter>

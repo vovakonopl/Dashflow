@@ -1,6 +1,5 @@
 import { relations } from 'drizzle-orm';
 import {
-  boolean,
   pgEnum,
   pgTable,
   text,
@@ -70,8 +69,8 @@ export const tasks = pgTable('tasks', {
   description: text('description'),
   deadline: timestamp('deadline').notNull(),
   priority: taskPriorityEnum('priority').notNull(),
-  completed: boolean('completed').notNull().default(false),
   createdAt: timestamp('created_at').defaultNow().notNull(),
+  completedAt: timestamp('completed_at'),
 
   projectId: uuid('project_id')
     .notNull()

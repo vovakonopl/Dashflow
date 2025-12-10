@@ -9,13 +9,14 @@ type TTaskRowProps = {
 };
 
 const TaskRow = ({ task }: TTaskRowProps) => {
+  const isCompleted = !!task.completedAt;
   return (
     <TableRow>
       <TableCell className="break-all whitespace-normal">
         {task.title}
       </TableCell>
-      <StatusCell isCompleted={task.completed} />
-      <DeadlineCell date={task.deadline} isCompleted={task.completed} />
+      <StatusCell isCompleted={isCompleted} />
+      <DeadlineCell date={task.deadline} isCompleted={isCompleted} />
       <PriorityCell priority={task.priority} />
     </TableRow>
   );

@@ -20,7 +20,7 @@ async function getUserProjects(
     .select({
       ...getTableColumns(projects),
       totalTasks: count(tasks.id),
-      completedTasks: sql`count(case when ${tasks.completed} = true then 1 else null end)`,
+      completedTasks: sql`count(case when ${tasks.completedAt} is not null then 1 else null end)`,
     })
     .from(projects)
     .leftJoin(tasks, eq(projects.id, tasks.projectId))

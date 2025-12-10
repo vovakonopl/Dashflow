@@ -19,7 +19,7 @@ export default async function TasksPage() {
     (task) => task.deadline < new Date(),
   ).length;
   const completedTasksCount: number = tasks.filter(
-    (task) => task.completed,
+    (task) => task.completedAt,
   ).length;
 
   return (

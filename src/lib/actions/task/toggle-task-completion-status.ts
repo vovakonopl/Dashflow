@@ -3,6 +3,7 @@
 import { and, eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
 import { tasks, taskAssignments } from '@/drizzle/schema';
+import { ERROR_MSG } from '@/lib/constants/error-messages';
 import { db } from '@/lib/db';
 import { verifySession } from '@/lib/server/session';
 import { actionError } from '@/lib/utils/action-error';
@@ -21,7 +22,7 @@ export async function toggleTaskCompletionStatus(taskId: string) {
     });
 
     if (!assignment) {
-      return actionError({ root: ['Permission denied'] });
+      return actionError({ root: [ERROR_MSG.accessDenied] });
     }
 
     const task = await db.query.tasks.findFirst({
@@ -34,7 +35,7 @@ export async function toggleTaskCompletionStatus(taskId: string) {
 
     await db
       .update(tasks)
-      .set({ completed: !task.completed })
+      .set({ completedAt: task.completedAt ? null : new Date() })
       .where(eq(tasks.id, task.id));
 
     // revalidate paths for tasks page and project page of the task
@@ -42,7 +43,8 @@ export async function toggleTaskCompletionStatus(taskId: string) {
     revalidatePath(`/projects/${task.projectId}`);
 
     return { isSuccess: true };
-  } catch {
-    return actionError({ root: ["Can't update the task"] });
+  } catch (e) {
+    console.log(e);
+    return actionError({ root: [ERROR_MSG.errorOnServer] });
   }
 }

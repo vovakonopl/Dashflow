@@ -21,19 +21,20 @@ const StatsArticles = ({ tasks }: TStatsArticlesProps) => {
       />
       <TasksInProgress
         className={className}
-        tasksCount={tasks.filter((task) => !task.completed).length}
+        tasksCount={tasks.filter((task) => !task.completedAt).length}
       />
       <OverdueTasks
         className={className}
         tasksCount={
-          tasks.filter((task) => !task.completed && task.deadline < new Date())
-            .length
+          tasks.filter(
+            (task) => !task.completedAt && task.deadline < new Date(),
+          ).length
         }
       />
       <TasksCompletionProgress
         tasksFor="project"
         className={cn('col-span-2 max-sm:col-span-1', className)}
-        completedTasksCount={tasks.filter((task) => task.completed).length}
+        completedTasksCount={tasks.filter((task) => task.completedAt).length}
         totalTasksCount={tasks.length}
       />
     </div>
