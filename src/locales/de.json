@@ -178,6 +178,11 @@
             "label": "Projektbeschreibung",
             "placeholder": "Optionale Beschreibung"
           }
+        },
+        "deleteProject": {
+          "action": "Projekt löschen",
+          "title": "Sind Sie sicher, dass Sie dieses Projekt löschen möchten?",
+          "description": "Diese Aktion kann nicht rückgängig gemacht werden."
         }
       }
     }

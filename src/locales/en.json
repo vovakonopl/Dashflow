@@ -178,6 +178,11 @@
             "label": "Project description",
             "placeholder": "Optional description"
           }
+        },
+        "deleteProject": {
+          "action": "Delete project",
+          "title": "Are you sure you want to delete this project?",
+          "description": "This action cannot be undone."
         }
       }
     }

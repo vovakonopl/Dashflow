@@ -10,9 +10,10 @@ import { TProject } from '@/lib/types/tables/project';
 
 type TEditProjectDialogProps = {
   project: TProject;
+  userId: string;
 };
 
-const EditProjectDialog = ({ project }: TEditProjectDialogProps) => {
+const EditProjectDialog = ({ project, userId }: TEditProjectDialogProps) => {
   const t = useTranslations('projects.project.form.editProject');
 
   return (
@@ -24,7 +25,7 @@ const EditProjectDialog = ({ project }: TEditProjectDialogProps) => {
         <DialogDescription>{t('description')}</DialogDescription>
       </DialogHeader>
 
-      <EditProjectForm project={project} />
+      <EditProjectForm project={project} userId={userId} />
     </DialogContent>
   );
 };

@@ -8,9 +8,10 @@ import { TProject } from '@/lib/types/tables/project';
 
 type TEditProjectFormProps = {
   project: TProject;
+  userId: string;
 };
 
-const EditProjectForm = ({ project }: TEditProjectFormProps) => {
+const EditProjectForm = ({ project, userId }: TEditProjectFormProps) => {
   const t = useTranslations('projects.project.form.editProject');
   const { setIsOpen } = useDialog();
 
@@ -33,6 +34,10 @@ const EditProjectForm = ({ project }: TEditProjectFormProps) => {
       }}
       action={handleSubmit}
       submitButtonText={t('submit')}
+      ownerId={project.ownerId}
+      userId={userId}
+      projectId={project.id}
+      isEditing={true}
     />
   );
 };

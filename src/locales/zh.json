@@ -178,6 +178,11 @@
             "label": "项目描述",
             "placeholder": "可选描述"
           }
+        },
+        "deleteProject": {
+          "action": "删除项目",
+          "title": "您确定要删除此项目吗？",
+          "description": "此操作无法撤销。"
         }
       }
     }

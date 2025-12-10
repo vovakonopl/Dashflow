@@ -178,6 +178,11 @@
             "label": "Description du projet",
             "placeholder": "Description optionnelle"
           }
+        },
+        "deleteProject": {
+          "action": "Supprimer le projet",
+          "title": "Êtes-vous sûr de vouloir supprimer ce projet ?",
+          "description": "Cette action est irréversible."
         }
       }
     }

@@ -178,6 +178,11 @@
             "label": "Opis projektu",
             "placeholder": "Opcjonalny opis"
           }
+        },
+        "deleteProject": {
+          "action": "Usuń projekt",
+          "title": "Czy na pewno chcesz usunąć ten projekt?",
+          "description": "Tej operacji nie można cofnąć."
         }
       }
     }

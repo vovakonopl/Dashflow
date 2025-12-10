@@ -102,7 +102,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
                 </Button>
               </DialogTrigger>
 
-              <EditProjectDialog project={project} />
+              <EditProjectDialog project={project} userId={userId} />
             </DialogProvider>
           </OwnerOnly>
 
