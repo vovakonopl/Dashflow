@@ -197,7 +197,26 @@
       "markAs": {
         "completed": "完了としてマーク",
         "incomplete": "未完了としてマーク"
+      },
+      "overdue": "期限切れ"
+    },
+    "filters": {
+      "sort": {
+        "label": "並べ替え",
+        "name": "名前",
+        "dueDate": "期限",
+        "priority": "優先度"
+      },
+      "filter": {
+        "label": "フィルター",
+        "all": "すべて表示",
+        "incomplete": "未完了のみ",
+        "overdue": "期限切れのみ"
       }
+    },
+    "pagination": {
+      "previous": "前へ",
+      "next": "次へ"
     }
   },
   "statistics": {

@@ -38,6 +38,12 @@ const TaskCard = ({ task }: TTaskCardProps) => {
           >
             {t(isCompleted ? 'completed' : 'inProgress')}
           </span>
+
+          {!isCompleted && new Date(task.deadline) < new Date() && (
+            <span className="rounded-full bg-red-100 px-2 py-1 font-medium text-red-600 capitalize dark:bg-red-900/30 dark:text-red-400">
+              {t('overdue')}
+            </span>
+          )}
         </div>
       </CardHeader>
 

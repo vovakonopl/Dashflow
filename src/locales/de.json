@@ -197,7 +197,26 @@
       "markAs": {
         "completed": "Als erledigt markieren",
         "incomplete": "Als unerledigt markieren"
+      },
+      "overdue": "Überfällig"
+    },
+    "filters": {
+      "sort": {
+        "label": "Sortieren nach",
+        "name": "Name",
+        "dueDate": "Fälligkeitsdatum",
+        "priority": "Priorität"
+      },
+      "filter": {
+        "label": "Filtern",
+        "all": "Alle anzeigen",
+        "incomplete": "Nur unerledigte",
+        "overdue": "Nur überfällige"
       }
+    },
+    "pagination": {
+      "previous": "Zurück",
+      "next": "Weiter"
     }
   },
   "statistics": {

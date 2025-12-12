@@ -197,7 +197,26 @@
       "markAs": {
         "completed": "Mark as Completed",
         "incomplete": "Mark as Incomplete"
+      },
+      "overdue": "Overdue"
+    },
+    "filters": {
+      "sort": {
+        "label": "Sort by",
+        "name": "Name",
+        "dueDate": "Due date",
+        "priority": "Priority"
+      },
+      "filter": {
+        "label": "Filter",
+        "all": "Show all",
+        "incomplete": "Incomplete only",
+        "overdue": "Overdue only"
       }
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
     }
   },
   "statistics": {

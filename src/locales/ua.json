@@ -197,7 +197,26 @@
       "markAs": {
         "completed": "Позначити як виконане",
         "incomplete": "Позначити як невиконане"
+      },
+      "overdue": "Прострочено"
+    },
+    "filters": {
+      "sort": {
+        "label": "Сортувати за",
+        "name": "Назва",
+        "dueDate": "Термін",
+        "priority": "Пріоритет"
+      },
+      "filter": {
+        "label": "Фільтр",
+        "all": "Показати всі",
+        "incomplete": "Тільки невиконані",
+        "overdue": "Тільки прострочені"
       }
+    },
+    "pagination": {
+      "previous": "Попередня",
+      "next": "Наступна"
     }
   },
   "statistics": {

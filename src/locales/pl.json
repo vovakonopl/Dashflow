@@ -197,7 +197,26 @@
       "markAs": {
         "completed": "Oznacz jako ukończone",
         "incomplete": "Oznacz jako nieukończone"
+      },
+      "overdue": "Zaległe"
+    },
+    "filters": {
+      "sort": {
+        "label": "Sortuj według",
+        "name": "Nazwa",
+        "dueDate": "Termin",
+        "priority": "Priorytet"
+      },
+      "filter": {
+        "label": "Filtruj",
+        "all": "Pokaż wszystkie",
+        "incomplete": "Tylko nieukończone",
+        "overdue": "Tylko zaległe"
       }
+    },
+    "pagination": {
+      "previous": "Poprzednia",
+      "next": "Następna"
     }
   },
   "statistics": {

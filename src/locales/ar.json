@@ -197,7 +197,26 @@
       "markAs": {
         "completed": "تحديد كمكتملة",
         "incomplete": "تحديد كغير مكتملة"
+      },
+      "overdue": "متأخرة"
+    },
+    "filters": {
+      "sort": {
+        "label": "ترتيب حسب",
+        "name": "الاسم",
+        "dueDate": "تاريخ الاستحقاق",
+        "priority": "الأولوية"
+      },
+      "filter": {
+        "label": "تصفية",
+        "all": "عرض الكل",
+        "incomplete": "غير المكتملة فقط",
+        "overdue": "المتأخرة فقط"
       }
+    },
+    "pagination": {
+      "previous": "السابق",
+      "next": "التالي"
     }
   },
   "statistics": {
