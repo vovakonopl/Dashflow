@@ -57,7 +57,7 @@ export default async function ProjectsPage() {
           ))}
         </ul>
 
-        <NewProjectModal />
+        <NewProjectModal ownerId={userId} userId={userId} />
       </div>
     </Dialog>
   );

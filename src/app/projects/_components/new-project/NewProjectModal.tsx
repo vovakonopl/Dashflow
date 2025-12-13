@@ -8,7 +8,12 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { newProject } from '@/lib/actions/project/new-project';
 
-const NewProjectModal = () => {
+interface NewProjectModalProps {
+  ownerId: string;
+  userId: string;
+}
+
+const NewProjectModal = ({ ownerId, userId }: NewProjectModalProps) => {
   const t = useTranslations('projects.project.form.newProject');
 
   return (
@@ -19,7 +24,12 @@ const NewProjectModal = () => {
 
       <Separator />
 
-      <ProjectForm action={newProject} submitButtonText={t('submit')} />
+      <ProjectForm
+        action={newProject}
+        submitButtonText={t('submit')}
+        ownerId={ownerId}
+        userId={userId}
+      />
     </DialogContent>
   );
 };
