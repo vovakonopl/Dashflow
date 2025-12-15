@@ -125,10 +125,15 @@
         },
         "modal": {
           "title": "Créer une nouvelle tâche",
+          "detailsTitle": "Détails de la tâche",
           "description": "Entrez les détails de la tâche ci-dessous. Vous pouvez l'assigner à un membre de l'équipe et définir une date d'échéance.",
           "actions": {
             "cancel": "Annuler",
-            "create": "Créer la tâche"
+            "create": "Créer la tâche",
+            "edit": "Modifier",
+            "save": "Enregistrer les modifications",
+            "complete": "Marquer comme terminé",
+            "uncomplete": "Marquer comme incomplet"
           },
           "field": {
             "title": {
@@ -147,8 +152,12 @@
               "label": "Priorité",
               "placeholder": "priorité"
             },
+            "status": {
+              "label": "Statut"
+            },
             "members": {
               "label": "Membres à assigner",
+              "labelAssigned": "Membres assignés",
               "placeholder": "Sélectionner des membres..."
             },
             "searchMember": {

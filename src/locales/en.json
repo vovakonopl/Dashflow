@@ -125,10 +125,15 @@
         },
         "modal": {
           "title": "Create new task",
+          "detailsTitle": "Task details",
           "description": "Enter the task details below. You can assign it to a team member and set a due date.",
           "actions": {
             "cancel": "Cancel",
-            "create": "Create task"
+            "create": "Create task",
+            "edit": "Edit",
+            "save": "Save changes",
+            "complete": "Mark as completed",
+            "uncomplete": "Mark as incomplete"
           },
           "field": {
             "title": {
@@ -147,8 +152,12 @@
               "label": "Task priority",
               "placeholder": "priority"
             },
+            "status": {
+              "label": "Status"
+            },
             "members": {
               "label": "Members to assign",
+              "labelAssigned": "Assigned members",
               "placeholder": "Select members..."
             },
             "searchMember": {

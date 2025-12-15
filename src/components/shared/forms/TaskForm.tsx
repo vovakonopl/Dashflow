@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { useDialog } from '@/app/projects/[projectId]/_components/dialog-context';
 import MembersToAssignSelect from '@/app/projects/[projectId]/_components/new-task/MembersToAssignSelect';
 import PrioritySelect from '@/app/projects/[projectId]/_components/new-task/PrioritySelect';
+import { useProjectContext } from '@/app/projects/[projectId]/_components/project-members-context';
 import DatePicker from '@/components/shared/inputs/DatePicker';
 import FormInput from '@/components/shared/inputs/FormInput';
 import FormTextarea from '@/components/shared/inputs/FormTextarea';
@@ -16,28 +17,40 @@ import { Form, FormField } from '@/components/ui/form';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { newTask } from '@/lib/actions/task/new-task';
+import { updateTask } from '@/lib/actions/task/update-task';
 import { TASK_LENGTHS } from '@/lib/constants/field-lengths/tasks-max-lengths';
 import { useServerAction } from '@/lib/hooks/useServerAction';
-import { TUser } from '@/lib/types/tables/user';
+import { TTask } from '@/lib/types/tables/task';
 import { taskSchema, TTaskData } from '@/lib/validation/task-schema';
 
-type TNewTaskFormProps = {
-  members: TUser[];
+type TTaskFormProps = {
   projectId: string;
+  task?: TTask;
+  assignedMemberIds?: string[];
+  afterSubmit?: () => void;
 };
 
-const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
+const TaskForm = ({
+  projectId,
+  task,
+  assignedMemberIds: defaultAssignedIds,
+  afterSubmit,
+}: TTaskFormProps) => {
   const t = useTranslations('projects.project.tasks.modal');
-  const [state, action, isPending] = useServerAction(newTask);
+  const actionToUse = task ? updateTask.bind(null, task.id) : newTask;
+  const [state, action, isPending] = useServerAction(actionToUse);
+  const { members } = useProjectContext();
   const { setIsOpen } = useDialog();
+
   const form = useForm<TTaskData>({
     resolver: zodResolver(taskSchema),
     defaultValues: {
-      title: '',
-      description: '',
-      priority: 'low',
-      assignedMemberIds: [],
+      title: task?.title ?? '',
+      description: task?.description ?? '',
+      priority: task?.priority ?? 'low',
+      assignedMemberIds: defaultAssignedIds ?? [],
       projectId,
+      deadline: task?.deadline ? new Date(task.deadline) : undefined,
     },
   });
 
@@ -57,9 +70,13 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
   // close the dialog on success
   useEffect(() => {
     if (state?.isSuccess) {
-      setIsOpen(false);
+      if (afterSubmit) {
+        afterSubmit();
+      } else {
+        setIsOpen(false);
+      }
     }
-  }, [setIsOpen, state]);
+  }, [setIsOpen, state, afterSubmit]);
 
   const onSubmit = (data: TTaskData) => {
     const formData = new FormData();
@@ -153,7 +170,7 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
             render={({ field, fieldState: { error } }) => (
               <MembersToAssignSelect
                 error={error?.message}
-                members={members}
+                members={members.map((m) => m.user)}
                 values={field.value}
                 onChange={field.onChange}
               />
@@ -174,7 +191,7 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
               type="submit"
               disabled={isPending}
             >
-              {t('actions.create')}
+              {task ? t('actions.save') : t('actions.create')}
             </Button>
           </DialogFooter>
         </form>
@@ -183,4 +200,4 @@ const NewTaskForm = ({ members, projectId }: TNewTaskFormProps) => {
   );
 };
 
-export default NewTaskForm;
+export default TaskForm;

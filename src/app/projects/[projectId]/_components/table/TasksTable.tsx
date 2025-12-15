@@ -10,10 +10,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { TTask } from '@/lib/types/tables/task';
+import { TTaskWithMemberIds } from '@/lib/types/tables/task';
 
 type TTasksTableProps = {
-  tasks: TTask[];
+  tasks: TTaskWithMemberIds[];
 };
 
 const TasksTable = ({ tasks }: TTasksTableProps) => {

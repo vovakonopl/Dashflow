@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import NewTaskForm from '@/app/projects/[projectId]/_components/new-task/NewTaskForm';
+import NewTaskForm from '@/components/shared/forms/TaskForm';
 import {
   DialogContent,
   DialogDescription,
@@ -25,7 +25,7 @@ const NewTaskDialog = (props: TNewTaskDialogProps) => {
         <DialogDescription>{t('description')}</DialogDescription>
       </DialogHeader>
 
-      <NewTaskForm {...props} />
+      <NewTaskForm projectId={props.projectId} />
     </DialogContent>
   );
 };

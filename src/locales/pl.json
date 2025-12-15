@@ -125,10 +125,15 @@
         },
         "modal": {
           "title": "Utwórz nowe zadanie",
+          "detailsTitle": "Szczegóły zadania",
           "description": "Wpisz szczegóły zadania poniżej. Możesz przypisać je do członka zespołu i ustawić termin.",
           "actions": {
             "cancel": "Anuluj",
-            "create": "Utwórz zadanie"
+            "create": "Utwórz zadanie",
+            "edit": "Edytuj",
+            "save": "Zapisz zmiany",
+            "complete": "Oznacz jako ukończone",
+            "uncomplete": "Oznacz jako nieukończone"
           },
           "field": {
             "title": {
@@ -147,8 +152,12 @@
               "label": "Priorytet",
               "placeholder": "priorytet"
             },
+            "status": {
+              "label": "Status"
+            },
             "members": {
               "label": "Przypisz członków",
+              "labelAssigned": "Przypisani członkowie",
               "placeholder": "Wybierz członków..."
             },
             "searchMember": {
