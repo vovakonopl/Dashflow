@@ -2,14 +2,14 @@
 
 import { Children, ReactNode, useEffect } from 'react';
 import { TASKS_PER_PAGE } from '@/lib/constants/tasks-per-page';
-import { usePagination } from './pagination-context';
+import { useTableState } from '../TableStateContext';
 
 type TBreakRowsOnPagesProps = {
   children: ReactNode;
 };
 
 const BreakRowsOnPages = ({ children }: TBreakRowsOnPagesProps) => {
-  const { page, setPage } = usePagination();
+  const { page, setPage } = useTableState();
 
   // check for bounds
   useEffect(() => {

@@ -30,8 +30,8 @@ import OwnerOnly from './_components/OwnerOnly';
 import { ProjectProvider } from './_components/project-members-context';
 import SectionCard from './_components/SectionCard';
 import SectionTitle from './_components/SectionTitle';
-import { PaginationProvider } from './_components/table/pagination/pagination-context';
 import TasksPagination from './_components/table/pagination/TasksPagination';
+import { TableStateProvider } from './_components/table/TableStateContext';
 import TasksTable from './_components/table/TasksTable';
 
 type TProjectPage = {
@@ -191,7 +191,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
                 </LeadersOnly>
               </CardHeader>
 
-              <PaginationProvider>
+              <TableStateProvider>
                 <CardContent className="flex">
                   <TasksTable tasks={project.tasks} />
                 </CardContent>
@@ -199,7 +199,7 @@ export default async function ProjectPage({ params }: TProjectPage) {
                 <CardFooter className="empty:hidden">
                   <TasksPagination tasksCount={project.tasks.length} />
                 </CardFooter>
-              </PaginationProvider>
+              </TableStateProvider>
             </SectionCard>
           </div>
 
