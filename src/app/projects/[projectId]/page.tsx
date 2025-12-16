@@ -30,6 +30,7 @@ import OwnerOnly from './_components/OwnerOnly';
 import { ProjectProvider } from './_components/project-members-context';
 import SectionCard from './_components/SectionCard';
 import SectionTitle from './_components/SectionTitle';
+import ExportTableButton from './_components/table/ExportTableButton';
 import TasksPagination from './_components/table/pagination/TasksPagination';
 import { TableStateProvider } from './_components/table/TableStateContext';
 import TasksTable from './_components/table/TasksTable';
@@ -175,20 +176,27 @@ export default async function ProjectPage({ params }: TProjectPage) {
               <CardHeader className="flex justify-between gap-2">
                 <SectionTitle>{t('tasks.title')}</SectionTitle>
 
-                <LeadersOnly project={project} userId={userId}>
-                  <DialogProvider>
-                    <DialogTrigger asChild>
-                      <Button className="capitalize">
-                        {t('tasks.actions.add')}
-                      </Button>
-                    </DialogTrigger>
+                <div className="flex gap-2">
+                  <ExportTableButton
+                    tasks={project.tasks}
+                    projectName={project.name}
+                  />
 
-                    <NewTaskDialog
-                      members={project.members.map((member) => member.user)}
-                      projectId={project.id}
-                    />
-                  </DialogProvider>
-                </LeadersOnly>
+                  <LeadersOnly project={project} userId={userId}>
+                    <DialogProvider>
+                      <DialogTrigger asChild>
+                        <Button className="capitalize">
+                          {t('tasks.actions.add')}
+                        </Button>
+                      </DialogTrigger>
+
+                      <NewTaskDialog
+                        members={project.members.map((member) => member.user)}
+                        projectId={project.id}
+                      />
+                    </DialogProvider>
+                  </LeadersOnly>
+                </div>
               </CardHeader>
 
               <TableStateProvider>

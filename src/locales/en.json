@@ -107,7 +107,8 @@
       "tasks": {
         "title": "Project tasks",
         "actions": {
-          "add": "Add task"
+          "add": "Add task",
+          "export": "Export CSV"
         },
         "table": {
           "caption": "No tasks yet",
