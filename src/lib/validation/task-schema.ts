@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TASK_LENGTHS } from '@/lib/constants/field-lengths/tasks-max-lenths';
+import { TASK_LENGTHS } from '@/lib/constants/field-lengths/tasks-max-lengths';
 import { priorities } from '@/lib/types/tables/task-priority-enum';
 
 export const taskSchema = z.object({

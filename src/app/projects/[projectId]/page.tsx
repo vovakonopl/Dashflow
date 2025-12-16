@@ -27,10 +27,12 @@ import { DialogProvider } from './_components/dialog-context';
 import LeadersOnly from './_components/LeadersOnly';
 import MembersList from './_components/members/MembersList';
 import OwnerOnly from './_components/OwnerOnly';
+import { ProjectProvider } from './_components/project-members-context';
 import SectionCard from './_components/SectionCard';
 import SectionTitle from './_components/SectionTitle';
-import { PaginationProvider } from './_components/table/pagination/pagination-context';
+import ExportTableButton from './_components/table/ExportTableButton';
 import TasksPagination from './_components/table/pagination/TasksPagination';
+import { TableStateProvider } from './_components/table/TableStateContext';
 import TasksTable from './_components/table/TasksTable';
 
 type TProjectPage = {
@@ -84,138 +86,147 @@ export default async function ProjectPage({ params }: TProjectPage) {
   });
 
   return (
-    <div className="flex flex-col gap-6 p-8 max-md:p-4">
-      <div className="flex justify-between gap-4 break-all max-md:flex-col md:items-center">
-        <TitleH1 className="max-sm:text-center">{project.name}</TitleH1>
+    <ProjectProvider members={project.members} currentUserId={userId}>
+      <div className="flex flex-col gap-6 p-8 max-md:p-4">
+        <div className="flex justify-between gap-4 break-all max-md:flex-col md:items-center">
+          <TitleH1 className="max-sm:text-center">{project.name}</TitleH1>
 
-        <div className="flex gap-3 max-lg:flex-col max-md:flex-row max-sm:flex-col">
-          <OwnerOnly ownerId={project.ownerId} userId={userId}>
-            <DialogProvider>
-              <DialogTrigger asChild>
-                <Button
-                  className="cursor-pointer capitalize"
-                  size="lg"
-                  variant="outline"
-                >
-                  <Pencil className="mr-1" />
-                  {t('actions.edit')}
-                </Button>
-              </DialogTrigger>
+          <div className="flex gap-3 max-lg:flex-col max-md:flex-row max-sm:flex-col">
+            <OwnerOnly ownerId={project.ownerId} userId={userId}>
+              <DialogProvider>
+                <DialogTrigger asChild>
+                  <Button
+                    className="cursor-pointer capitalize"
+                    size="lg"
+                    variant="outline"
+                  >
+                    <Pencil className="mr-1" />
+                    {t('actions.edit')}
+                  </Button>
+                </DialogTrigger>
 
-              <EditProjectDialog project={project} userId={userId} />
-            </DialogProvider>
-          </OwnerOnly>
+                <EditProjectDialog project={project} userId={userId} />
+              </DialogProvider>
+            </OwnerOnly>
 
-          <LeadersOnly project={project} userId={userId}>
-            <DialogProvider>
-              <DialogTrigger asChild>
-                <Button className="cursor-pointer" size="lg">
-                  <Users className="mr-1" />
-                  {t('members.actions.add')}
-                </Button>
-              </DialogTrigger>
+            <LeadersOnly project={project} userId={userId}>
+              <DialogProvider>
+                <DialogTrigger asChild>
+                  <Button className="cursor-pointer" size="lg">
+                    <Users className="mr-1" />
+                    {t('members.actions.add')}
+                  </Button>
+                </DialogTrigger>
 
-              <AddMemberDialog />
-            </DialogProvider>
-          </LeadersOnly>
-        </div>
-      </div>
-
-      {/* articles */}
-      <StatsArticles tasks={project.tasks} />
-
-      <div className="flex gap-6 max-lg:flex-col">
-        {/* display modal sheet with list of members on smaller screens */}
-        <div className="lg:hidden">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button className="w-full capitalize">
-                {t('members.actions.view')}
-              </Button>
-            </SheetTrigger>
-
-            <SheetContent>
-              <SheetHeader className="gap-0">
-                <SheetTitle className="capitalize">
-                  {t('members.title')}
-                </SheetTitle>
-              </SheetHeader>
-
-              <Separator className="mx-2 -mt-4" />
-
-              <div className="overflow-y-auto pb-4">
-                <MembersList
-                  project={project}
-                  userId={userId}
-                  className="h-full w-full"
-                />
-              </div>
-            </SheetContent>
-          </Sheet>
+                <AddMemberDialog />
+              </DialogProvider>
+            </LeadersOnly>
+          </div>
         </div>
 
-        {/* main content */}
-        <div className="flex flex-1 flex-col gap-6">
-          {project.description && (
+        {/* articles */}
+        <StatsArticles tasks={project.tasks} />
+
+        <div className="flex gap-6 max-lg:flex-col">
+          {/* display modal sheet with list of members on smaller screens */}
+          <div className="lg:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button className="w-full capitalize">
+                  {t('members.actions.view')}
+                </Button>
+              </SheetTrigger>
+
+              <SheetContent>
+                <SheetHeader className="gap-0">
+                  <SheetTitle className="capitalize">
+                    {t('members.title')}
+                  </SheetTitle>
+                </SheetHeader>
+
+                <Separator className="mx-2 -mt-4" />
+
+                <div className="overflow-y-auto pb-4">
+                  <MembersList
+                    project={project}
+                    userId={userId}
+                    className="h-full w-full"
+                  />
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+
+          {/* main content */}
+          <div className="flex flex-1 flex-col gap-6">
+            {project.description && (
+              <SectionCard>
+                <CardHeader>
+                  <SectionTitle>{t('description')}</SectionTitle>
+                </CardHeader>
+
+                <CardContent>
+                  <p className="text-muted-foreground">{project.description}</p>
+                </CardContent>
+              </SectionCard>
+            )}
+
+            {/* table with tasks */}
             <SectionCard>
-              <CardHeader>
-                <SectionTitle>{t('description')}</SectionTitle>
+              <CardHeader className="flex justify-between gap-2">
+                <SectionTitle>{t('tasks.title')}</SectionTitle>
+
+                <div className="flex gap-2">
+                  <ExportTableButton
+                    tasks={project.tasks}
+                    projectName={project.name}
+                  />
+
+                  <LeadersOnly project={project} userId={userId}>
+                    <DialogProvider>
+                      <DialogTrigger asChild>
+                        <Button className="capitalize">
+                          {t('tasks.actions.add')}
+                        </Button>
+                      </DialogTrigger>
+
+                      <NewTaskDialog
+                        members={project.members.map((member) => member.user)}
+                        projectId={project.id}
+                      />
+                    </DialogProvider>
+                  </LeadersOnly>
+                </div>
               </CardHeader>
 
-              <CardContent>
-                <p className="text-muted-foreground">{project.description}</p>
-              </CardContent>
+              <TableStateProvider>
+                <CardContent className="flex">
+                  <TasksTable tasks={project.tasks} />
+                </CardContent>
+
+                <CardFooter className="empty:hidden">
+                  <TasksPagination tasksCount={project.tasks.length} />
+                </CardFooter>
+              </TableStateProvider>
             </SectionCard>
-          )}
+          </div>
 
-          {/* table with tasks */}
-          <SectionCard>
-            <CardHeader className="flex justify-between gap-2">
-              <SectionTitle>{t('tasks.title')}</SectionTitle>
-
-              <LeadersOnly project={project} userId={userId}>
-                <DialogProvider>
-                  <DialogTrigger asChild>
-                    <Button className="capitalize">
-                      {t('tasks.actions.add')}
-                    </Button>
-                  </DialogTrigger>
-
-                  <NewTaskDialog
-                    members={project.members.map((member) => member.user)}
-                    projectId={project.id}
-                  />
-                </DialogProvider>
-              </LeadersOnly>
+          {/* member list */}
+          {/* display the list on larger screens*/}
+          <SectionCard
+            cardClassName="w-full"
+            className="w-fit max-w-96 min-w-72 max-lg:hidden"
+          >
+            <CardHeader className="gap-0">
+              <SectionTitle>{t('members.title')}</SectionTitle>
             </CardHeader>
 
-            <PaginationProvider>
-              <CardContent className="flex">
-                <TasksTable tasks={project.tasks} />
-              </CardContent>
-
-              <CardFooter className="empty:hidden">
-                <TasksPagination tasksCount={project.tasks.length} />
-              </CardFooter>
-            </PaginationProvider>
+            <CardContent className="px-2">
+              <MembersList project={project} userId={userId} />
+            </CardContent>
           </SectionCard>
         </div>
-
-        {/* member list */}
-        {/* display the list on larger screens*/}
-        <SectionCard
-          cardClassName="w-full"
-          className="w-fit max-w-96 min-w-72 max-lg:hidden"
-        >
-          <CardHeader className="gap-0">
-            <SectionTitle>{t('members.title')}</SectionTitle>
-          </CardHeader>
-
-          <CardContent className="px-2">
-            <MembersList project={project} userId={userId} />
-          </CardContent>
-        </SectionCard>
       </div>
-    </div>
+    </ProjectProvider>
   );
 }

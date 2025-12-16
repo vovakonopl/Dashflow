@@ -125,10 +125,15 @@
         },
         "modal": {
           "title": "Neue Aufgabe erstellen",
+          "detailsTitle": "Aufgabendetails",
           "description": "Geben Sie die Aufgabendetails unten ein. Sie können sie einem Teammitglied zuweisen und ein Fälligkeitsdatum festlegen.",
           "actions": {
             "cancel": "Abbrechen",
-            "create": "Aufgabe erstellen"
+            "create": "Aufgabe erstellen",
+            "edit": "Bearbeiten",
+            "save": "Änderungen speichern",
+            "complete": "Als erledigt markieren",
+            "uncomplete": "Als unerledigt markieren"
           },
           "field": {
             "title": {
@@ -147,8 +152,12 @@
               "label": "Priorität",
               "placeholder": "Priorität"
             },
+            "status": {
+              "label": "Status"
+            },
             "members": {
               "label": "Mitglieder zuweisen",
+              "labelAssigned": "Zugewiesene Mitglieder",
               "placeholder": "Mitglieder auswählen..."
             },
             "searchMember": {

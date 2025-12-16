@@ -1,6 +1,6 @@
 'use client';
 
-import { usePagination } from '@/app/projects/[projectId]/_components/table/pagination/pagination-context';
+import { useTableState } from '@/app/projects/[projectId]/_components/table/TableStateContext';
 import {
   Pagination,
   PaginationContent,
@@ -28,19 +28,19 @@ type TTasksPaginationProps = {
 };
 
 const TasksPagination = ({ tasksCount }: TTasksPaginationProps) => {
-  const { page, setPage } = usePagination();
+  const { page, setPage } = useTableState();
   const pagesCount = Math.ceil(tasksCount / TASKS_PER_PAGE);
 
   if (pagesCount <= 1) return null; // hide pagination if it is not required
 
   const handlePrev = () => {
     if (page <= 1) return;
-    setPage((prev) => prev - 1);
+    setPage(page - 1);
   };
 
   const handleNext = () => {
     if (page >= pagesCount) return;
-    setPage((prev) => prev + 1);
+    setPage(page + 1);
   };
 
   const handleClick = (newPage: number) => {

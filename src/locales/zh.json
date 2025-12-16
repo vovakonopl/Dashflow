@@ -125,10 +125,15 @@
         },
         "modal": {
           "title": "创建新任务",
+          "detailsTitle": "任务详情",
           "description": "在下方输入任务详情。您可以将其分配给团队成员并设置截止日期。",
           "actions": {
             "cancel": "取消",
-            "create": "创建任务"
+            "create": "创建任务",
+            "edit": "编辑",
+            "save": "保存更改",
+            "complete": "标记为已完成",
+            "uncomplete": "标记为未完成"
           },
           "field": {
             "title": {
@@ -147,8 +152,12 @@
               "label": "任务优先级",
               "placeholder": "优先级"
             },
+            "status": {
+              "label": "状态"
+            },
             "members": {
               "label": "分配成员",
+              "labelAssigned": "已分配成员",
               "placeholder": "选择成员..."
             },
             "searchMember": {

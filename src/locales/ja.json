@@ -125,10 +125,15 @@
         },
         "modal": {
           "title": "新しいタスクを作成",
+          "detailsTitle": "タスクの詳細",
           "description": "以下のタスク詳細を入力してください。チームメンバーに割り当て、期限を設定できます。",
           "actions": {
             "cancel": "キャンセル",
-            "create": "タスクを作成"
+            "create": "タスクを作成",
+            "edit": "編集",
+            "save": "変更を保存",
+            "complete": "完了としてマーク",
+            "uncomplete": "未完了としてマーク"
           },
           "field": {
             "title": {
@@ -147,8 +152,12 @@
               "label": "優先度",
               "placeholder": "優先度"
             },
+            "status": {
+              "label": "ステータス"
+            },
             "members": {
               "label": "割り当てるメンバー",
+              "labelAssigned": "割り当てられたメンバー",
               "placeholder": "メンバーを選択..."
             },
             "searchMember": {
